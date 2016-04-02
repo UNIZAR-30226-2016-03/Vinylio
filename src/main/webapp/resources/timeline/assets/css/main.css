@@ -2831,6 +2831,16 @@
 		opacity: 1.0 !important;
 	}
 
+/* XXLarge */
+
+@media screen and (max-width: 3800px) {
+
+	textarea{
+		margin-left: 40px;	/* ESTA PUTA MIERDA ES PARA EL TEXTAREA DEL TIMELINE */
+	}
+
+}
+
 /* XLarge */
 
 	@media screen and (max-width: 1800px) {
@@ -2973,6 +2983,10 @@
 
 	@media screen and (max-width: 736px) {
 
+		textarea{
+			margin-left: 0px;	/* ESTA PUTA MIERDA ES PARA EL TEXTAREA DEL TIMELINE */
+		}
+
 		/* Basic */
 
 			h1 {
@@ -3050,6 +3064,10 @@
 /* XSmall */
 
 	@media screen and (max-width: 480px) {
+
+		textarea{
+			margin-left: 0px;	/* ESTA PUTA MIERDA ES PARA EL TEXTAREA DEL TIMELINE */
+		}
 
 		/* List */
 
