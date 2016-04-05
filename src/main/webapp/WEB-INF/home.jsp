@@ -80,8 +80,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <footer>
                 <hr class="prettyline">
                 <ul>
-                    <li><a href="login.php" class="overlayLink" data-action="login-form.html">Iniciar Sesión</a></li>
-                    <li><a href="register.php" class="overlayLink2" data-action="registration-form.html">Registro</a></li>
+                    <li><a href="/timeline" class="overlayLink" data-action="login-form.html">Iniciar Sesión</a></li>
+                    <li><a href="/timeline" class="overlayLink2" data-action="registration-form.html">Registro</a></li>
                 </ul>
                 <hr class="prettyline">
 
@@ -92,14 +92,14 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <div class="login-content" id="loginTarget">
                             <a class="close">x</a>
                             <h3>Iniciar Sesión</h3>
-                            <form method="post" action="login.php">
+                            <form method="post" action="/timeline">
                                 <label for="username">
                                     Nombre de Usuario:
-                                    <input type="text" name="username" id="username" placeholder="Debe contener entre 8 y 20 caracteres" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]$" required />
+                                    <input type="text" name="username" id="username" placeholder="Debe contener entre 4 y 20 caracteres" pattern="^[a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.]*$" required />
                                 </label>
                                 <label for="password">
                                     Contraseña:
-                                    <input type="password" name="password" id="password" placeholder="Debe contener al menos 1 mayús. y un número" pattern="(?=^.$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
+                                    <input type="password" name="password" id="password" placeholder="Debe contener al menos 6 caracteres" pattern="^[a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.]*$" required />
                                 </label>
                                 <button type="submit">Entrar</button>
                             </form>
@@ -112,18 +112,18 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <div class="login-content" id="registerTarget">
                             <a class="closeReg">x</a>
                             <h3>Registro</h3>
-                            <form method="post" action="register.php">
+                            <form method="post" action="/timeline">
                                 <label for="email">
                                     Correo electrónico:
-                                    <input type="text" name="email" id="email" placeholder="Debe ser una direccion válida" pattern="^[a-zA-Z](@)[a-zA-Z0-9-_\.]$" required />
+                                    <input type="text" name="email" id="email" placeholder="Debe ser una direccion válida" pattern="^[a-zA-Z0-9-_\.]+[@][a-zA-Z0-9-_\.]+[.][a-zA-Z0-9-_\.]+$" required />
                                 </label>
                                 <label for="username">
                                     Nombre de Usuario:
-                                    <input type="text" name="username" id="usernameReg" placeholder="Debe contener entre 8 y 20 caracteres" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]$" required />
+                                    <input type="text" name="username" id="usernameReg" placeholder="Debe contener entre 8 y 20 caracteres" pattern="^[a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.]*$" required />
                                 </label>
                                 <label for="password">
                                     Contraseña:
-                                    <input type="password" name="password" id="passwordReg" placeholder="Debe contener al menos 1 mayús. y un número" pattern="(?=^.$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
+                                    <input type="password" name="password" id="passwordReg" placeholder="Debe contener al menos 6 caracteres" pattern="^[a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.]*$" required />
                                 </label>
                                 <button type="submit">Registrarse</button>
                             </form>
