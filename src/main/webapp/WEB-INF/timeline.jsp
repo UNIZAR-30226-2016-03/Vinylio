@@ -29,15 +29,30 @@
 			<div id="main">
 
 				<!-- One -->
-					<section id="one">
-						<header class="major">
-							<h2>OMG NEW HACK FOR THE DIVISION</h2>
-						</header>
-						<p>Delete /system32, fucking free money bug for the game omfg.</p>
-						<ul class="actions">
-							<li><a href="#" class="button">Me guuuuuuuuuzzzzzzzzzzta</a></li>
-						</ul>
-					</section>
+				<section id="one">
+					<p>Delete /system32, fucking free money bug for the game omfg.</p>
+					<a href="#" class="button">Me guuuuuuuuuzzzzzzzzzzta</a>
+				</section>
+
+				<section id="two">
+					<p>Delete /system32, fucking free money bug for the game omfg.2222</p>
+					<a href="#" class="button">Me guuuuuuuuuzzzzzzzzzzta222222222</a>
+				</section>
+
+				<section id="three">
+					<p>Delete /system32, fucking free money bug for the game omfg.2222</p>
+					<a href="#" class="button">Me guuuuuuuuuzzzzzzzzzzta222222222</a>
+				</section>
+
+				<section id="four">
+					<p>Delete /system32, fucking free money bug for the game omfg.2222</p>
+					<a href="#" class="button">Me guuuuuuuuuzzzzzzzzzzta222222222</a>
+				</section>
+
+				<section id="five">
+					<p>Delete /system32, fucking free money bug for the game omfg.2222</p>
+					<a href="#" class="button">Me guuuuuuuuuzzzzzzzzzzta222222222</a>
+				</section>
 
 				<!-- Two -->
 					<!--<section id="two">
@@ -120,7 +135,7 @@
 			</div>
 
 		<!-- Footer -->
-			<footer id="footer">
+			<!--<footer id="footer">
 				<ul class="icons">
 					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 					<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
@@ -130,7 +145,7 @@
 				<ul class="copyright">
 					<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 				</ul>
-			</footer>
+			</footer>-->
 
 		<!-- Scripts -->
 			<script src="../resources/timeline/assets/js/jquery.min.js"></script>

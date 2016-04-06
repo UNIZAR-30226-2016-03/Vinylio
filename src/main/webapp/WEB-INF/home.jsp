@@ -95,7 +95,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                             <form method="post" action="/timeline">
                                 <label for="username">
                                     Nombre de Usuario:
-                                    <input type="text" name="username" id="username" placeholder="Debe contener entre 4 y 20 caracteres" pattern="^[a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.]*$" required />
+                                    <input type="text" name="username" id="username" placeholder="Debe contener entre 4 y 20 caracteres" pattern="^[a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@]*$" required />
                                 </label>
                                 <label for="password">
                                     Contraseña:
@@ -115,7 +115,11 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                             <form method="post" action="/timeline">
                                 <label for="email">
                                     Correo electrónico:
-                                    <input type="text" name="email" id="email" placeholder="Debe ser una direccion válida" pattern="^[a-zA-Z0-9-_\.]+[@][a-zA-Z0-9-_\.]+[.][a-zA-Z0-9-_\.]+$" required />
+                                    <input type="email" name="email" id="email" placeholder="Debe ser una direccion válida" pattern="^[a-zA-Z0-9-_\.]+[@][a-zA-Z0-9-_\.]+[.][a-zA-Z0-9-_\.]+$" required />
+                                </label>
+                                <label for="nombreApellidos">
+                                    Nombre y Apellidos:
+                                    <input type="text" name="nombreApellidos" id="nombreApellidos" placeholder="No puede ser nulo, todo el mundo tiene un nombre ;)" pattern="^[a-zA-Z0-9-_\.' ']*$" required />
                                 </label>
                                 <label for="username">
                                     Nombre de Usuario:
