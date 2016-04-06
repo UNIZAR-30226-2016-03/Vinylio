@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Read Only by HTML5 UP</title>
+		<title>Perfil</title>
 		<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 		<%@ page pageEncoding="UTF-8"%>
 		<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
@@ -21,16 +21,16 @@
 			<section id="header">
 				<header>
 					<span class="image avatar"><img src="../resources/perfil/images/avatar.jpg" alt="" /></span>
-					<h1 id="logo"><a href="#">Willis Corto</a></h1>
-					<p>I got reprogrammed by a rogue AI<br />
-					and now I'm totally cray</p>
+					<h1 id="logo"><a href="#">Nick</a></h1>
+					<p>Fecha de nacimiento<br />
+					Ubicación</p>
 				</header>
 				<nav id="nav">
 					<ul>
-						<li><a href="#one" class="active">About</a></li>
-						<li><a href="#two">Things I Can Do</a></li>
-						<li><a href="#three">A Few Accomplishments</a></li>
-						<li><a href="#four">Contact</a></li>
+						<li><a href="#one" class="active">Biografía</a></li>
+						<li><a href="#two">Biblioteca de juegos</a></li>
+						<li><a href="#three">Contactos</a></li>
+						<li><a href="#four">Configuraccione</a></li>
 					</ul>
 				</nav>
 				<footer>
@@ -54,55 +54,52 @@
 							<section id="one">
 								<div class="container">
 									<header class="major">
-										<h2>Read Only</h2>
-										<p>Just an incredibly simple responsive site<br />
-										template freebie by <a href="http://html5up.net">HTML5 UP</a>.</p>
+										<h2>NombreYApellidos</h2>
+										<p>Biografía</p>
 									</header>
-									<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
 								</div>
 							</section>
 
 						<!-- Two -->
 							<section id="two">
 								<div class="container">
-									<h3>Things I Can Do</h3>
-									<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer lorem ipsum dolor sit amet.</p>
-									<ul class="feature-icons">
-										<li class="fa-code">Write all the code</li>
-										<li class="fa-cubes">Stack small boxes</li>
-										<li class="fa-book">Read books and stuff</li>
-										<li class="fa-coffee">Drink much coffee</li>
-										<li class="fa-bolt">Lightning bolt</li>
-										<li class="fa-users">Shadow clone technique</li>
-									</ul>
+									<h3>Biblioteca de juegos</h3>
+									<div class="features">
+										<article>
+											<a href="#" class="image"><img src="../resources/perfil/images/pic01.jpg" alt="" /></a>
+											<div class="inner">
+												<h4>LIJ OF LEYANDS</h4>
+												<p>No jugar, te consume la vida, te llena de odio y te deja sin dinero.</p>
+											</div>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="../resources/perfil/images/pic02.jpg" alt="" /></a>
+											<div class="inner">
+												<h4>The division</h4>
+												<p>OppieOP approves, go to the timeline for ez hacks gg wp cya noobs get rekt.</p>
+											</div>
+										</article>
+									</div>
 								</div>
 							</section>
 
 						<!-- Three -->
 							<section id="three">
 								<div class="container">
-									<h3>A Few Accomplishments</h3>
-									<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
+									<h3>Contactos</h3>
 									<div class="features">
 										<article>
 											<a href="#" class="image"><img src="../resources/perfil/images/pic01.jpg" alt="" /></a>
 											<div class="inner">
-												<h4>Possibly broke spacetime</h4>
-												<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
+												<h4>Jorge Cokelas</h4>
+												<p>Bio: especialista en moños</p>
 											</div>
 										</article>
 										<article>
 											<a href="#" class="image"><img src="../resources/perfil/images/pic02.jpg" alt="" /></a>
 											<div class="inner">
-												<h4>Terraformed a small moon</h4>
-												<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
-											</div>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="../resources/perfil/images/pic03.jpg" alt="" /></a>
-											<div class="inner">
-												<h4>Snapped dark matter in the wild</h4>
-												<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
+												<h4>KristinikahH</h4>
+												<p>To shoniH</p>
 											</div>
 										</article>
 									</div>
@@ -112,26 +109,31 @@
 						<!-- Four -->
 							<section id="four">
 								<div class="container">
-									<h3>Contact Me</h3>
-									<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
+									<h3>Configuracion</h3>
 									<form method="post" action="#">
 										<div class="row uniform">
-											<div class="6u 12u(xsmall)"><input type="text" name="name" id="name" placeholder="Name" /></div>
-											<div class="6u 12u(xsmall)"><input type="email" name="email" id="email" placeholder="Email" /></div>
-										</div>
-										<div class="row uniform">
-											<div class="12u"><input type="text" name="subject" id="subject" placeholder="Subject" /></div>
-										</div>
-										<div class="row uniform">
-											<div class="12u"><textarea name="message" id="message" placeholder="Message" rows="6"></textarea></div>
+											<div class="6u 12u(xsmall)">
+												<input type="text" name="nick" id="idNick" placeholder="Nick" />
+												<br/>
+												<input type="text" name="nombreApellidos" id="idnombreApellidos" placeholder="Nombre y Apellidos"/>
+												<br/>
+												<input type="text" name="localizacion" id="idLocalizacion" placeholder="Localizacion" />
+											</div>
+											<div class="6u 12u(xsmall)">
+												<input type="email" name="email" id="email" placeholder="Email" />
+												<br/>
+												<input type="password" name="password" id="idPassword" placeholder="Password" />
+												<br/>
+												<input type="text" name="fechaNacimiento" id="idfechaNacimiento" placeholder="Fecha de nacimiento" />
+											</div>
 										</div>
 										<div class="row uniform">
 											<div class="12u">
-												<ul class="actions">
-													<li><input type="submit" class="special" value="Send Message" /></li>
-													<li><input type="reset" value="Reset Form" /></li>
-												</ul>
+												<textarea name="Text1" cols="5" rows="5" id="idBiografia" placeholder="Biografía" required></textarea>
 											</div>
+										</div>
+										<div class="row uniform">
+											<input type="file" name="urlPerfil" id="idUrlPerfil"/>
 										</div>
 									</form>
 								</div>

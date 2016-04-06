@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Strata by HTML5 UP</title>
+		<title>Timeline</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="../resources/timeline/assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -17,7 +17,7 @@
 
 		<!-- Header -->
 			<header id="header">
-				<a href="/perfil" class="image avatar"><img src="../resources/timeline/images/avatar.jpg" alt="" /></a>
+				<a href="/perfil" class="image avatar"><img src="../resources/iconos/perfilplaceholder.png" alt="" /></a>
 				<br/>
 				<div class="12u 12u$(xsmall)">
 					<textarea name="Text1" cols="5" rows="5" id="idTextArea" required></textarea> <br/>
@@ -31,27 +31,34 @@
 				<!-- One -->
 				<section id="one">
 					<p>Delete /system32, fucking free money bug for the game omfg.</p>
-					<a href="#" class="button">Me guuuuuuuuuzzzzzzzzzzta</a>
+					<ul class="icons">
+						<li><a href="#" class="icon fa-star-o"><span class="label">Like sin dar</span></a></li>
+						<li><a href="#" class="icon fa-star"><span class="label">Like dado</span></a></li>
+					</ul>
 				</section>
 
 				<section id="two">
-					<p>Delete /system32, fucking free money bug for the game omfg.2222</p>
-					<a href="#" class="button">Me guuuuuuuuuzzzzzzzzzzta222222222</a>
+					<p>Delete /system32, fucking free money bug for the game omfg.</p>
+					<ul class="icons">
+						<li><a href="#" class="icon fa-star-o"><span class="label">Like sin dar</span></a></li>
+						<li><a href="#" class="icon fa-star"><span class="label">Like dado</span></a></li>
+					</ul>
 				</section>
 
 				<section id="three">
-					<p>Delete /system32, fucking free money bug for the game omfg.2222</p>
-					<a href="#" class="button">Me guuuuuuuuuzzzzzzzzzzta222222222</a>
+					<p>Delete /system32, fucking free money bug for the game omfg.</p>
+					<ul class="icons">
+						<li><a href="#" class="icon fa-star-o"><span class="label">Like sin dar</span></a></li>
+						<li><a href="#" class="icon fa-star"><span class="label">Like dado</span></a></li>
+					</ul>
 				</section>
 
 				<section id="four">
-					<p>Delete /system32, fucking free money bug for the game omfg.2222</p>
-					<a href="#" class="button">Me guuuuuuuuuzzzzzzzzzzta222222222</a>
-				</section>
-
-				<section id="five">
-					<p>Delete /system32, fucking free money bug for the game omfg.2222</p>
-					<a href="#" class="button">Me guuuuuuuuuzzzzzzzzzzta222222222</a>
+					<p>Delete /system32, fucking free money bug for the game omfg.</p>
+					<ul class="icons">
+						<li><a href="#" class="icon fa-star-o"><span class="label">Like sin dar</span></a></li>
+						<li><a href="#" class="icon fa-star"><span class="label">Like dado</span></a></li>
+					</ul>
 				</section>
 
 				<!-- Two -->

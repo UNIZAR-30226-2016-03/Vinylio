@@ -15,16 +15,4 @@ public class ControladorHome {
         return "home";
     }
 
-    @RequestMapping(value="/perfil")
-    public String redireccionPerfil(){
-        System.out.println("Me ha llegado la peticion de obtener perfil");
-        return "perfil";
-    }
-
-
-    @RequestMapping(value="/timeline")
-    public String redireccionTimeline(){
-        System.out.println("Me ha llegado la peticion de obtener timeline");
-        return "timeline";
-    }
 }

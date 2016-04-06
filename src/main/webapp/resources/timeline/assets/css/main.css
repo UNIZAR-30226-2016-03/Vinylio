@@ -1599,7 +1599,7 @@
 	}
 
 	p {
-		margin: 0 0 2em 0;
+		margin: 0 0 1em 0;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -1777,6 +1777,7 @@
 		padding: 0 0.75em;
 		text-decoration: none;
 		width: 100%;
+		resize:none;
 	}
 
 		input[type="text"]:invalid,
@@ -1785,6 +1786,7 @@
 		select:invalid,
 		textarea:invalid {
 			box-shadow: none;
+			resize:none;
 		}
 
 		input[type="text"]:focus,
@@ -2380,6 +2382,13 @@
 		input[type="submit"].fit,
 		input[type="reset"].fit,
 		input[type="button"].fit,
+		.button.fav {
+			background: url("../../../iconos/favicon.png");
+		}
+
+		input[type="submit"].fit,
+		input[type="reset"].fit,
+		input[type="button"].fit,
 		.button.fit {
 			display: block;
 			margin: 0 0 1em 0;
@@ -2555,8 +2564,8 @@
 
 		#main > section {
 			border-top: solid 2px #efefef;
-			margin: 4em 0 0 0;
-			padding: 4em 0 0 0;
+			margin: 1em 0 0 0;
+			padding: 1em 0 0 0;
 		}
 
 			#main > section:first-child {
