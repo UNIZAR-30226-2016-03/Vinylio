@@ -14,9 +14,9 @@ public class ControladorPrincipal {
         System.out.println("Me ha llegado la peticion de obtener timeline");
         Usuario user = (Usuario) request.getSession().getAttribute("user");
         if(user != null) {
-            return "timeline";
+            return "principal";
         } else{
-            return "redirect:/home";
+            return "principal";
         }
     }
 }
