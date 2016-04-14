@@ -57,7 +57,7 @@ public class Poblador {
         // Estableciendo la conexion con la BD
         connection = DriverManager.getConnection(DB_URL,USER,PASS);
         Statement stmt = connection.createStatement();
-        stmt.executeQuery("USE webas");
+        stmt.executeQuery("USE webps");
         stmt.close();
     }
 
