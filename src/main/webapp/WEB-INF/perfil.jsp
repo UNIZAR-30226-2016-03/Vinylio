@@ -117,7 +117,7 @@
 												<br/>
 												<input type="text" name="nombreApellidos" id="idnombreApellidos" placeholder="Nombre y Apellidos"/>
 												<br/>
-												<input type="text" name="localizacion" id="idLocalizacion" placeholder="Localizacion" />
+												<input type="text" name="lugar" id="idlugar" placeholder="lugar" />
 											</div>
 											<div class="6u 12u(xsmall)">
 												<input type="email" name="email" id="email" placeholder="Email" />

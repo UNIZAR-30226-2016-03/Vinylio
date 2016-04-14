@@ -2,27 +2,23 @@ package com.eina.as.modelo.service;
 
 public class Usuario {
 
-    private String nick, nombreApellidos, correo, password, urlImagen, fechaNacimiento, localizacion, biografia,
-                         urlTwitter, urlFacebook, urlPersonal;
+    private String nombreApellidos, email, password, URL_foto, biografia,lugar;
 
-    public Usuario(String nick, String nombreApellidos, String correo, String password, String urlImagen,
-                   String fechaNacimiento, String localizacion, String biografia, String urlTwitter,
-                   String urlFacebook, String urlPersonal) {
-        this.nick = nick;
+    private int id_usuario,nacimiento;
+    public Usuario(int id_usuario, int nacimiento, String nombreApellidos, String email, String password, String URL_foto,
+                   String biografia, String lugar) {
+        this.id_usuario = id_usuario;
         this.nombreApellidos = nombreApellidos;
-        this.correo = correo;
+        this.email = email;
         this.password = password;
-        this.urlImagen = urlImagen;
-        this.fechaNacimiento = fechaNacimiento;
-        this.localizacion = localizacion;
+        this.URL_foto = URL_foto;
+        this.nacimiento = nacimiento;
+        this.lugar = lugar;
         this.biografia = biografia;
-        this.urlTwitter = urlTwitter;
-        this.urlFacebook = urlFacebook;
-        this.urlPersonal = urlPersonal;
     }
 
     public Usuario(String nick, String correo, String password, String nombreApellidos, String urlImagen) {
-        this.nick = nick;
+        this.id_usuario = id_usuario;
         this.correo = correo;
         this.password = password;
         this.nombreApellidos = nombreApellidos;
@@ -78,12 +74,12 @@ public class Usuario {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getLocalizacion() {
-        return localizacion;
+    public String getlugar() {
+        return lugar;
     }
 
-    public void setLocalizacion(String localizacion) {
-        this.localizacion = localizacion;
+    public void setlugar(String lugar) {
+        this.lugar = lugar;
     }
 
     public String getBiografia() {

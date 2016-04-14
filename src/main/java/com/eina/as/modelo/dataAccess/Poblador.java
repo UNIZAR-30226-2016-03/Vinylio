@@ -143,11 +143,10 @@ public class Poblador {
             sb.append("CREATE TABLE IF NOT EXISTS Usuario (");
             sb.append("id_usuario   INTEGER PRIMARY KEY, ");
             sb.append("email    VARCHAR(50) NOT NULL,");
-            sb.append("nombre   VARCHAR(50) NOT NULL,");
-            sb.append("apellidos    VARCHAR(50) NOT NULL,");
+            sb.append("nombreApellidos   VARCHAR(100) NOT NULL,");
             sb.append("biografia    VARCHAR(255),");
             sb.append("URL_foto VARCHAR(255),");
-            sb.append("nacimiento INTEGER(4),");
+            sb.append("nacimiento INTEGER(8),");
             sb.append("lugar    VARCHAR(255),");
             sb.append("password VARCHAR(20));");
             mt.executeSentence(sb.toString());

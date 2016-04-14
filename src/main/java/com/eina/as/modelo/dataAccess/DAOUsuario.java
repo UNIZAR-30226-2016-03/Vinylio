@@ -108,12 +108,12 @@ public class DAOUsuario {
         Statement stmt = connection.createStatement();
         stmt.executeUpdate("INSERT INTO  usuario"
                 + " (nick,nombreYApellidos,correo,contrasenya,urlImagen,"
-                + "fechaDeNacimiento,biografia,localizacion,urlTwitter,"
+                + "fechaDeNacimiento,biografia,lugar,urlTwitter,"
                 + "urlFacebook, urlPersonal) VALUES ('"
                 + user.getNick() + "', '" + user.getNombreApellidos() + "', '"
                 + user.getCorreo() + "', '" + user.getPassword() + "', '"
                 + user.getUrlImagen() + "', '" + user.getFechaNacimiento() + "', '"
-                + user.getBiografia() + "', '" + user.getLocalizacion() + "', '"
+                + user.getBiografia() + "', '" + user.getlugar() + "', '"
                 + user.getUrlTwitter() + "', '"
                 + user.getUrlFacebook()  + "', '" + user.getUrlPersonal()+ "')");
         stmt.close();
@@ -149,13 +149,13 @@ public class DAOUsuario {
             String urlImagen = rs.getString("urlImagen");
             String fechaDeNacimiento = rs.getString("fechaDeNacimiento");
             String biografia = rs.getString("biografia");
-            String localizacion = rs.getString("localizacion");
+            String lugar = rs.getString("lugar");
             String urlTwitter = rs.getString("urlTwitter");
             String urlFacebook = rs.getString("urlFacebook");
             String urlPersonal = rs.getString("urlPersonal");
 
             user = new Usuario(nick,nombreYApellidos,email,password,urlImagen,
-                    fechaDeNacimiento,localizacion,biografia,urlTwitter,
+                    fechaDeNacimiento,lugar,biografia,urlTwitter,
                     urlFacebook,urlPersonal);
         }
         stmt.close();
@@ -176,13 +176,13 @@ public class DAOUsuario {
             String urlImagen = rs.getString("urlImagen");
             String fechaDeNacimiento = rs.getString("fechaDeNacimiento");
             String biografia = rs.getString("biografia");
-            String localizacion = rs.getString("localizacion");
+            String lugar = rs.getString("lugar");
             String urlTwitter = rs.getString("urlTwitter");
             String urlFacebook = rs.getString("urlFacebook");
             String urlPersonal = rs.getString("urlPersonal");
 
             user = new Usuario(nick,nombreYApellidos,email,password,urlImagen,
-                    fechaDeNacimiento,localizacion,biografia,urlTwitter,
+                    fechaDeNacimiento,lugar,biografia,urlTwitter,
                     urlFacebook,urlPersonal);
         }
         stmt.close();
