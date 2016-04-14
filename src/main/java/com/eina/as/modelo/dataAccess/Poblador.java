@@ -141,7 +141,7 @@ public class Poblador {
 
             System.out.println("Creando la tabla de usuarios...");
             sb.append("CREATE TABLE IF NOT EXISTS Usuario (");
-            sb.append("id_usuario   INTEGER PRIMARY KEY AUTOINCREMENT, ");
+            sb.append("id_usuario   INTEGER PRIMARY KEY AUTO_INCREMENT, ");
             sb.append("email    VARCHAR(50) NOT NULL,");
             sb.append("nombreApellidos   VARCHAR(100) NOT NULL,");
             sb.append("biografia    VARCHAR(255),");
@@ -154,7 +154,7 @@ public class Poblador {
             System.out.println("Creando la tabla de vinilos...");
             sb = new StringBuffer();
             sb.append("CREATE TABLE IF NOT EXISTS Vinilo(");
-            sb.append("id_vinilo    INTEGER PRIMARY KEY,");
+            sb.append("id_vinilo    INTEGER PRIMARY KEY AUTO_INCREMENT, ");
             sb.append("titulo   VARCHAR(255) NOT NULL,");
             sb.append("autor    VARCHAR(30) NOT NULL,");
             sb.append("genero   VARCHAR(255),");
@@ -163,16 +163,15 @@ public class Poblador {
             sb.append("imagen   VARCHAR(255),");
             sb.append("rpm  INTEGER(2),");
             sb.append("lanzamiento  VARCHAR(255),");
-            sb.append("fechasubida  DATE);");
             mt.executeSentence(sb.toString());
 
             System.out.println("Creando la tabla de colecciones...");
             sb = new StringBuffer();
             sb.append("CREATE TABLE IF NOT EXISTS Colecciona(");
-            sb.append("id_user  INT NOT NULL,");
-            sb.append("id_vinilo    INT NOT NULL,");
-            sb.append("FOREIGN KEY (id_user)    REFERENCES Usuario(id_usuario) ON DELETE CASCADE,");
-            sb.append("foreign key (id_vinilo)    REFERENCES Vinilo(id_vinilo) ON DELETE CASCADE);");
+            sb.append("id_user INT NOT NULL,");
+            sb.append("id_vinilo INT NOT NULL,");
+            sb.append("FOREIGN KEY (id_user) REFERENCES Usuario(id_usuario) ON DELETE CASCADE,");
+            sb.append("foreign key (id_vinilo) REFERENCES Vinilo(id_vinilo) ON DELETE CASCADE);");
             mt.executeSentence(sb.toString());
 
         }catch(SQLException se){
