@@ -72,9 +72,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <div class="container">
 
             <header>
-                <h2 class="alt">Bienvenido a <strong>XXXXXX</strong>, donde puedes compartir<br />
-                    tus mejores partidas con tus amigos.</h2>
-                <p>Regístrate ya y disfruta jugando con tus amigos.</p>
+                <h2 class="alt">Bienvenido a <strong>Vinylio</strong>, una nueva manera<br />
+                    de mantener tu colección de Vinilos.</h2>
+                <p>Regístrate ahora y comienza a añadir vinilos	a tu colección personal.</p>
             </header>
 
             <footer>
@@ -148,13 +148,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <!-- Copyright -->
     <ul class="copyright">
         <ul class="icons">
-            <li><a href="https://twitter.com" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="https://twitter.com/Vinylio_" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
             <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
             <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
             <!--<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>-->
             <li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
         </ul>
-        <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        <li>&copy; RayTech. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
     </ul>
 
 </div>
