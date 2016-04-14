@@ -110,12 +110,10 @@ public class DAOUsuario {
                 + " (nick,nombreYApellidos,correo,contrasenya,urlImagen,"
                 + "fechaDeNacimiento,biografia,lugar,urlTwitter,"
                 + "urlFacebook, urlPersonal) VALUES ('"
-                + user.getNick() + "', '" + user.getNombreApellidos() + "', '"
-                + user.getCorreo() + "', '" + user.getPassword() + "', '"
-                + user.getUrlImagen() + "', '" + user.getFechaNacimiento() + "', '"
-                + user.getBiografia() + "', '" + user.getlugar() + "', '"
-                + user.getUrlTwitter() + "', '"
-                + user.getUrlFacebook()  + "', '" + user.getUrlPersonal()+ "')");
+                + user.getNombreApellidos() + "', '"
+                + user.getEmail() + "', '" + user.getPassword() + "', '"
+                + user.getUrlFoto() + "', '" + user.getNacimiento() + "', '"
+                + user.getBiografia() + "', '" + user.getlugar() + "')");
         stmt.close();
         disconnect();
     }
@@ -123,7 +121,7 @@ public class DAOUsuario {
     public void delete(Usuario user) throws SQLException{
         connect();
         Statement stmt = connection.createStatement();
-        stmt.executeUpdate("DELETE FROM usuario WHERE correo='" + user.getCorreo() + "'");
+        stmt.executeUpdate("DELETE FROM usuario WHERE correo='" + user.getEmail() + "'");
         stmt.close();
         disconnect();
     }
@@ -132,36 +130,9 @@ public class DAOUsuario {
         connect();
         Statement stmt = connection.createStatement();
         stmt.executeUpdate("UPDATE usuario SET " + campo + " = '" +valor
-                + "' WHERE correo = '" + user.getCorreo() + "'");
+                + "' WHERE correo = '" + user.getEmail() + "'");
         stmt.close();
         disconnect();
-    }
-
-    public Usuario getUserNick(String nick) throws SQLException {
-        Usuario user = null;
-        connect();
-        Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE nick='" + nick + "'");
-        if(rs.next()){
-            String nombreYApellidos = rs.getString("nombreYApellidos");
-            String email = rs.getString("correo");
-            String password = rs.getString("contrasenya");
-            String urlImagen = rs.getString("urlImagen");
-            String fechaDeNacimiento = rs.getString("fechaDeNacimiento");
-            String biografia = rs.getString("biografia");
-            String lugar = rs.getString("lugar");
-            String urlTwitter = rs.getString("urlTwitter");
-            String urlFacebook = rs.getString("urlFacebook");
-            String urlPersonal = rs.getString("urlPersonal");
-
-            user = new Usuario(nick,nombreYApellidos,email,password,urlImagen,
-                    fechaDeNacimiento,lugar,biografia,urlTwitter,
-                    urlFacebook,urlPersonal);
-        }
-        stmt.close();
-        disconnect();
-
-        return user;
     }
 
     public Usuario getUserEmail(String email) throws SQLException {
@@ -170,20 +141,15 @@ public class DAOUsuario {
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE correo='" + email + "'");
         if(rs.next()){
-            String nombreYApellidos = rs.getString("nombreYApellidos");
-            String nick = rs.getString("nick");
-            String password = rs.getString("contrasenya");
-            String urlImagen = rs.getString("urlImagen");
-            String fechaDeNacimiento = rs.getString("fechaDeNacimiento");
+            String nombreApellidos = rs.getString("nombreApellidos");
+            String password = rs.getString("password");
+            String URL_foto = rs.getString("URL_foto");
+            String nacimiento = rs.getString("nacimiento");
             String biografia = rs.getString("biografia");
             String lugar = rs.getString("lugar");
-            String urlTwitter = rs.getString("urlTwitter");
-            String urlFacebook = rs.getString("urlFacebook");
-            String urlPersonal = rs.getString("urlPersonal");
 
-            user = new Usuario(nick,nombreYApellidos,email,password,urlImagen,
-                    fechaDeNacimiento,lugar,biografia,urlTwitter,
-                    urlFacebook,urlPersonal);
+            user = new Usuario(nacimiento,nombreApellidos,email,password,URL_foto,
+                    biografia,lugar);
         }
         stmt.close();
         disconnect();
@@ -192,26 +158,17 @@ public class DAOUsuario {
     }
 
     public String obtenerMiniatura(Usuario user) throws SQLException{
-        String urlImagen = "";
+        String URL_foto = "";
         connect();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE correo='" + user.getCorreo() + "'");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE correo='" + user.getEmail() + "'");
         if(rs.next()){
-            urlImagen = rs.getString("urlImagen");
+            URL_foto = rs.getString("URL_foto");
         }
         stmt.close();
         disconnect();
 
-        return urlImagen;
+        return URL_foto;
     }
-
-    public void anhadirAmistad(Usuario user1, Usuario user2) throws SQLException{
-
-    }
-
-    public void aceptarAmistad(Usuario user1, Usuario user2) throws SQLException{
-
-    }
-
 }
 
