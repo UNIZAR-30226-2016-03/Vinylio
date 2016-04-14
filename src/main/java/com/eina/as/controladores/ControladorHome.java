@@ -54,7 +54,8 @@ public class ControladorHome {
                 return "redirect:/home";
             }
         } else{
-            return "redirect:/home";
+            //return "redirect:/timeline";
+            return "principal";
         }
     }
 

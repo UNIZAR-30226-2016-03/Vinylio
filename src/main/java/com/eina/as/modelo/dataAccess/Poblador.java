@@ -153,8 +153,8 @@ public class Poblador {
 
             System.out.println("Creando la tabla de vinilos...");
             sb = new StringBuffer();
-            sb.append("CREATE TABLE IF NOT EXISTS Vinilo(");
-            sb.append("id_vinilo    INTEGER PRIMARY KEY AUTO_INCREMENT, ");
+            sb.append("CREATE TABLE IF NOT EXISTS Vinilo (");
+            sb.append("id_vinilo   INTEGER PRIMARY KEY AUTO_INCREMENT, ");
             sb.append("titulo   VARCHAR(255) NOT NULL,");
             sb.append("autor    VARCHAR(30) NOT NULL,");
             sb.append("genero   VARCHAR(255),");
@@ -162,7 +162,7 @@ public class Poblador {
             sb.append("discografica VARCHAR(255),");
             sb.append("imagen   VARCHAR(255),");
             sb.append("rpm  INTEGER(2),");
-            sb.append("lanzamiento  VARCHAR(255),");
+            sb.append("lanzamiento  VARCHAR(255))");
             mt.executeSentence(sb.toString());
 
             System.out.println("Creando la tabla de colecciones...");
