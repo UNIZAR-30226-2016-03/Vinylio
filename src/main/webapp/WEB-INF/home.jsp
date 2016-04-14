@@ -92,14 +92,14 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <div class="login-content" id="loginTarget">
                             <a class="close">x</a>
                             <h3>Iniciar Sesión</h3>
-                            <form method="post" action="/timeline">
+                            <form method="post" action="/login">
                                 <label for="username">
-                                    Dirección de correo:
-                                    <input type="text" name="username" id="username" placeholder="Dirección de correo con la que te registraste" pattern="^[a-zA-Z0-9-_\.]+[@][a-zA-Z0-9-_\.]+[.][a-zA-Z0-9-_\.]+$" required />
+                                    Nombre de Usuario:
+                                    <input type="text" name="username" id="username" placeholder="Debe contener entre 4 y 20 caracteres" pattern="^[a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@]*$" required />
                                 </label>
                                 <label for="password">
                                     Contraseña:
-                                    <input type="password" name="password" id="password" placeholder="Contraseña" pattern="^[a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.]*$" required />
+                                    <input type="password" name="password" id="password" placeholder="Debe contener al menos 6 caracteres" pattern="^[a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.]*$" required />
                                 </label>
                                 <button type="submit">Entrar</button>
                             </form>
@@ -112,18 +112,18 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <div class="login-content" id="registerTarget">
                             <a class="closeReg">x</a>
                             <h3>Registro</h3>
-                            <form method="post" action="/timeline">
+                            <form method="post" action="/register">
                                 <label for="email">
                                     Correo electrónico:
                                     <input type="email" name="email" id="email" placeholder="Debe ser una direccion válida" pattern="^[a-zA-Z0-9-_\.]+[@][a-zA-Z0-9-_\.]+[.][a-zA-Z0-9-_\.]+$" required />
                                 </label>
                                 <label for="nombreApellidos">
                                     Nombre y Apellidos:
-                                    <input type="text" name="nombreApellidos" id="nombreApellidos" placeholder="Tu nombre y apellidos" pattern="^[a-zA-Z0-9-_\.' ']*$" required />
+                                    <input type="text" name="nombreApellidos" id="nombreApellidos" placeholder="No puede ser nulo, todo el mundo tiene un nombre ;)" pattern="^[a-zA-Z0-9-_\.' ']*$" required />
                                 </label>
                                 <label for="password">
                                     Contraseña:
-                                    <input type="password" name="password" id="passwordReg" placeholder="Debe contener al menos 6 caracteres" pattern="^[a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.]*$" required />
+                                    <input type="password" name="password2" id="password2" placeholder="Debe contener al menos 6 caracteres" pattern="^[a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.]*$" required />
                                 </label>
                                 <button type="submit">Registrarse</button>
                             </form>

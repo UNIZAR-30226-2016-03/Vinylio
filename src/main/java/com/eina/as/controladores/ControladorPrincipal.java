@@ -13,10 +13,10 @@ public class ControladorPrincipal {
     public String redireccionTimeline(HttpServletRequest request){
         System.out.println("Me ha llegado la peticion de obtener timeline");
         Usuario user = (Usuario) request.getSession().getAttribute("user");
-        if(user != null) {
+     //   if(user != null) {
+     //       return "principal";
+       // } else{
             return "principal";
-        } else{
-            return "principal";
-        }
+      //  }
     }
 }

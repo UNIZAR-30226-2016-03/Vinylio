@@ -22,7 +22,7 @@ public class ControladorHome {
     @RequestMapping(value="/register", method= RequestMethod.POST)
     public String registro(@RequestParam("email") String email,
                            @RequestParam("nombreApellidos") String nombreApellidos,
-                           @RequestParam("password") String password) throws Exception{
+                           @RequestParam("password2") String password) throws Exception{
         System.out.println("Me ha llegado la peticion de registro");
         System.out.println("Email: " + email);
         System.out.println("NombreYApellidos: " + nombreApellidos);
@@ -34,7 +34,7 @@ public class ControladorHome {
 
         DAOUsuario daoUsuario = new DAOUsuario();
         daoUsuario.insert(user);
-        return "timeline";
+        return "home";
     }
 
     @RequestMapping(value="/login", method=RequestMethod.POST)

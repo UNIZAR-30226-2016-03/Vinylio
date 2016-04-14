@@ -148,7 +148,7 @@ public class Poblador {
             sb.append("URL_foto VARCHAR(255),");
             sb.append("nacimiento VARCHAR(20),");
             sb.append("lugar    VARCHAR(255),");
-            sb.append("password VARCHAR(20));");
+            sb.append("password VARCHAR(255));");
             mt.executeSentence(sb.toString());
 
             System.out.println("Creando la tabla de vinilos...");
