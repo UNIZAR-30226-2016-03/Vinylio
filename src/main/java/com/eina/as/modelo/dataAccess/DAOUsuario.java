@@ -7,9 +7,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by Fran Menendez Moya on 5/4/16.
- */
 public class DAOUsuario {
 
     /**
@@ -58,7 +55,7 @@ public class DAOUsuario {
         // Estableciendo la conexion con la BD
         connection = DriverManager.getConnection(DB_URL,USER,PASS);
         Statement stmt = connection.createStatement();
-        stmt.executeQuery("USE webAS");
+        stmt.executeQuery("USE webps");
         stmt.close();
     }
 
@@ -106,14 +103,19 @@ public class DAOUsuario {
         }
     }
 
-    /*public void insert(Usuario user) throws SQLException{
+    public void insert(Usuario user) throws SQLException{
         connect();
         Statement stmt = connection.createStatement();
-        //TODO: FALTA PONER NOMBRE DE LA TABLA Y LOS CAMPOS ADECUADOS
-        int res = stmt.executeUpdate("INSERT INTO  nombreTabla"
-                + " (EMAIL,PASSWORD,NOMBRE,APELLIDOS,ADMIN,ANNO) VALUES ('"
-                + user.getEmail() + "', '" + user.getPassword() + "', '"
-                + user.getNombre() + "', '" + user.getApellidos() + "', '" + user.getAdmin()  + "', '" + anno+ "')");
+        stmt.executeUpdate("INSERT INTO  usuario"
+                + " (nick,nombreYApellidos,correo,contrasenya,urlImagen,"
+                + "fechaDeNacimiento,biografia,localizacion,urlTwitter,"
+                + "urlFacebook, urlPersonal) VALUES ('"
+                + user.getNick() + "', '" + user.getNombreApellidos() + "', '"
+                + user.getCorreo() + "', '" + user.getPassword() + "', '"
+                + user.getUrlImagen() + "', '" + user.getFechaNacimiento() + "', '"
+                + user.getBiografia() + "', '" + user.getLocalizacion() + "', '"
+                + user.getUrlTwitter() + "', '"
+                + user.getUrlFacebook()  + "', '" + user.getUrlPersonal()+ "')");
         stmt.close();
         disconnect();
     }
@@ -121,42 +123,67 @@ public class DAOUsuario {
     public void delete(Usuario user) throws SQLException{
         connect();
         Statement stmt = connection.createStatement();
-        //TODO: FALTA PONER NOMBRE DE LA TABLA Y LOS CAMPOS ADECUADOS
-        int res = stmt.executeUpdate("DELETE FROM  WHERE EMAIL='" + mail + "'");
+        stmt.executeUpdate("DELETE FROM usuario WHERE correo='" + user.getCorreo() + "'");
         stmt.close();
         disconnect();
     }
 
     public void updateUser(Usuario user, String campo, String valor) throws SQLException{
-        if(getUser(user.getEmail()) != null || email.equals(null)){
-            connect();
-            Statement stmt = connection.createStatement();
-            //TODO: FALTA PONER NOMBRE DE LA TABLA Y LOS CAMPOS ADECUADOS
-            int res=stmt.executeUpdate("UPDATE  SET NOMBRE = '" + user.getNombre()
-                    + "', APELLIDOS = '" + user.getApellidos()
-                    + "', PASSWORD = '" + user.getPassword()
-                    + "', EMAIL = '" + user.getEmail()
-                    + "' WHERE EMAIL = '" + email + "'");
-            stmt.close();
-            disconnect();
-        }
+        connect();
+        Statement stmt = connection.createStatement();
+        stmt.executeUpdate("UPDATE usuario SET " + campo + " = '" +valor
+                + "' WHERE correo = '" + user.getCorreo() + "'");
+        stmt.close();
+        disconnect();
     }
 
-    public Usuario getUser(String nick) throws SQLException {
+    public Usuario getUserNick(String nick) throws SQLException {
         Usuario user = null;
         connect();
         Statement stmt = connection.createStatement();
-        //TODO: FALTA PONER NOMBRE DE LA TABLA Y LOS CAMPOS ADECUADOS
-        ResultSet rs = stmt.executeQuery("SELECT * FROM  WHERE EMAIL='" + mail + "'");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE nick='" + nick + "'");
         if(rs.next()){
-            String nombre = rs.getString("NOMBRE");
-            String apellidos = rs.getString("APELLIDOS");
-            String email = rs.getString("EMAIL");
-            String password = rs.getString("PASSWORD");
-            Integer admin = rs.getInt("ADMIN");
-            Integer anno = rs.getInt("ANNO");
+            String nombreYApellidos = rs.getString("nombreYApellidos");
+            String email = rs.getString("correo");
+            String password = rs.getString("contrasenya");
+            String urlImagen = rs.getString("urlImagen");
+            String fechaDeNacimiento = rs.getString("fechaDeNacimiento");
+            String biografia = rs.getString("biografia");
+            String localizacion = rs.getString("localizacion");
+            String urlTwitter = rs.getString("urlTwitter");
+            String urlFacebook = rs.getString("urlFacebook");
+            String urlPersonal = rs.getString("urlPersonal");
 
-            user = new Usuario(email,password,nombre,apellidos,admin,anno);
+            user = new Usuario(nick,nombreYApellidos,email,password,urlImagen,
+                    fechaDeNacimiento,localizacion,biografia,urlTwitter,
+                    urlFacebook,urlPersonal);
+        }
+        stmt.close();
+        disconnect();
+
+        return user;
+    }
+
+    public Usuario getUserEmail(String email) throws SQLException {
+        Usuario user = null;
+        connect();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE correo='" + email + "'");
+        if(rs.next()){
+            String nombreYApellidos = rs.getString("nombreYApellidos");
+            String nick = rs.getString("nick");
+            String password = rs.getString("contrasenya");
+            String urlImagen = rs.getString("urlImagen");
+            String fechaDeNacimiento = rs.getString("fechaDeNacimiento");
+            String biografia = rs.getString("biografia");
+            String localizacion = rs.getString("localizacion");
+            String urlTwitter = rs.getString("urlTwitter");
+            String urlFacebook = rs.getString("urlFacebook");
+            String urlPersonal = rs.getString("urlPersonal");
+
+            user = new Usuario(nick,nombreYApellidos,email,password,urlImagen,
+                    fechaDeNacimiento,localizacion,biografia,urlTwitter,
+                    urlFacebook,urlPersonal);
         }
         stmt.close();
         disconnect();
@@ -165,19 +192,17 @@ public class DAOUsuario {
     }
 
     public String obtenerMiniatura(Usuario user) throws SQLException{
-        String url = "";
+        String urlImagen = "";
         connect();
         Statement stmt = connection.createStatement();
-        //TODO: FALTA PONER NOMBRE DE LA TABLA Y LOS CAMPOS ADECUADOS
-        ResultSet rs = stmt.executeQuery("SELECT * FROM  WHERE EMAIL='" + mail + "'");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE correo='" + user.getCorreo() + "'");
         if(rs.next()){
-            url = rs.getString("");
-
+            urlImagen = rs.getString("urlImagen");
         }
         stmt.close();
         disconnect();
 
-        return url;
+        return urlImagen;
     }
 
     public void anhadirAmistad(Usuario user1, Usuario user2) throws SQLException{
@@ -186,6 +211,7 @@ public class DAOUsuario {
 
     public void aceptarAmistad(Usuario user1, Usuario user2) throws SQLException{
 
-    }*/
+    }
 
 }
+

@@ -58,7 +58,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 		<!-- Logo -->
 		<div id="logo">
-			<span class="image avatar48"><img src="images/usuarioAlex.jpg" alt="" /></span>
+			<span class="image avatar48"><img src="../resources/principal/images/usuarioAlex.jpg" alt="" /></span>
 			<h1 id="title">Usuario Anónimo</h1>
 			<p>Coleccionista Iniciado</p>
 		</div>
@@ -108,44 +108,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 	<!-- Intro -->
 	<section id="top" class="one dark cover">
-		<div class="container">
 
-			<header>
-				<h2 class="alt">Bienvenido a <strong>Vinylio</strong>, una nueva manera<br />
-					de mantener tu colección de Vinilos.</h2>
-				<p>Regístrate ahora y comienza a añadir vinilos	a tu colección personal.</p>
-			</header>
-
-			<footer>
-				<a href="login.php" class="button scrolly">Entrar</a>
-				<ul>
-					<li><a href="login.php" class="overlayLink" data-action="login-form.html">Iniciar Sesión</a></li>
-					<li><a href="register.php" class="overlayLink" data-action="registration-form.html">Registro</a></li>
-				</ul>
-				<!--Empieza codigo de prueba para login-->
-				<div class="overlay" style="display: none;">
-					<div class="login-wrapper">
-						<div class="login-content" id="loginTarget">
-							<a class="close">x</a>
-							<h3>Login</h3>
-							<form method="post" action="login.php">
-								<label for="username">
-									Username:
-									<input type="text" name="username" id="username" placeholder="Debe contener entre 8 y 20 caracteres" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]$" required />
-								</label>
-								<label for="password">
-									Password:
-									<input type="password" name="password" id="password" placeholder="Debe contener al menos 1 mayús. y un número" pattern="(?=^.$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
-								</label>
-								<button type="submit">Sign in</button>
-							</form>
-						</div>
-					</div>
-				</div>
-
-			</footer>
-
-		</div>
 	</section>
 
 	<!-- Portfolio -->
@@ -162,14 +125,14 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<div class="row">
 				<div class="4u 12u$(mobile)">
 					<article class="item">
-						<a href="#" class="image fit"><img src="images/gkot.jpg" alt="" /></a>
+						<a href="#" class="image fit"><img src="../resources/principal/images/gkot.jpg" alt="" /></a>
 						<header>
 							<h3>Tenderness</h3>
 							<h3>Gotta Keep On Trying</h3>
 						</header>
 					</article>
 					<article class="item">
-						<a href="#" class="image fit"><img src="images/vinilo_placeholder.png" alt="" /></a>
+						<a href="#" class="image fit"><img src="../resources/principal/images/vinilo_placeholder.png" alt="" /></a>
 						<header>
 							<h3>The Yarbirds</h3>
 							<h3>For Your Love</h3>
@@ -178,13 +141,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				</div>
 				<div class="4u 12u$(mobile)">
 					<article class="item">
-						<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
+						<a href="#" class="image fit"><img src="../resources/principal/images/pic04.jpg" alt="" /></a>
 						<header>
 							<h3>Magna Nullam</h3>
 						</header>
 					</article>
 					<article class="item">
-						<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
+						<a href="#" class="image fit"><img src="../resources/principal/images/pic05.jpg" alt="" /></a>
 						<header>
 							<h3>Natoque Vitae</h3>
 						</header>
@@ -192,13 +155,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				</div>
 				<div class="4u$ 12u$(mobile)">
 					<article class="item">
-						<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
+						<a href="#" class="image fit"><img src="../resources/principal/images/pic06.jpg" alt="" /></a>
 						<header>
 							<h3>Dolor Penatibus</h3>
 						</header>
 					</article>
 					<article class="item">
-						<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
+						<a href="#" class="image fit"><img src="../resources/principal/images/pic07.jpg" alt="" /></a>
 						<header>
 							<h3>Orci Convallis</h3>
 						</header>
@@ -226,14 +189,14 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<div class="row">
 				<div class="4u 12u$(mobile)">
 					<article class="item">
-						<a href="#" class="image fit"><img src="images/gkot.jpg" alt="" /></a>
+						<a href="#" class="image fit"><img src="../resources/principal/images/gkot.jpg" alt="" /></a>
 						<header>
 							<h3>Tenderness</h3>
 							<h3>Gotta Keep On Trying</h3>
 						</header>
 					</article>
 					<article class="item">
-						<a href="#" class="image fit"><img src="images/vinilo_placeholder.png" alt="" /></a>
+						<a href="#" class="image fit"><img src="../resources/principal/images/vinilo_placeholder.png" alt="" /></a>
 						<header>
 							<h3>The Yarbirds</h3>
 							<h3>For Your Love</h3>
@@ -242,13 +205,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				</div>
 				<div class="4u 12u$(mobile)">
 					<article class="item">
-						<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
+						<a href="#" class="image fit"><img src="../resources/principal/images/pic04.jpg" alt="" /></a>
 						<header>
 							<h3>Magna Nullam</h3>
 						</header>
 					</article>
 					<article class="item">
-						<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
+						<a href="#" class="image fit"><img src="../resources/principal/images/pic05.jpg" alt="" /></a>
 						<header>
 							<h3>Natoque Vitae</h3>
 						</header>
@@ -256,13 +219,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				</div>
 				<div class="4u$ 12u$(mobile)">
 					<article class="item">
-						<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
+						<a href="#" class="image fit"><img src="../resources/principal/images/pic06.jpg" alt="" /></a>
 						<header>
 							<h3>Dolor Penatibus</h3>
 						</header>
 					</article>
 					<article class="item">
-						<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
+						<a href="#" class="image fit"><img src="../resources/principal/images/pic07.jpg" alt="" /></a>
 						<header>
 							<h3>Orci Convallis</h3>
 						</header>

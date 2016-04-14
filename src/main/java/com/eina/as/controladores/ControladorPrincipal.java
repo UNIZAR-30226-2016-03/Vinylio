@@ -1,17 +1,22 @@
 package com.eina.as.controladores;
 
+import com.eina.as.modelo.service.Usuario;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * Created by Fran Menendez Moya on 5/4/16.
- */
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class ControladorPrincipal {
 
     @RequestMapping(value="/timeline")
-    public String redireccionTimeline(){
+    public String redireccionTimeline(HttpServletRequest request){
         System.out.println("Me ha llegado la peticion de obtener timeline");
-        return "principal";
+        Usuario user = (Usuario) request.getSession().getAttribute("user");
+        if(user != null) {
+            return "timeline";
+        } else{
+            return "redirect:/home";
+        }
     }
 }
