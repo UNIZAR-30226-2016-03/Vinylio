@@ -107,13 +107,12 @@ public class DAOUsuario {
         connect();
         Statement stmt = connection.createStatement();
         stmt.executeUpdate("INSERT INTO  usuario"
-                + " (nick,nombreYApellidos,correo,contrasenya,urlImagen,"
-                + "fechaDeNacimiento,biografia,lugar,urlTwitter,"
-                + "urlFacebook, urlPersonal) VALUES ('"
-                + user.getNombreApellidos() + "', '"
-                + user.getEmail() + "', '" + user.getPassword() + "', '"
+                + " (email,nombreApellidos,biografia,URL_foto,"
+                + "nacimiento,lugar,password) VALUES ('"
+                + user.getEmail() + "', '"
+                + user.getNombreApellidos() + "', '" + user.getBiografia() + "', '"
                 + user.getUrlFoto() + "', '" + user.getNacimiento() + "', '"
-                + user.getBiografia() + "', '" + user.getlugar() + "')");
+                + user.getlugar() + "', '" + user.getPassword() + "')");
         stmt.close();
         disconnect();
     }
