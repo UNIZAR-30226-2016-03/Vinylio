@@ -2,12 +2,9 @@ package com.eina.as.modelo.service;
 
 public class Usuario {
 
-    private String nombreApellidos, email, password, URL_foto, biografia,lugar;
-
-    private int id_usuario,nacimiento;
-    public Usuario(int id_usuario, int nacimiento, String nombreApellidos, String email, String password, String URL_foto,
+    private String nombreApellidos, email, password, URL_foto, biografia,lugar,nacimiento;
+    public Usuario(String nacimiento, String nombreApellidos, String email, String password, String URL_foto,
                    String biografia, String lugar) {
-        this.id_usuario = id_usuario;
         this.nombreApellidos = nombreApellidos;
         this.email = email;
         this.password = password;
@@ -17,21 +14,11 @@ public class Usuario {
         this.biografia = biografia;
     }
 
-    public Usuario(String nick, String correo, String password, String nombreApellidos, String urlImagen) {
-        this.id_usuario = id_usuario;
-        this.correo = correo;
+    public Usuario(String email, String password, String nombreApellidos, String URL_foto) {
+        this.email = email;
         this.password = password;
         this.nombreApellidos = nombreApellidos;
-        this.urlImagen = urlImagen;
-    }
-
-    public String getNick() {
-
-        return nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
+        this.URL_foto = URL_foto;
     }
 
     public String getNombreApellidos() {
@@ -42,12 +29,12 @@ public class Usuario {
         this.nombreApellidos = nombreApellidos;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -58,20 +45,20 @@ public class Usuario {
         this.password = password;
     }
 
-    public String getUrlImagen() {
-        return urlImagen;
+    public String getUrlFoto() {
+        return URL_foto;
     }
 
-    public void setUrlImagen(String urlImagen) {
-        this.urlImagen = urlImagen;
+    public void setUrlFoto(String URL_foto) {
+        this.URL_foto = URL_foto;
     }
 
-    public String getFechaNacimiento() {
-        return fechaNacimiento;
+    public String getNacimiento() {
+        return nacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setNacimiento(String nacimiento) {
+        this.nacimiento = nacimiento;
     }
 
     public String getlugar() {
@@ -90,27 +77,4 @@ public class Usuario {
         this.biografia = biografia;
     }
 
-    public String getUrlTwitter() {
-        return urlTwitter;
-    }
-
-    public void setUrlTwitter(String urlTwitter) {
-        this.urlTwitter = urlTwitter;
-    }
-
-    public String getUrlFacebook() {
-        return urlFacebook;
-    }
-
-    public void setUrlFacebook(String urlFacebook) {
-        this.urlFacebook = urlFacebook;
-    }
-
-    public String getUrlPersonal() {
-        return urlPersonal;
-    }
-
-    public void setUrlPersonal(String urlPersonal) {
-        this.urlPersonal = urlPersonal;
-    }
 }

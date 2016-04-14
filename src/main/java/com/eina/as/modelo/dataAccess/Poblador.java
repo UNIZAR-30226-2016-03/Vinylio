@@ -146,7 +146,7 @@ public class Poblador {
             sb.append("nombreApellidos   VARCHAR(100) NOT NULL,");
             sb.append("biografia    VARCHAR(255),");
             sb.append("URL_foto VARCHAR(255),");
-            sb.append("nacimiento INTEGER(8),");
+            sb.append("nacimiento VARCHAR(20),");
             sb.append("lugar    VARCHAR(255),");
             sb.append("password VARCHAR(20));");
             mt.executeSentence(sb.toString());
