@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class DAOUsuario {
+public class DAOVinilo {
 
     /**
      * Driver para conectar con MYSQL
@@ -40,7 +40,7 @@ public class DAOUsuario {
      * @throws IllegalAccessException
      * @throws InstantiationException
      */
-    public DAOUsuario() throws InstantiationException,IllegalAccessException, ClassNotFoundException, SQLException{
+    public DAOVinilo() throws InstantiationException,IllegalAccessException, ClassNotFoundException, SQLException{
 
         Locale.setDefault(Locale.UK);
 
@@ -103,78 +103,87 @@ public class DAOUsuario {
         }
     }
 
-    public void insert(Usuario user) throws SQLException{
+    public void insert(Vinilo vinilo) throws SQLException{
         connect();
         Statement stmt = connection.createStatement();
-        stmt.executeUpdate("INSERT INTO  usuario"
-                + " (email,nombreApellidos,biografia,URL_foto,"
-                + "nacimiento,lugar,password) VALUES ('"
-                + user.getEmail() + "', '"
-                + user.getNombreApellidos() + "', '" + user.getBiografia() + "', '"
-                + user.getUrlFoto() + "', '" + user.getNacimiento() + "', '"
-                + user.getlugar() + "', '" + user.getPassword() + "')");
+        stmt.executeUpdate("INSERT INTO  Vinilo"
+                + " (id_vinilo,titulo,autor,genero,fecha,"
+                + "discografica,imagen,rpm,lanzamiento) VALUES ('"
+                + vinilo.getIdVinilo() + "', '"
+                + vinilo.getTitulo() + "', '" + vinilo.getAutor() + "', '"
+                + vinilo.getGenero() + "', '" + vinilo.getFecha() + "', '"
+                + vinilo.getDiscografica() + "', '" + vinilo.getImagen() + "', '"
+                + vinilo.getRpm() + "', '" + vinilo.getLanzamiento() + "')");
         stmt.close();
         disconnect();
     }
 
-    public void delete(Usuario user) throws SQLException{
+    public void delete(Vinilo vinilo) throws SQLException{
         connect();
         Statement stmt = connection.createStatement();
-        stmt.executeUpdate("DELETE FROM usuario WHERE correo='" + user.getEmail() + "'");
+        stmt.executeUpdate("DELETE FROM Vinilo WHERE titulo='" + vinilo.getTitulo() + "'");
         stmt.close();
         disconnect();
     }
 
-    public void updateUser(Usuario user, String campo, String valor) throws SQLException{
+    public void updateVinilo(Vinilo vinilo, String campo, String valor) throws SQLException{
         connect();
         Statement stmt = connection.createStatement();
-        stmt.executeUpdate("UPDATE usuario SET " + campo + " = '" +valor
-                + "' WHERE correo = '" + user.getEmail() + "'");
+        stmt.executeUpdate("UPDATE vinilo SET " + campo + " = '" +valor
+                + "' WHERE titulo = '" + vinilo.getTitulo() + "'");
         stmt.close();
         disconnect();
     }
 
-    public Usuario getUserEmail(String email) throws SQLException {
-        Usuario user = null;
+    public Vinilo getViniloTitulo(String titulo) throws SQLException {
+        Vinilo vinilo = null;
         connect();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE email='" + email + "'");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo WHERE titulo REGEXP '[[:<:]]"+vinilo+"[[:>:]]'");
         if(rs.next()){
-            String nombreApellidos = rs.getString("nombreApellidos");
-            String password = rs.getString("password");
-            String URL_foto = rs.getString("URL_foto");
-            String nacimiento = rs.getString("nacimiento");
-            String biografia = rs.getString("biografia");
-            String lugar = rs.getString("lugar");
+            int id_vinilo = rs.getInt("id_vinilo");
+            String autor = rs.getString("autor");
+            String genero = rs.getString("titulo");
+            Date fecha = rs.getDate("fecha");
+            String discografica = rs.getString("discografica");
+            String imagen = rs.getString("imagen");
+            int rpm = rs.getInt("rpm");
+            Date lanzamiento = rs.getDate("lanzamiento");
 
-            user = new Usuario(nacimiento,nombreApellidos,email,password,URL_foto,
-                    biografia,lugar);
+            vinilo = new Vinilo(id_vinilo,titulo,autor,genero,fecha,discografica,imagen,rpm,lanzamiento);
         }
         stmt.close();
         disconnect();
 
-        return user;
+        return vinilo;
     }
-
-    public Usuario getUserNombreApellidos(String nombreApellidos) throws SQLException {
-        Usuario user = null;
+/*
+    public String obtenerAutor(String vinilo) throws SQLException{
+        String nombreAutor = "";
         connect();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE nombreApellidos='" + nombreApellidos + "'");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo WHERE titulo='" + vinilo + "'");
         if(rs.next()){
-            String email = rs.getString("email");
-            String password = rs.getString("password");
-            String URL_foto = rs.getString("URL_foto");
-            String nacimiento = rs.getString("nacimiento");
-            String biografia = rs.getString("biografia");
-            String lugar = rs.getString("lugar");
-
-            user = new Usuario(nacimiento,nombreApellidos,email,password,URL_foto,
-                    biografia,lugar);
+            nombreAutor = rs.getString("autor");
         }
         stmt.close();
         disconnect();
 
-        return user;
+        return nombreAutor;
     }
+
+    public String obtenerFoto(String vinilo) throws SQLException{
+        String URL_foto = "";
+        connect();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo WHERE titulo REGEXP '"+vinilo+"'");
+        if(rs.next()){
+            URL_foto = rs.getString("imagen");
+        }
+        stmt.close();
+        disconnect();
+
+        return URL_foto;
+    }
+   */
 }
