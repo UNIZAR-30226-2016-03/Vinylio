@@ -134,116 +134,47 @@ public class Poblador {
 
             System.out.println("Ejecutando comprobaciones previas...");
 
-            mt.executeSentence("DROP TABLE IF EXISTS likeActividad");
-            mt.executeSentence("DROP TABLE IF EXISTS likePublicacion");
-            mt.executeSentence("DROP TABLE IF EXISTS participaActividad");
-            mt.executeSentence("DROP TABLE IF EXISTS actividad");
-            mt.executeSentence("DROP TABLE IF EXISTS publicacion");
-            mt.executeSentence("DROP TABLE IF EXISTS amistades");
-            mt.executeSentence("DROP TABLE IF EXISTS juegoUsuario");
-            mt.executeSentence("DROP TABLE IF EXISTS juego");
-            mt.executeSentence("DROP TABLE IF EXISTS usuario");
+            mt.executeSentence("DROP TABLE IF EXISTS Usuario");
+            mt.executeSentence("DROP TABLE IF EXISTS Vinilo");
+            mt.executeSentence("DROP TABLE IF EXISTS Colecciona");
 
 
             System.out.println("Creando la tabla de usuarios...");
-            sb.append("CREATE TABLE IF NOT EXISTS usuario (");
-            sb.append("nick CHAR(64) NOT NULL PRIMARY KEY, ");
-            sb.append("nombreYApellidos CHAR(64) NOT NULL,");
-            sb.append("correo CHAR(64) NOT NULL UNIQUE ,");
-            sb.append("contrasenya CHAR(20) NOT NULL,");
-            sb.append("urlImagen CHAR(255),");
-            sb.append("fechaDeNacimiento DATE NOT NULL,");
-            sb.append("biografia CHAR(255),");
-            sb.append("localizacion CHAR(32),");
-            sb.append("urlTwitter CHAR(255),");
-            sb.append("urlFacebook CHAR(255),");
-            sb.append("urlPersonal CHAR(255));");
+            sb.append("CREATE TABLE IF NOT EXISTS Usuario (");
+            sb.append("id_usuario   INTEGER PRIMARY KEY, ");
+            sb.append("email    VARCHAR(50) NOT NULL,");
+            sb.append("nombre   VARCHAR(50) NOT NULL,");
+            sb.append("apellidos    VARCHAR(50) NOT NULL,");
+            sb.append("biografia    VARCHAR(255),");
+            sb.append("URL_foto VARCHAR(255),");
+            sb.append("nacimiento INTEGER(4),");
+            sb.append("lugar    VARCHAR(255),");
+            sb.append("password VARCHAR(20));");
             mt.executeSentence(sb.toString());
 
-            System.out.println("Creando la tabla de juegos...");
+            System.out.println("Creando la tabla de vinilos...");
             sb = new StringBuffer();
-            sb.append("CREATE TABLE IF NOT EXISTS juego(");
-            sb.append("id INT PRIMARY KEY AUTO_INCREMENT,");
-            sb.append("nombre CHAR(64) NOT NULL,");
-            sb.append("descripcion TEXT(10000) NOT NULL);");
+            sb.append("CREATE TABLE IF NOT EXISTS Vinilo(");
+            sb.append("id_vinilo    INTEGER PRIMARY KEY,");
+            sb.append("titulo   VARCHAR(255) NOT NULL,");
+            sb.append("autor    VARCHAR(30) NOT NULL,");
+            sb.append("genero   VARCHAR(255),");
+            sb.append("fecha	DATE,");
+            sb.append("discografica VARCHAR(255),");
+            sb.append("imagen   VARCHAR(255),");
+            sb.append("rpm  INTEGER(2),");
+            sb.append("lanzamiento  VARCHAR(255),");
+            sb.append("fechasubida  DATE);");
             mt.executeSentence(sb.toString());
 
-            System.out.println("Creando la tabla de juegos/usuarios...");
+            System.out.println("Creando la tabla de colecciones...");
             sb = new StringBuffer();
-            sb.append("CREATE TABLE IF NOT EXISTS juegoUsuario(");
-            sb.append("id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,");
-            sb.append("idJuego INT NOT NULL,");
-            sb.append("nick CHAR(64) NOT NULL,");
-            sb.append("FOREIGN KEY (nick) REFERENCES usuario(nick) ON DELETE CASCADE,");
-            sb.append("FOREIGN KEY (idJuego) REFERENCES juego(id) ON DELETE CASCADE);");
+            sb.append("CREATE TABLE IF NOT EXISTS Colecciona(");
+            sb.append("id_user  INT NOT NULL,");
+            sb.append("id_vinilo    INT NOT NULL,");
+            sb.append("FOREIGN KEY (id_user)    REFERENCES Usuario(id_usuario) ON DELETE CASCADE,");
+            sb.append("foreign key (id_vinilo)    REFERENCES Vinilo(id_vinilo) ON DELETE CASCADE);");
             mt.executeSentence(sb.toString());
-
-            System.out.println("Creando la tabla de amistades...");
-            sb = new StringBuffer();
-            sb.append("CREATE TABLE IF NOT EXISTS amistades(");
-
-            sb.append("nickUsuarioPrimero INT REFERENCES usuario(nick) NOT NULL,");
-            sb.append("nickUsuarioSegundo INT REFERENCES usuario(nick) NOT NULL,");
-            sb.append("aceptado BOOLEAN NOT NULL DEFAULT FALSE,");
-            sb.append("PRIMARY KEY (nickUsuarioPrimero, nickUsuarioSegundo));");
-
-            System.out.println("Creando la tabla de publicaciones...");
-            sb = new StringBuffer();
-            sb.append("CREATE TABLE IF NOT EXISTS publicacion(");
-            sb.append("id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,");
-            sb.append("texto CHAR(255) NOT NULL,");
-            sb.append("nick CHAR(64) NOT NULL,");
-            sb.append("FOREIGN KEY (nick) REFERENCES usuario(nick) ON DELETE CASCADE);");
-
-            mt.executeSentence(sb.toString());
-
-            mt.executeSentence(sb.toString());
-
-            System.out.println("Creando la tabla de actividades...");
-            sb = new StringBuffer();
-            sb.append("CREATE TABLE IF NOT EXISTS actividad(");
-            sb.append("id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,");
-            sb.append("descripcion CHAR(128) NOT NULL,");
-            sb.append("idJuego INT NOT NULL,");
-            sb.append("FOREIGN KEY (idJuego) REFERENCES Juego(id));");
-
-            mt.executeSentence(sb.toString());
-
-            System.out.println("Creando la tabla de usuarios/actividades...");
-            sb = new StringBuffer();
-            sb.append("CREATE TABLE IF NOT EXISTS participaActividad(");
-            sb.append("id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,");
-            sb.append("nickUsuario CHAR(64) NOT NULL,");
-            sb.append("idActividad INT NOT NULL,");
-            sb.append("FOREIGN KEY (nickUsuario) REFERENCES usuario(nick),");
-            sb.append("FOREIGN KEY (idActividad) REFERENCES Actividad(id));");
-            mt.executeSentence(sb.toString());
-
-
-            System.out.println("Creando la tabla de likes de actividades...");
-            sb = new StringBuffer();
-            sb.append("CREATE TABLE IF NOT EXISTS likeActividad(");
-            sb.append("id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,");
-            sb.append("nickUsuario CHAR(64) NOT NULL,");
-            sb.append("idActividad INT NOT NULL,");
-            sb.append("FOREIGN KEY (nickUsuario) REFERENCES usuario(nick),");
-            sb.append("FOREIGN KEY (idActividad) REFERENCES actividad(id));");
-            mt.executeSentence(sb.toString());
-
-
-
-            System.out.println("Creando la tabla de likes de publicaciones...");
-            sb = new StringBuffer();
-            sb.append("CREATE TABLE IF NOT EXISTS likePublicacion(");
-            sb.append("id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,");
-            sb.append("nick CHAR(64) NOT NULL,");
-            sb.append("idPublicacion INT NOT NULL,");
-            sb.append("FOREIGN KEY (nick) REFERENCES usuario(nick),");
-            sb.append("FOREIGN KEY (idPublicacion) REFERENCES publicacion(id));");
-            mt.executeSentence(sb.toString());
-
-
-
 
         }catch(SQLException se){
             //Handle errors for JDBC
