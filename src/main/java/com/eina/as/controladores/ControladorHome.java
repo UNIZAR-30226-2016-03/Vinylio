@@ -22,17 +22,15 @@ public class ControladorHome {
     @RequestMapping(value="/register", method= RequestMethod.POST)
     public String registro(@RequestParam("email") String email,
                            @RequestParam("nombreApellidos") String nombreYApellidos,
-                           @RequestParam("username2") String nick,
-                           @RequestParam("password2") String password) throws Exception{
+                           @RequestParam("password") String password) throws Exception{
         System.out.println("Me ha llegado la peticion de registro");
         System.out.println("Email: " + email);
         System.out.println("NombreYApellidos: " + nombreYApellidos);
-        System.out.println("Nick: " + nick);
         System.out.println("Pass: " + password);
 
         Password p = new Password();
         System.out.println("Longitud de la pass: " + p.getSaltedHash(password).length());
-        Usuario user = new Usuario(nick,nombreYApellidos,email,p.getSaltedHash(password)," "," "," "," "," "," "," ");
+        Usuario user = new Usuario(null,nombreYApellidos,email,p.getSaltedHash(password),null,null,null);
 
         DAOUsuario daoUsuario = new DAOUsuario();
         daoUsuario.insert(user);
@@ -51,7 +49,7 @@ public class ControladorHome {
             usuario = daoUsuario.getUserEmail(user);
         } else{
             //Nick
-            usuario = daoUsuario.getUserNick(user);
+            usuario = daoUsuario.getUserEmail(user);
         }
 
         if(usuario != null){
