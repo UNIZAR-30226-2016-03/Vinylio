@@ -94,12 +94,12 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                             <h3>Iniciar Sesión</h3>
                             <form method="post" action="/timeline">
                                 <label for="username">
-                                    Nombre de Usuario:
-                                    <input type="text" name="username" id="username" placeholder="Debe contener entre 4 y 20 caracteres" pattern="^[a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@]*$" required />
+                                    Dirección de correo:
+                                    <input type="text" name="username" id="username" placeholder="Dirección de correo con la que te registraste" pattern="^[a-zA-Z0-9-_\.]+[@][a-zA-Z0-9-_\.]+[.][a-zA-Z0-9-_\.]+$" required />
                                 </label>
                                 <label for="password">
                                     Contraseña:
-                                    <input type="password" name="password" id="password" placeholder="Debe contener al menos 6 caracteres" pattern="^[a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.]*$" required />
+                                    <input type="password" name="password" id="password" placeholder="Contraseña" pattern="^[a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.]*$" required />
                                 </label>
                                 <button type="submit">Entrar</button>
                             </form>
@@ -119,11 +119,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                                 </label>
                                 <label for="nombreApellidos">
                                     Nombre y Apellidos:
-                                    <input type="text" name="nombreApellidos" id="nombreApellidos" placeholder="No puede ser nulo, todo el mundo tiene un nombre ;)" pattern="^[a-zA-Z0-9-_\.' ']*$" required />
-                                </label>
-                                <label for="username">
-                                    Nombre de Usuario:
-                                    <input type="text" name="username" id="usernameReg" placeholder="Debe contener entre 8 y 20 caracteres" pattern="^[a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.]*$" required />
+                                    <input type="text" name="nombreApellidos" id="nombreApellidos" placeholder="Tu nombre y apellidos" pattern="^[a-zA-Z0-9-_\.' ']*$" required />
                                 </label>
                                 <label for="password">
                                     Contraseña:

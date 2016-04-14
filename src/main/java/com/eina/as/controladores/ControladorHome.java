@@ -21,20 +21,20 @@ public class ControladorHome {
 
     @RequestMapping(value="/register", method= RequestMethod.POST)
     public String registro(@RequestParam("email") String email,
-                           @RequestParam("nombreApellidos") String nombreYApellidos,
+                           @RequestParam("nombreApellidos") String nombreApellidos,
                            @RequestParam("password") String password) throws Exception{
         System.out.println("Me ha llegado la peticion de registro");
         System.out.println("Email: " + email);
-        System.out.println("NombreYApellidos: " + nombreYApellidos);
+        System.out.println("NombreYApellidos: " + nombreApellidos);
         System.out.println("Pass: " + password);
 
         Password p = new Password();
         System.out.println("Longitud de la pass: " + p.getSaltedHash(password).length());
-        Usuario user = new Usuario(null,nombreYApellidos,email,p.getSaltedHash(password),null,null,null);
+        Usuario user = new Usuario(null,nombreApellidos,email,p.getSaltedHash(password),null,null,null);
 
         DAOUsuario daoUsuario = new DAOUsuario();
         daoUsuario.insert(user);
-        return "home";
+        return "timeline";
     }
 
     @RequestMapping(value="/login", method=RequestMethod.POST)
@@ -44,14 +44,8 @@ public class ControladorHome {
         DAOUsuario daoUsuario = new DAOUsuario();
         Password pw = new Password();
         Usuario usuario;
-        if(user.contains("@")){
-            //Correo
-            usuario = daoUsuario.getUserEmail(user);
-        } else{
-            //Nick
-            usuario = daoUsuario.getUserEmail(user);
-        }
-
+        usuario = daoUsuario.getUserEmail(user);
+        // codigo de comportamiento si login o no login
         if(usuario != null){
             if(pw.check(password,usuario.getPassword())){
                 request.getSession().setAttribute("user",usuario);

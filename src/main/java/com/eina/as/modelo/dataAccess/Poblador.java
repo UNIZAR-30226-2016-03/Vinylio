@@ -141,7 +141,7 @@ public class Poblador {
 
             System.out.println("Creando la tabla de usuarios...");
             sb.append("CREATE TABLE IF NOT EXISTS Usuario (");
-            sb.append("id_usuario   INTEGER PRIMARY KEY, ");
+            sb.append("id_usuario   INTEGER PRIMARY KEY AUTOINCREMENT, ");
             sb.append("email    VARCHAR(50) NOT NULL,");
             sb.append("nombreApellidos   VARCHAR(100) NOT NULL,");
             sb.append("biografia    VARCHAR(255),");
