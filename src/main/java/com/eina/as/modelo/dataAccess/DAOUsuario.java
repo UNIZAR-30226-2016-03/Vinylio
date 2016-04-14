@@ -138,7 +138,7 @@ public class DAOUsuario {
         Usuario user = null;
         connect();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE correo='" + email + "'");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE email='" + email + "'");
         if(rs.next()){
             String nombreApellidos = rs.getString("nombreApellidos");
             String password = rs.getString("password");
@@ -155,6 +155,29 @@ public class DAOUsuario {
 
         return user;
     }
+
+    public Usuario getUserNombreApellidos(String nombreApellidos) throws SQLException {
+        Usuario user = null;
+        connect();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE nombreApellidos='" + nombreApellidos + "'");
+        if(rs.next()){
+            String email = rs.getString("email");
+            String password = rs.getString("password");
+            String URL_foto = rs.getString("URL_foto");
+            String nacimiento = rs.getString("nacimiento");
+            String biografia = rs.getString("biografia");
+            String lugar = rs.getString("lugar");
+
+            user = new Usuario(nacimiento,nombreApellidos,email,password,URL_foto,
+                    biografia,lugar);
+        }
+        stmt.close();
+        disconnect();
+
+        return user;
+    }
+
 
     public String obtenerMiniatura(Usuario user) throws SQLException{
         String URL_foto = "";
