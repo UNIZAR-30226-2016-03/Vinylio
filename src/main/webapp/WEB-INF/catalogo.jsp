@@ -1,3 +1,4 @@
+<%@ page import="com.eina.as.modelo.service.Vinilo" %>
 <!DOCTYPE HTML>
 <!--
 Prologue by HTML5 UP
@@ -114,13 +115,20 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				<h2>Catálogo</h2>
 			</header>
 
-			<p>Aquí podrás encontrar 50 vinilos.
-				Para ver un mayor número<br> de vinolos haz click en <strong> Ver los siguientes 50 </strong>.</p>
+			<p>Aquí podrás encontrar 25 vinilos.
+				Para ver los siguientes 25 vinilos <br>haz click en <strong>Ver más</strong>.</p>
 
 			<div class="tablePropia">
 				<table >
 					<tr>
-						<td><img src="images/gkot.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
+						<td><%
+							Vinilo vinilo = new Vinilo();
+							if(vinilo.getImagen().equalsIgnoreCase("")){
+								out.println("<span class=\"image vinilo\"><img src=\"../resources/home/images/vinilo_placeholder.png\" alt=\"\" /></span>");
+							} else{
+								out.println("<span class=\"image vinilo\"><img src=\"../resources/home/images/" + vinilo.getImagen() + "\" alt=\"\" /></span>");
+							}
+						%> alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
 						<td>genero</td><td>fecha</td><td>discografica</td>
 						<td>rpm</td>
 					</tr>

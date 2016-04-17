@@ -158,11 +158,9 @@ public class Poblador {
             sb.append("titulo   VARCHAR(255) NOT NULL,");
             sb.append("autor    VARCHAR(30) NOT NULL,");
             sb.append("genero   VARCHAR(255),");
-            sb.append("fecha	DATE,");
+            sb.append("fecha	INTEGER,");
             sb.append("discografica VARCHAR(255),");
-            sb.append("imagen   VARCHAR(255),");
-            sb.append("rpm  INTEGER(2),");
-            sb.append("lanzamiento  VARCHAR(255))");
+            sb.append("imagen   VARCHAR(255))");
             mt.executeSentence(sb.toString());
 
             System.out.println("Creando la tabla de colecciones...");

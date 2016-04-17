@@ -108,12 +108,12 @@ public class DAOVinilo {
         Statement stmt = connection.createStatement();
         stmt.executeUpdate("INSERT INTO  Vinilo"
                 + " (id_vinilo,titulo,autor,genero,fecha,"
-                + "discografica,imagen,rpm,lanzamiento) VALUES ('"
+                + "discografica,imagen) VALUES ('"
                 + vinilo.getIdVinilo() + "', '"
                 + vinilo.getTitulo() + "', '" + vinilo.getAutor() + "', '"
                 + vinilo.getGenero() + "', '" + vinilo.getFecha() + "', '"
                 + vinilo.getDiscografica() + "', '" + vinilo.getImagen() + "', '"
-                + vinilo.getRpm() + "', '" + vinilo.getLanzamiento() + "')");
+                + "')");
         stmt.close();
         disconnect();
     }
@@ -144,13 +144,11 @@ public class DAOVinilo {
             int id_vinilo = rs.getInt("id_vinilo");
             String autor = rs.getString("autor");
             String genero = rs.getString("titulo");
-            Date fecha = rs.getDate("fecha");
+            int fecha = rs.getInt("fecha");
             String discografica = rs.getString("discografica");
             String imagen = rs.getString("imagen");
-            int rpm = rs.getInt("rpm");
-            Date lanzamiento = rs.getDate("lanzamiento");
 
-            vinilo = new Vinilo(id_vinilo,titulo,autor,genero,fecha,discografica,imagen,rpm,lanzamiento);
+            vinilo = new Vinilo(id_vinilo,titulo,autor,genero,fecha,discografica,imagen);
         }
         stmt.close();
         disconnect();
