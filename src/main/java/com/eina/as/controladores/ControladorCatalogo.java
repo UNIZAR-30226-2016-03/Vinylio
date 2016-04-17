@@ -13,3 +13,6 @@ public class ControladorCatalogo {
         return "catalogo";
     }
 }
+
+
+// comprobando que me haga algo el puto push
