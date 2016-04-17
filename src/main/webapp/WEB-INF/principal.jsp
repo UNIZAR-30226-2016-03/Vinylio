@@ -131,7 +131,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			</header>
 
 			<p>
-				Para ver la lista completa, haz click en <strong>Ver más</strong>.</p>
+				Para ver la lista completa, haz click en <strong><a href="/catalogo">Ver más</a></strong>.</p>
 
 			<div class="row">
 				<div class="4u 12u$(mobile)">
@@ -180,7 +180,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				</div>
 			</div>
 			<footer>
-				<a href="#portfolio" class="button scrolly">Ver más.</a>
+				<a href="/catalogo" class="button scrolly">Ver más.</a>
 			</footer>
 
 		</div>
@@ -195,7 +195,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			</header>
 
 			<p>Aquí podrás encontrar las últimas novedades.
-				Para ver la lista completa haz click en <strong>Ver más</strong> al pie de la página.</p>
+				Para ver la lista completa haz click en <strong><a href="/catalogo">Ver más</a></strong> al pie de la página.</p>
 
 			<div class="row">
 				<div class="4u 12u$(mobile)">
@@ -244,7 +244,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				</div>
 			</div>
 			<footer>
-				<a href="#portfolio" class="button scrolly">Ver más.</a>
+				<a href="/catalogo" class="button scrolly">Ver más.</a>
 			</footer>
 
 		</div>

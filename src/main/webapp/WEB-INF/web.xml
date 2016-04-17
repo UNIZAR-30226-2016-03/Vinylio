@@ -22,7 +22,7 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>perfilServlet</servlet-name>
+        <servlet-name>catalogoServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
@@ -32,8 +32,8 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>perfilServlet</servlet-name>
-        <url-pattern>/perfil</url-pattern>
+        <servlet-name>catalogoServlet</servlet-name>
+        <url-pattern>/catalogo</url-pattern>
     </servlet-mapping>
 
     <servlet>
