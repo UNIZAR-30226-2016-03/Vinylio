@@ -127,8 +127,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				<h2>Catálogo</h2>
 			</header>
 
-			<p>Aquí podrás encontrar 25 vinilos.
-				Para ver los siguientes 25 vinilos <br>haz click en <strong>Ver más</strong>.</p>
+			<p>Aquí podrás encontrar 25 vinilos.<br>
+				Para ver los siguientes 25 vinilos haz click en <strong>Ver más</strong>.</p>
 
 
 			<div class="tablePropia">
@@ -165,7 +165,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				if (listaVinilos.size()>=25) {
 			%>
 					<footer>
-					<a href="/catalogo2" class="button scrolly">Ver los siguientes 25</a>
+					<a href="/catalogo2" class="button scrolly">Ver más.</a>
 					</footer>
 			<% } else{ %>
 					<footer>
@@ -195,16 +195,16 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<form method="post" action="#">
 				<div class="row">
 					<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="Tu Nombre" /></div>
-					<div class="6u$ 12u$(mobile)"><input type="text" name="email" placeholder="vinylio.raytech@gmail.com" /></div>
+					<div class="6u$ 12u$(mobile)"><input type="text" name="email" value="vinylio.raytech@gmail.com"/></div>
 					<div class="12u$">
-										<textarea name="message" placeholder="Título*:
+										<textarea name="message"> Título*:
 Artista*:
 Género:
 Fecha de lanzamiento:
 Discográfica:
 Imagen (URL):
 RPM:
-Nº de lanzamiento:"></textarea>
+Nº de lanzamiento:</textarea>
 					</div>
 					<div class="12u$">
 						<input type="submit" value="Send Message" />

@@ -95,7 +95,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                             <form method="post" action="/login">
                                 <label for="username">
                                     Nombre de Usuario:
-                                    <input type="text" name="username" id="username" placeholder="Debe contener entre 4 y 20 caracteres" pattern="^[a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@]*$" required />
+                                    <input type="text" name="username" id="username" placeholder="Normalmente será tu email" pattern="^[a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@]*$" required />
                                 </label>
                                 <label for="password">
                                     Contraseña:
