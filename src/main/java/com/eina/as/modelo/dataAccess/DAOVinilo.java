@@ -3,6 +3,7 @@ package com.eina.as.modelo.dataAccess;
 import com.eina.as.modelo.service.*;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -33,19 +34,14 @@ public class DAOVinilo {
      */
     private Connection connection = null;
 
-    /**
-     * Metodo constructor. Asigna los valores de usuario, password, host, puerto
-     * y nombre de la bd, para que posteriormente pueda hacerse la conexion
-     * @throws ClassNotFoundException
-     * @throws IllegalAccessException
-     * @throws InstantiationException
-     */
+
     public DAOVinilo() throws InstantiationException,IllegalAccessException, ClassNotFoundException, SQLException{
 
         Locale.setDefault(Locale.UK);
 
         Class.forName(JDBC_DRIVER);
     }
+
 
     /**
      * Crea una Conexion a la BBDD
@@ -155,6 +151,44 @@ public class DAOVinilo {
 
         return vinilo;
     }
+
+// me dará la lista de 25 vinilos que se encuentren en la pagina x, es decir si queremos los 25 primeros la pagina será
+    // la 0, si queremos que salgan los de la 3ra pagina entonces pondrémos un 2.
+    // Duda: No se si el primer elemento o el ultimo salen seguro. 0-24 o de 1-25?
+    // Duda: Al hacer rs.absolute(j) si no hay tantos elementos en la base de datos que pasa? Sería mejor directamente
+    //      coger en el select de la base de datos a partir del dato que me interesa en vez de cargarlos todos y luego
+    //      moverme con el absolute(j). Podría dar error tambien la consulta si me quiero mover a un numero de elemento
+    //      que no hay?
+    public ArrayList<String[]> getListaVinilos(int pagina) throws SQLException {
+        String aux [] = new String [7];
+        ArrayList<String[]> historial= new ArrayList<String[]>();
+        connect();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo ORDER BY titulo");
+        int j=pagina*25;
+        int i=0;
+        ArrayList <Vinilo> listaVinilos =  new ArrayList<Vinilo>();
+        rs.absolute(j); // desplaza j vinilos de rs
+        if(rs.next() && i<25){
+            aux[0] = Integer.toString(rs.getInt("id_vinilo"));
+            aux[1] = rs.getString("titulo");
+            aux[2]  = rs.getString("autor");
+            aux[3]  = rs.getString("genero");
+            aux[4]  = Integer.toString(rs.getInt("fecha"));
+            aux[5] = rs.getString("discografica");
+            aux[6] = rs.getString("imagen");
+
+            historial.add(aux );
+            i++;
+        }
+        stmt.close();
+        disconnect();
+
+        return historial;
+    }
+
+
+
 /*
     public String obtenerAutor(String vinilo) throws SQLException{
         String nombreAutor = "";

@@ -1,4 +1,5 @@
 <%@ page import="com.eina.as.modelo.service.Vinilo" %>
+<%@page import="java.util.ArrayList" %>
 <!DOCTYPE HTML>
 <!--
 Prologue by HTML5 UP
@@ -118,296 +119,51 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<p>Aquí podrás encontrar 25 vinilos.
 				Para ver los siguientes 25 vinilos <br>haz click en <strong>Ver más</strong>.</p>
 
+
 			<div class="tablePropia">
 				<table >
+
+					<%ArrayList <String[]> listaVinilos = (ArrayList<String[]>)request.getAttribute("listaVinilos");
+						request.removeAttribute("listaVinilos");
+						for (int i = 0; i < listaVinilos.size(); i++) {
+							String[] vin = listaVinilos.get(i);
+					%>
+
 					<tr>
-						<td><%
-							Vinilo vinilo = new Vinilo();
-							if(vinilo.getImagen().equalsIgnoreCase("")){
-								out.println("<span class=\"image vinilo\"><img src=\"../resources/home/images/vinilo_placeholder.png\" alt=\"\" /></span>");
-							} else{
-								out.println("<span class=\"image vinilo\"><img src=\"../resources/home/images/" + vinilo.getImagen() + "\" alt=\"\" /></span>");
-							}
-						%> alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
+						<td><img src="<%=vin[6]%>" alt="" height="100" width="100"/></td><td><%=vin[1]%></td><td><%=vin[2]%></td>
+						<td><%=vin[3]%></td><td><%=vin[4]%></td><td><%=vin[5]%></td>
+					<tr/>
+					<%
+						}
+					%>
 					</tr>
-					<tr>
-						<td><img src="images/vinilo_placeholder.png" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic04.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/gkot.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/vinilo_placeholder.png" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic04.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/gkot.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/vinilo_placeholder.png" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic04.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/gkot.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/vinilo_placeholder.png" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic04.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic05.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic05.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic06.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic07.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/gkot.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/vinilo_placeholder.png" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic04.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic05.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic06.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic07.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic04.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic05.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic06.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic07.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/gkot.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/vinilo_placeholder.png" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic04.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic05.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic06.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic07.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/gkot.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/vinilo_placeholder.png" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic04.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic05.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic06.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic07.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/gkot.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/vinilo_placeholder.png" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic04.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic05.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic06.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic07.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic04.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic05.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic06.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic07.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/gkot.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/vinilo_placeholder.png" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic04.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic05.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic06.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
-					<tr>
-						<td><img src="images/pic07.jpg" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-						<td>genero</td><td>fecha</td><td>discografica</td>
-						<td>rpm</td>
-					</tr>
+						<!-- Por si tengo que recuperar esto
+                        <tr>
+                            <td><img src="images/vinilo_placeholder.png" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
+                            <td>genero</td><td>fecha</td><td>discografica</td>
+                            <td>rpm</td>
+                        </tr>
+                         -->
+
 				</table>
 			</div>
+			<%
+				if (listaVinilos.size()>=25) {
+			%>
+					<footer>
+					<a href="/catalogo2" class="button scrolly">Ver los siguientes 50</a>
+					</footer>
+			<% } else{ %>
+					<footer>
+						<a href="" class="button scrolly">Ya no hay más vinilos en la colección global</a>
+					</footer>
 
-			<footer>
-				<a href="#portfolio" class="button scrolly">Ver los siguientes 50</a>
-			</footer>
+			<% } %>
 
-		</div>
-	</section>
+            </div>
+        </section>
 
-	<!-- Contact -->
+        <!-- Contact -->
 	<section id="contact" class="four">
 		<div class="container">
 
