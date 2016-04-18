@@ -30,7 +30,7 @@ public class ControladorCatalogo {
             throws Exception{
         request.removeAttribute("numPagina");
         DAOVinilo vin = new DAOVinilo();
-        ArrayList <String[]> listaVinilos= vin.getListaVinilos(0);
+        ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(0);
 
         request.setAttribute("listaVinilos", listaVinilos);
         //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
@@ -54,7 +54,7 @@ public class ControladorCatalogo {
 
 
         DAOVinilo vin = new DAOVinilo();
-        ArrayList <String[]> listaVinilos= vin.getListaVinilos(0);
+        ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(numPagina);
 
         request.setAttribute("listaVinilos", listaVinilos);
         //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
