@@ -33,6 +33,7 @@ public class ControladorCatalogo {
         ArrayList <String[]> listaVinilos= vin.getListaVinilos(0);
 
         request.setAttribute("listaVinilos", listaVinilos);
+        request.setAttribute("numPagina", 0);
         //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
         //  dispatcher.forward(request,response);
         return "catalogo";
@@ -51,11 +52,8 @@ public class ControladorCatalogo {
             numPagina = 1 + Integer.parseInt(sPagina); // tiene que ser cuando haces el "Ver 25 más" que aumente el
             request.setAttribute("numPagina", numPagina);                                            // numPagina.
         }
-
-
         DAOVinilo vin = new DAOVinilo();
-        ArrayList <String[]> listaVinilos= vin.getListaVinilos(0);
-
+        ArrayList <String[]> listaVinilos= vin.getListaVinilos(numPagina);
         request.setAttribute("listaVinilos", listaVinilos);
         //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
         //  dispatcher.forward(request,response);
