@@ -60,7 +60,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 		<!-- Logo -->
 		<div id="logo">
-			<span class="image avatar48"><img src="images/usuarioAlex.jpg" alt="" /></span>
+			<span class="image avatar48"><img src="../resources/home/images/usuarioAlex.jpg" alt="" /></span>
 			<h1 id="title">Usuario Anónimo</h1>
 			<p>Coleccionista Iniciado</p>
 		</div>
@@ -81,6 +81,17 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
             -->
 			<ul>
+				<li><div id="custom-search-input">
+					<div class="input-group col-md-12">
+						<input type="text" class="  search-query form-control" placeholder="Search" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+					</div>
+				</div>
+				</li>
 				<li><a href="/timeline" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Inicio</span></a></li>
 				<li><a href="/catalogo" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Catálogo</span></a></li>
 				<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contáctanos</span></a></li>
@@ -116,28 +127,31 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				<h2>Catálogo</h2>
 			</header>
 
-			<p>Aquí podrás encontrar 25 vinilos.
-				Para ver los siguientes 25 vinilos <br>haz click en <strong>Ver más</strong>.</p>
+			<p>Aquí podrás encontrar 25 vinilos.<br>
+				Para ver los siguientes 25 vinilos haz click en <strong>Ver más</strong>.</p>
 
 
 			<div class="tablePropia">
 				<table >
 
-					<%ArrayList <String[]> listaVinilos = (ArrayList<String[]>)request.getAttribute("listaVinilos");
+					<tr>
+						<td>Portada</td><td>Título</td><td>Autor</td><td>Discográfica</td><td>Género</td><td>Año</td>
+					</tr>
+					<%ArrayList <Vinilo> listaVinilos = (ArrayList<Vinilo>)request.getAttribute("listaVinilos");
 						request.removeAttribute("listaVinilos");
 						for (int i = 0; i < listaVinilos.size(); i++) {
-							String[] vin = listaVinilos.get(i);
+							Vinilo vin = listaVinilos.get(i);
 					%>
 
 					<tr>
-						<td><img src="<%=vin[6]%>" alt="" height="100" width="100"/></td><td><%=vin[1]%></td><td><%=vin[2]%></td>
-						<td><%=vin[3]%></td><td><%=vin[4]%></td><td><%=vin[5]%></td>
+						<td><img src="<%=vin.getImagen()%>" alt="" height="100" width="100"/></td><td><%=vin.getTitulo()%></td><td><%=vin.getAutor()%></td>
+						<td><%=vin.getDiscografica()%></td><td><%=vin.getGenero()%></td><td><%=vin.getFecha()%></td>
 					<tr/>
 					<%
 						}
 					%>
 					</tr>
-						<!-- Por si tengo que recuperar esto
+						<!--Por si tengo que recuperar esto
                         <tr>
                             <td><img src="images/vinilo_placeholder.png" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
                             <td>genero</td><td>fecha</td><td>discografica</td>
@@ -151,11 +165,12 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				if (listaVinilos.size()>=25) {
 			%>
 					<footer>
-					<a href="/catalogo2" class="button scrolly">Ver los siguientes 50</a>
+					<a href="/catalogo2" class="button scrolly">Ver más.</a>
 					</footer>
 			<% } else{ %>
 					<footer>
-						<a href="" class="button scrolly">Ya no hay más vinilos en la colección global</a>
+						<p>Fin del catálogo.</p>
+						<a href="#contact" class="button scrolly">¿Falta tu vinilo? Contáctanos.</a>
 					</footer>
 
 			<% } %>
@@ -180,16 +195,16 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<form method="post" action="#">
 				<div class="row">
 					<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="Tu Nombre" /></div>
-					<div class="6u$ 12u$(mobile)"><input type="text" name="email" placeholder="vinylio.raytech@gmail.com" /></div>
+					<div class="6u$ 12u$(mobile)"><input type="text" name="email" value="vinylio.raytech@gmail.com"/></div>
 					<div class="12u$">
-										<textarea name="message" placeholder="Título*:
+										<textarea name="message"> Título*:
 Artista*:
 Género:
 Fecha de lanzamiento:
 Discográfica:
 Imagen (URL):
 RPM:
-Nº de lanzamiento:"></textarea>
+Nº de lanzamiento:</textarea>
 					</div>
 					<div class="12u$">
 						<input type="submit" value="Send Message" />

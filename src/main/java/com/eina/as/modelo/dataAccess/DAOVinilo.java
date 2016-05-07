@@ -159,9 +159,9 @@ public class DAOVinilo {
     //      coger en el select de la base de datos a partir del dato que me interesa en vez de cargarlos todos y luego
     //      moverme con el absolute(j). Podría dar error tambien la consulta si me quiero mover a un numero de elemento
     //      que no hay?
-    public ArrayList<String[]> getListaVinilos(int pagina) throws SQLException {
-        String aux [] = new String [7];
-        ArrayList<String[]> historial= new ArrayList<String[]>();
+    public ArrayList<Vinilo> getListaVinilos(int pagina) throws SQLException {
+
+        ArrayList<Vinilo> historial= new ArrayList<Vinilo>();
         connect();
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo ORDER BY titulo");
@@ -169,16 +169,17 @@ public class DAOVinilo {
         int i=0;
         ArrayList <Vinilo> listaVinilos =  new ArrayList<Vinilo>();
         rs.absolute(j); // desplaza j vinilos de rs
-        if(rs.next() && i<25){
-            aux[0] = Integer.toString(rs.getInt("id_vinilo"));
-            aux[1] = rs.getString("titulo");
-            aux[2]  = rs.getString("autor");
-            aux[3]  = rs.getString("genero");
-            aux[4]  = Integer.toString(rs.getInt("fecha"));
-            aux[5] = rs.getString("discografica");
-            aux[6] = rs.getString("imagen");
+        while(rs.next() && i<25){
+            Vinilo aux = new Vinilo(0,"","","",0,"","");
+            aux.setIdVinilo(rs.getInt("id_vinilo"));
+            aux.setTitulo(rs.getString("titulo"));
+            aux.setAutor(rs.getString("autor"));
+            aux.setGenero(rs.getString("genero"));
+            aux.setFecha(rs.getInt("fecha"));
+            aux.setDiscografica(rs.getString("discografica"));
+            aux.setImagen(rs.getString("imagen"));
 
-            historial.add(aux );
+            historial.add(aux);
             i++;
         }
         stmt.close();
