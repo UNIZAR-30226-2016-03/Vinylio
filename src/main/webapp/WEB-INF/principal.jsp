@@ -1,3 +1,6 @@
+<%@ page import="com.eina.as.modelo.service.Usuario" %>
+<%@ page import="com.eina.as.modelo.service.Vinilo" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE HTML>
 <!--
 Prologue by HTML5 UP
@@ -55,12 +58,15 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 <div id="header">
 
 	<div class="top">
-
+		<%
+			Usuario user = (Usuario) request.getSession().getAttribute("user");
+		%>
 		<!-- Logo -->
 		<div id="logo">
-			<span class="image avatar48"><img src="../resources/principal/images/usuarioAlex.jpg" alt="" /></span>
-			<h1 id="title">Usuario Anónimo</h1>
-			<p>Coleccionista Iniciado</p>
+			<span class="image avatar48"><img src="<%out.println(user.getUrlFoto());%>" alt="" /></span>
+			<h1 id="title"><%out.println(user.getNombreApellidos());%></h1>
+			<a href="/config" id="config"  class="icon fa-gear"></a><p><%out.println(user.getlugar());%></p>
+			<p><%out.println(user.getBiografia());%></p>
 		</div>
 
 		<!-- Nav -->
@@ -198,50 +204,29 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				Para ver la lista completa haz click en <strong><a href="/catalogo">Ver más</a></strong> al pie de la página.</p>
 
 			<div class="row">
+				<%ArrayList<Vinilo> listaVinilos = (ArrayList<Vinilo>)request.getAttribute("listaVinilos");
+					request.removeAttribute("listaVinilos");
+					for (int i = 0; i < 6; i=i+2) {
+						Vinilo vin = listaVinilos.get(i);
+						Vinilo vin2 = listaVinilos.get(i+1);
+				%>
 				<div class="4u 12u$(mobile)">
 					<article class="item">
-						<a href="#" class="image fit"><img src="../resources/principal/images/gkot.jpg" alt="" /></a>
+						<a href="#" class="image fit"><img src="<%out.println(vin.getImagen());%>" alt="" /></a>
 						<header>
-							<h3>Tenderness</h3>
-							<h3>Gotta Keep On Trying</h3>
+							<h3><b><%out.println(vin.getAutor());%></b></h3>
+							<h3><%out.println(vin.getTitulo());%></h3>
 						</header>
 					</article>
 					<article class="item">
-						<a href="#" class="image fit"><img src="../resources/principal/images/vinilo_placeholder.png" alt="" /></a>
+						<a href="#" class="image fit"><img src="<%out.println(vin2.getImagen());%>" alt="" /></a>
 						<header>
-							<h3>The Yarbirds</h3>
-							<h3>For Your Love</h3>
+							<h3><%out.println(vin2.getAutor());%></h3>
+							<h3><%out.println(vin2.getTitulo());%></h3>
 						</header>
 					</article>
 				</div>
-				<div class="4u 12u$(mobile)">
-					<article class="item">
-						<a href="#" class="image fit"><img src="../resources/principal/images/pic04.jpg" alt="" /></a>
-						<header>
-							<h3>Magna Nullam</h3>
-						</header>
-					</article>
-					<article class="item">
-						<a href="#" class="image fit"><img src="../resources/principal/images/pic05.jpg" alt="" /></a>
-						<header>
-							<h3>Natoque Vitae</h3>
-						</header>
-					</article>
-				</div>
-				<div class="4u$ 12u$(mobile)">
-					<article class="item">
-						<a href="#" class="image fit"><img src="../resources/principal/images/pic06.jpg" alt="" /></a>
-						<header>
-							<h3>Dolor Penatibus</h3>
-						</header>
-					</article>
-					<article class="item">
-						<a href="#" class="image fit"><img src="../resources/principal/images/pic07.jpg" alt="" /></a>
-						<header>
-							<h3>Orci Convallis</h3>
-						</header>
-					</article>
-				</div>
+				<% } %>
 			</div>
 			<footer>
 				<a href="/catalogo" class="button scrolly">Ver más.</a>
@@ -264,22 +249,22 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				En el formulario te especificaremos lo que tienes que enviarnos.
 				No te agobies, solo los datos con <strong>asterisco*</strong> son obligatorios, pero harás nuestro trabajo mas fácil cuantos más datos incluyas.</p>
 
-			<form method="post" action="#">
+			<form method="post" action="MAILTO:vinylio.raytech@gmail.com">
 				<div class="row">
-					<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="Tu Nombre" /></div>
-					<div class="6u$ 12u$(mobile)"><input type="text" name="email" placeholder="vinylio.raytech@gmail.com" /></div>
+					<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="<%out.println(user.getNombreApellidos());%>" readonly="readonly" /></div>
+					<div class="6u$ 12u$(mobile)"><input type="email" name="email" value="<%out.println(user.getEmail());%>" readonly="readonly"/></div>
+					<div class="6u 12u$(mobile)"><input type="text" name="titulo" placeholder="Titulo*" minlength="1" maxlength="64" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
+					<div class="6u$ 12u$(mobile)"><input type="text" name="artista" placeholder="Artista*" minlength="1" maxlength="64" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
+					<div class="6u 12u$(mobile)"><input type="text" name="genero" placeholder="Genero" maxlength="32" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
+					<div class="6u$ 12u$(mobile)"><input type="text" name="lanzamiento" placeholder="Fecha de Lanzamiento (dd/mm/aa)" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d"/></div>
+					<div class="6u 12u$(mobile)"><input type="text" name="discografica" placeholder="Discográfica" maxlength="32" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
+					<div class="6u$ 12u$(mobile)"><input type="text" name="imagen" placeholder="Imagen (URL)*" minlength="1" pattern=".{1,127}"/></div>
+					<div class="6u 12u$(mobile)"><input type="text" name="rpm" placeholder="RPM (33,45)"  maxlength="2" pattern="[0-9]"/></div>
+					<div class="6u$ 12u$(mobile)"><input type="text" name="numlanzamiento"  placeholder="Numero de Lanzamiento" pattern=".{1,12}"/></div>
+
 					<div class="12u$">
-										<textarea name="message" placeholder="Título*:
-Artista*:
-Género:
-Fecha de lanzamiento:
-Discográfica:
-Imagen (URL):
-RPM:
-Nº de lanzamiento:"></textarea>
-					</div>
-					<div class="12u$">
-						<input type="submit" value="Send Message" />
+						<input type="submit" value="Enviar" />
+						<input type="reset" value="Reset"/>
 					</div>
 				</div>
 			</form>
@@ -300,13 +285,13 @@ Nº de lanzamiento:"></textarea>
 </div>
 
 <!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/jquery.scrollzer.min.js"></script>
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/util.js"></script>
-<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-<script src="assets/js/main.js"></script>
+<script src="../resources/home/assets/js/jquery.min.js"></script>
+<script src="../resources/home/assets/js/jquery.scrolly.min.js"></script>
+<script src="../resources/home/assets/js/jquery.scrollzer.min.js"></script>
+<script src="../resources/home/assets/js/skel.min.js"></script>
+<script src="../resources/home/assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="../resources/home/assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="../resources/home/assets/js/main.js"></script>
 
 </body>
 </html>

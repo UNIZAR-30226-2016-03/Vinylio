@@ -120,7 +120,7 @@ public class DAOUsuario {
     public void delete(Usuario user) throws SQLException{
         connect();
         Statement stmt = connection.createStatement();
-        stmt.executeUpdate("DELETE FROM usuario WHERE correo='" + user.getEmail() + "'");
+        stmt.executeUpdate("DELETE FROM usuario WHERE email='" + user.getEmail() + "'");
         stmt.close();
         disconnect();
     }
@@ -129,10 +129,11 @@ public class DAOUsuario {
         connect();
         Statement stmt = connection.createStatement();
         stmt.executeUpdate("UPDATE usuario SET " + campo + " = '" +valor
-                + "' WHERE correo = '" + user.getEmail() + "'");
+                + "' WHERE email = '" + user.getEmail() + "'");
         stmt.close();
         disconnect();
     }
+
 
     public Usuario getUserEmail(String email) throws SQLException {
         Usuario user = null;

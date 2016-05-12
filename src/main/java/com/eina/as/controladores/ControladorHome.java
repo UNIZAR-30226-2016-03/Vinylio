@@ -30,7 +30,7 @@ public class ControladorHome {
 
         Password p = new Password();
         System.out.println("Longitud de la pass: " + p.getSaltedHash(password).length());
-        Usuario user = new Usuario(null,nombreApellidos,email,p.getSaltedHash(password),null,null,null);
+        Usuario user = new Usuario("",nombreApellidos,email,p.getSaltedHash(password),"http://s.mvsdn.com/img/users/avatar/4r/4rhnD0Y6K_big.jpg","","");
 
         DAOUsuario daoUsuario = new DAOUsuario();
         daoUsuario.insert(user);

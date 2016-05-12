@@ -134,15 +134,16 @@ public class Poblador {
 
             System.out.println("Ejecutando comprobaciones previas...");
 
+            mt.executeSentence("DROP TABLE IF EXISTS Colecciona");
             mt.executeSentence("DROP TABLE IF EXISTS Usuario");
             mt.executeSentence("DROP TABLE IF EXISTS Vinilo");
-            mt.executeSentence("DROP TABLE IF EXISTS Colecciona");
+
 
 
             System.out.println("Creando la tabla de usuarios...");
             sb.append("CREATE TABLE IF NOT EXISTS Usuario (");
             sb.append("id_usuario   INTEGER PRIMARY KEY AUTO_INCREMENT, ");
-            sb.append("email    VARCHAR(50) NOT NULL,");
+            sb.append("email VARCHAR(50) NOT NULL UNIQUE,");
             sb.append("nombreApellidos   VARCHAR(100) NOT NULL,");
             sb.append("biografia    VARCHAR(255),");
             sb.append("URL_foto VARCHAR(255),");
