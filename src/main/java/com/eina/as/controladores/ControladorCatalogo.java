@@ -31,12 +31,19 @@ public class ControladorCatalogo {
         request.removeAttribute("numPagina");
         DAOVinilo vin = new DAOVinilo();
         ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(0);
-
+        ArrayList <Vinilo> listaTodosVinilos = vin.getListaTodosVinilos();
+        request.setAttribute("listaTodosVinilos",listaTodosVinilos);
         request.setAttribute("listaVinilos", listaVinilos);
         request.setAttribute("numPagina", 1);
         //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
         //  dispatcher.forward(request,response);
-        return "catalogo";
+        Usuario user = (Usuario) request.getSession().getAttribute("user");
+        if (user == null) {
+            return "redirect:/home";
+        } else {
+            return "catalogo";
+        }
+
     }
 
 
@@ -59,7 +66,13 @@ public class ControladorCatalogo {
         request.setAttribute("listaVinilos", listaVinilos);
         //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
         //  dispatcher.forward(request,response);
-        return "catalogo";
+        Usuario user = (Usuario) request.getSession().getAttribute("user");
+        if (user == null) {
+            return "redirect:/home";
+        } else {
+            return "catalogo";
+        }
+
     }
 
 

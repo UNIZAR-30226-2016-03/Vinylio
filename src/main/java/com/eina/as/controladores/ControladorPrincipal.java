@@ -15,11 +15,11 @@ public class ControladorPrincipal {
     @RequestMapping(value="/timeline")
     public String redireccionTimeline(HttpServletRequest request) throws Exception{
         System.out.println("Me ha llegado la peticion de obtener timeline");
-        Usuario user = (Usuario) request.getSession().getAttribute("user");
-        System.out.println(user.getEmail());
         DAOVinilo vin = new DAOVinilo();
         ArrayList<Vinilo> listaVinilos= vin.getListaVinilos(0);
         request.setAttribute("listaVinilos", listaVinilos);
+        Usuario user = (Usuario) request.getSession().getAttribute("user");
+        System.out.println(user.getEmail());
         if(user == null) {
             return "redirect:/home";
         } else{

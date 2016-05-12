@@ -97,8 +97,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				</div>
 				</li>
 				<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Inicio</span></a></li>
-				<li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Mi Colección</span></a></li>
-				<li><a href="#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Catálogo</span></a></li>
+				<li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Mi Colección</span></a></li>
+				<li><a href="#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Catálogo</span></a></li>
 				<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contáctanos</span></a></li>
 			</ul>
 		</nav>
@@ -201,7 +201,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			</header>
 
 			<p>Aquí podrás encontrar las últimas novedades.
-				Para ver la lista completa haz click en <strong><a href="/catalogo">Ver más</a></strong> al pie de la página.</p>
+				Para ver la lista completa haz click en <strong><a href="/catalogo">Ver más</a></strong>.</p>
 
 			<div class="row">
 				<%ArrayList<Vinilo> listaVinilos = (ArrayList<Vinilo>)request.getAttribute("listaVinilos");
@@ -249,17 +249,17 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				En el formulario te especificaremos lo que tienes que enviarnos.
 				No te agobies, solo los datos con <strong>asterisco*</strong> son obligatorios, pero harás nuestro trabajo mas fácil cuantos más datos incluyas.</p>
 
-			<form method="post" action="MAILTO:vinylio.raytech@gmail.com">
+			<form method="post" subject="Añadir disco" action="MAILTO:vinylio.raytech@gmail.com">
 				<div class="row">
 					<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="<%out.println(user.getNombreApellidos());%>" readonly="readonly" /></div>
 					<div class="6u$ 12u$(mobile)"><input type="email" name="email" value="<%out.println(user.getEmail());%>" readonly="readonly"/></div>
-					<div class="6u 12u$(mobile)"><input type="text" name="titulo" placeholder="Titulo*" minlength="1" maxlength="64" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
-					<div class="6u$ 12u$(mobile)"><input type="text" name="artista" placeholder="Artista*" minlength="1" maxlength="64" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
+					<div class="6u 12u$(mobile)"><input type="text" name="titulo" placeholder="Titulo*" required minlength="1" maxlength="64" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
+					<div class="6u$ 12u$(mobile)"><input type="text" name="artista" placeholder="Artista*" required minlength="1" maxlength="64" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
 					<div class="6u 12u$(mobile)"><input type="text" name="genero" placeholder="Genero" maxlength="32" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
 					<div class="6u$ 12u$(mobile)"><input type="text" name="lanzamiento" placeholder="Fecha de Lanzamiento (dd/mm/aa)" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d"/></div>
 					<div class="6u 12u$(mobile)"><input type="text" name="discografica" placeholder="Discográfica" maxlength="32" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
-					<div class="6u$ 12u$(mobile)"><input type="text" name="imagen" placeholder="Imagen (URL)*" minlength="1" pattern=".{1,127}"/></div>
-					<div class="6u 12u$(mobile)"><input type="text" name="rpm" placeholder="RPM (33,45)"  maxlength="2" pattern="[0-9]"/></div>
+					<div class="6u$ 12u$(mobile)"><input type="text" name="imagen" placeholder="Imagen (URL)*" required minlength="1" pattern=".{1,127}"/></div>
+					<div class="6u 12u$(mobile)"><input type="text" name="rpm" placeholder="RPM (33,45)"  maxlength="3" pattern="[0-9]"/></div>
 					<div class="6u$ 12u$(mobile)"><input type="text" name="numlanzamiento"  placeholder="Numero de Lanzamiento" pattern=".{1,12}"/></div>
 
 					<div class="12u$">
@@ -279,7 +279,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 	<!-- Copyright -->
 	<ul class="copyright">
-		<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+		<li>&copy; Raytech. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 	</ul>
 
 </div>

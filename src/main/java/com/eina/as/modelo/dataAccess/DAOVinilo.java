@@ -188,6 +188,30 @@ public class DAOVinilo {
         return historial;
     }
 
+    public ArrayList<Vinilo> getListaTodosVinilos() throws SQLException {
+
+        ArrayList<Vinilo> historial= new ArrayList<Vinilo>();
+        connect();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo ORDER BY titulo");
+        while(rs.next()){
+            Vinilo aux = new Vinilo(0,"","","",0,"","");
+            aux.setIdVinilo(rs.getInt("id_vinilo"));
+            aux.setTitulo(rs.getString("titulo"));
+            aux.setAutor(rs.getString("autor"));
+            aux.setGenero(rs.getString("genero"));
+            aux.setFecha(rs.getInt("fecha"));
+            aux.setDiscografica(rs.getString("discografica"));
+            aux.setImagen(rs.getString("imagen"));
+
+            historial.add(aux);
+        }
+        stmt.close();
+        disconnect();
+
+        return historial;
+    }
+
 
 
 /*

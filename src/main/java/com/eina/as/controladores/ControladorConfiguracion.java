@@ -26,8 +26,6 @@ public class ControladorConfiguracion {
     }
 
     @RequestMapping(value = "/guardarCambios")
-    //public String guardarCambios(HttpServletRequest request,
-    // @RequestParam("urlPerfil") MultipartFile file) throws Exception{
     public String guardarCambios(HttpServletRequest request) throws Exception {
         System.out.println("Me ha llegado la peticion de guardar cambios");
 
@@ -38,17 +36,6 @@ public class ControladorConfiguracion {
         String fechaNacimiento = request.getParameter("fechaNacimiento");
         String bio = request.getParameter("Text1");
         String urlImagen = request.getParameter("urlPerfilWeb");
-        /*
-        if (!file.isEmpty()) {
-            BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-            String path = request.getSession().getServletContext().getRealPath("/");
-            System.out.println("Path: " + path + "resources/" + file.getOriginalFilename());
-            System.out.println(System.getProperty("user.dir"));
-            System.out.println(new java.io.File(".").getCanonicalPath());
-            File destination = new File(path + "resources/" + file.getOriginalFilename()); // something like C:/Users/tom/Documents/nameBasedOnSomeId.png
-            ImageIO.write(src, "jpg", destination);
-        }*/
-
         DAOUsuario daoUsuario = new DAOUsuario();
         boolean cambioEmail = false;
 

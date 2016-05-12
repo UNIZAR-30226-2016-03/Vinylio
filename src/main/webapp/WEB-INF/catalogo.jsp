@@ -1,3 +1,4 @@
+<%@ page import="com.eina.as.modelo.service.Usuario" %>
 <%@ page import="com.eina.as.modelo.service.Vinilo" %>
 <%@page import="java.util.ArrayList" %>
 <!DOCTYPE HTML>
@@ -57,12 +58,19 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 <div id="header">
 
 	<div class="top">
+		<%
+			Usuario user = (Usuario) request.getSession().getAttribute("user");
+			ArrayList <Vinilo> listaVinilos = (ArrayList<Vinilo>)request.getAttribute("listaVinilos");
+			ArrayList <Vinilo> listaTodosVinilos = (ArrayList<Vinilo>) request.getAttribute("listaTodosVinilos");
+			request.removeAttribute("listaVinilos");
 
+		%>
 		<!-- Logo -->
 		<div id="logo">
-			<span class="image avatar48"><img src="../resources/home/images/usuarioAlex.jpg" alt="" /></span>
-			<h1 id="title">Usuario Anónimo</h1>
-			<p>Coleccionista Iniciado</p>
+			<span class="image avatar48"><img src="<%out.println(user.getUrlFoto());%>" alt="" /></span>
+			<h1 id="title"><%out.println(user.getNombreApellidos());%></h1>
+			<a href="/config" id="config"  class="icon fa-gear"></a><p><%out.println(user.getlugar());%></p>
+			<p><%out.println(user.getBiografia());%></p>
 		</div>
 
 		<!-- Nav -->
@@ -93,7 +101,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				</div>
 				</li>
 				<li><a href="/timeline" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Inicio</span></a></li>
-				<li><a href="/catalogo" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Catálogo</span></a></li>
+				<li><a href="/coleccion" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Mi Colección</span></a></li>
 				<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contáctanos</span></a></li>
 			</ul>
 		</nav>
@@ -129,6 +137,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 			<p>Aquí podrás encontrar 25 vinilos.<br>
 				Para ver los siguientes 25 vinilos haz click en <strong>Ver más</strong>.</p>
+			<p>Tamaño actual del catálogo: <%
+				out.println(listaTodosVinilos.size());
+			%></p>
 
 
 			<div class="tablePropia">
@@ -137,12 +148,11 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 					<tr>
 						<td>Portada</td><td>Título</td><td>Autor</td><td>Discográfica</td><td>Género</td><td>Año</td>
 					</tr>
-					<%ArrayList <Vinilo> listaVinilos = (ArrayList<Vinilo>)request.getAttribute("listaVinilos");
-						request.removeAttribute("listaVinilos");
+
+					<%
 						for (int i = 0; i < listaVinilos.size(); i++) {
 							Vinilo vin = listaVinilos.get(i);
 					%>
-
 					<tr>
 						<td><img src="<%=vin.getImagen()%>" alt="" height="100" width="100"/></td><td><%=vin.getTitulo()%></td><td><%=vin.getAutor()%></td>
 						<td><%=vin.getDiscografica()%></td><td><%=vin.getGenero()%></td><td><%=vin.getFecha()%></td>
@@ -222,19 +232,19 @@ Nº de lanzamiento:</textarea>
 
 	<!-- Copyright -->
 	<ul class="copyright">
-		<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+		<li>&copy; Raytech. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 	</ul>
 
 </div>
 
 <!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/jquery.scrollzer.min.js"></script>
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/util.js"></script>
-<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-<script src="assets/js/main.js"></script>
+<script src="../resources/home/assets/js/jquery.min.js"></script>
+<script src="../resources/home/assets/js/jquery.scrolly.min.js"></script>
+<script src="../resources/home/assets/js/jquery.scrollzer.min.js"></script>
+<script src="../resources/home/assets/js/skel.min.js"></script>
+<script src="../resources/home/assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="../resources/home/assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="../resources/home/assets/js/main.js"></script>
 
 </body>
 </html>

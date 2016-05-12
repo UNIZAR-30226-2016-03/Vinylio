@@ -147,9 +147,10 @@ public class DAOUsuario {
             String nacimiento = rs.getString("nacimiento");
             String biografia = rs.getString("biografia");
             String lugar = rs.getString("lugar");
+            int id = rs.getInt("id_usuario");
 
             user = new Usuario(nacimiento,nombreApellidos,email,password,URL_foto,
-                    biografia,lugar);
+                    biografia,lugar,id);
         }
         stmt.close();
         disconnect();

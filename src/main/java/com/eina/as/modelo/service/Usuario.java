@@ -1,7 +1,7 @@
 package com.eina.as.modelo.service;
 
 public class Usuario {
-
+    private int id;
     private String nombreApellidos, email, password, URL_foto, biografia,lugar,nacimiento;
     public Usuario(String nacimiento, String nombreApellidos, String email, String password, String URL_foto,
                    String biografia, String lugar) {
@@ -14,12 +14,26 @@ public class Usuario {
         this.biografia = biografia;
     }
 
+    public Usuario(String nacimiento, String nombreApellidos, String email, String password, String URL_foto,
+                   String biografia, String lugar, int id) {
+        this.nombreApellidos = nombreApellidos;
+        this.email = email;
+        this.password = password;
+        this.URL_foto = URL_foto;
+        this.nacimiento = nacimiento;
+        this.lugar = lugar;
+        this.biografia = biografia;
+        this.id = id;
+    }
+
     public Usuario(String email, String password, String nombreApellidos, String URL_foto) {
         this.email = email;
         this.password = password;
         this.nombreApellidos = nombreApellidos;
         this.URL_foto = URL_foto;
     }
+
+    public int getIdUsuario() { return id;}
 
     public String getNombreApellidos() {
         return nombreApellidos;
