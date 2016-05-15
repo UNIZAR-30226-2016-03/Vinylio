@@ -22,8 +22,8 @@ public class ControladorColeccion {
         request.removeAttribute("numPagina");
         DAOVinilo vin = new DAOVinilo();
         ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(0);
-        ArrayList <Vinilo> listaTodosVinilos = vin.getListaTodosVinilos();
-        request.setAttribute("listaTodosVinilos",listaTodosVinilos);
+        int numVinilos = vin.getNumeroVinilos();
+        request.setAttribute("numVinilos", numVinilos);
         request.setAttribute("listaVinilos", listaVinilos);
         request.setAttribute("numPagina", 1);
         //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
@@ -42,7 +42,6 @@ public class ControladorColeccion {
     public String redireccionPerfil2(HttpServletRequest request/*, HttpServletResponse response*/)
             throws Exception{
         String sPagina = (String) request.getAttribute("numPagina");
-        System.out.println(sPagina);
         int numPagina;
         if ((sPagina==null)|| (sPagina.trim().equals(""))) {
             numPagina = 0;
@@ -52,7 +51,8 @@ public class ControladorColeccion {
             request.setAttribute("numPagina", numPagina);                                            // numPagina.
         }
         DAOVinilo vin = new DAOVinilo();
-        System.out.println(numPagina);
+        int numVinilos = vin.getNumeroVinilos();
+        request.setAttribute("numVinilos", numVinilos);
         ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(numPagina);
         request.setAttribute("listaVinilos", listaVinilos);
         //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");

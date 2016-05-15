@@ -143,8 +143,10 @@ public class DAOVinilo {
             int fecha = rs.getInt("fecha");
             String discografica = rs.getString("discografica");
             String imagen = rs.getString("imagen");
+            int RPM = rs.getInt("RPM");
+            String numLanzamiento = rs.getString("numLanzamiento");
 
-            vinilo = new Vinilo(id_vinilo,titulo,autor,genero,fecha,discografica,imagen);
+            vinilo = new Vinilo(id_vinilo,titulo,autor,genero,fecha,discografica,imagen, RPM, numLanzamiento);
         }
         stmt.close();
         disconnect();
@@ -170,7 +172,7 @@ public class DAOVinilo {
         ArrayList <Vinilo> listaVinilos =  new ArrayList<Vinilo>();
         rs.absolute(j); // desplaza j vinilos de rs
         while(rs.next() && i<25){
-            Vinilo aux = new Vinilo(0,"","","",0,"","");
+            Vinilo aux = new Vinilo(0,"","","",0,"","",33,"");
             aux.setIdVinilo(rs.getInt("id_vinilo"));
             aux.setTitulo(rs.getString("titulo"));
             aux.setAutor(rs.getString("autor"));
@@ -178,6 +180,8 @@ public class DAOVinilo {
             aux.setFecha(rs.getInt("fecha"));
             aux.setDiscografica(rs.getString("discografica"));
             aux.setImagen(rs.getString("imagen"));
+            aux.setRPM(rs.getInt("RPM"));
+            aux.setNumLanzamiento(rs.getString("numLanzamiento"));
 
             historial.add(aux);
             i++;
@@ -188,28 +192,18 @@ public class DAOVinilo {
         return historial;
     }
 
-    public ArrayList<Vinilo> getListaTodosVinilos() throws SQLException {
-
-        ArrayList<Vinilo> historial= new ArrayList<Vinilo>();
+    public int getNumeroVinilos() throws SQLException {
         connect();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo ORDER BY titulo");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo");
+        int i = 0;
         while(rs.next()){
-            Vinilo aux = new Vinilo(0,"","","",0,"","");
-            aux.setIdVinilo(rs.getInt("id_vinilo"));
-            aux.setTitulo(rs.getString("titulo"));
-            aux.setAutor(rs.getString("autor"));
-            aux.setGenero(rs.getString("genero"));
-            aux.setFecha(rs.getInt("fecha"));
-            aux.setDiscografica(rs.getString("discografica"));
-            aux.setImagen(rs.getString("imagen"));
-
-            historial.add(aux);
+            i++;
         }
         stmt.close();
         disconnect();
 
-        return historial;
+        return i;
     }
 
 

@@ -61,16 +61,16 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 		<%
 			Usuario user = (Usuario) request.getSession().getAttribute("user");
 			ArrayList <Vinilo> listaVinilos = (ArrayList<Vinilo>)request.getAttribute("listaVinilos");
-			ArrayList <Vinilo> listaTodosVinilos = (ArrayList<Vinilo>) request.getAttribute("listaTodosVinilos");
+			int numVinilos = (int) request.getAttribute("numVinilos");
 			request.removeAttribute("listaVinilos");
 
 		%>
 		<!-- Logo -->
 		<div id="logo">
-			<span class="image avatar48"><img src="<%out.println(user.getUrlFoto());%>" alt="" /></span>
-			<h1 id="title"><%out.println(user.getNombreApellidos());%></h1>
-			<a href="/config" id="config"  class="icon fa-gear"></a><p><%out.println(user.getlugar());%></p>
-			<p><%out.println(user.getBiografia());%></p>
+			<span class="image avatar48"><img src="<%= user.getUrlFoto() %>" alt="" /></span>
+			<h1 id="title"><%= user.getNombreApellidos() %></h1>
+			<a href="/config" id="config"  class="icon fa-gear"></a><p><%= user.getlugar() %></p>
+			<p><%= user.getBiografia() %></p>
 		</div>
 
 		<!-- Nav -->
@@ -137,9 +137,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 			<p>Aquí podrás encontrar 25 vinilos.<br>
 				Para ver los siguientes 25 vinilos haz click en <strong>Ver más</strong>.</p>
-			<p>Tamaño actual del catálogo: <%
-				out.println(listaTodosVinilos.size());
-			%></p>
+			<p>Tamaño actual del catálogo: <%= numVinilos %></p>
 
 
 			<div class="tablePropia">
@@ -147,6 +145,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 					<tr>
 						<td>Portada</td><td>Título</td><td>Autor</td><td>Discográfica</td><td>Género</td><td>Año</td>
+						<td>Rpm</td><td>Nº Lanzamiento</td>
 					</tr>
 
 					<%
@@ -156,6 +155,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 					<tr>
 						<td><img src="<%=vin.getImagen()%>" alt="" height="100" width="100"/></td><td><%=vin.getTitulo()%></td><td><%=vin.getAutor()%></td>
 						<td><%=vin.getDiscografica()%></td><td><%=vin.getGenero()%></td><td><%=vin.getFecha()%></td>
+						<td><%=vin.getRPM()%></td><td><%=vin.getNumLanzamiento()%></td>
 					<tr/>
 					<%
 						}
@@ -175,7 +175,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				if (listaVinilos.size()>=25) {
 			%>
 					<footer>
-					<a href="/catalogo2" class="button scrolly">Ver más.</a>
+					<a href="/coleccion2" class="button scrolly">Ver más.</a>
 					</footer>
 			<% } else{ %>
 					<footer>

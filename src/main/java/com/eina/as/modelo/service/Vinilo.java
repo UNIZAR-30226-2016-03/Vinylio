@@ -8,10 +8,11 @@ import java.util.Date;
 public class Vinilo {
     private int idVinilo;
     private String titulo, autor, genero;
-    private int fecha;
-    private String discografica, imagen;
+    private int fecha, RPM;
+    private String discografica, imagen, numLanzamiento;
 
-    public Vinilo(int idVinilo, String titulo, String autor, String genero, int fecha, String discografica, String imagen) {
+    public Vinilo(int idVinilo, String titulo, String autor, String genero, int fecha, String discografica, String imagen,
+                  int RPM, String numLanzamiento) {
         this.idVinilo = idVinilo;
         this.titulo = titulo;
         this.autor = autor;
@@ -19,6 +20,8 @@ public class Vinilo {
         this.fecha = fecha;
         this.discografica = discografica;
         this.imagen = imagen;
+        this.RPM = RPM;
+        this.numLanzamiento = numLanzamiento;
     }
 
     public int getIdVinilo() {
@@ -75,5 +78,21 @@ public class Vinilo {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public int getRPM() {
+        return RPM;
+    }
+
+    public void setRPM(int RPM) {
+        this.RPM  = RPM;
+    }
+
+    public String getNumLanzamiento() {
+        return numLanzamiento;
+    }
+
+    public void setNumLanzamiento(String numLanzamiento) {
+        this.numLanzamiento= numLanzamiento;
     }
 }
