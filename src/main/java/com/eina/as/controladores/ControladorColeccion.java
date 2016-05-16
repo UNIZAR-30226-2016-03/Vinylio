@@ -13,19 +13,20 @@ import java.util.ArrayList;
 @Controller
 public class ControladorColeccion {
 
+
     // lo de value /catalogo que hace en verdad? Si cargo directamente la pagina catalogo.jsp cargaría este metodo?
     // Lo que creo casi seguro que hace es que si lo llamas con /catalogo o /catalogo2 va a hacerte una cosa de estas?
 
-    @RequestMapping(value= "/coleccion")
+    @RequestMapping(value = "/coleccion")
     public String redireccionPerfil(HttpServletRequest request/*, HttpServletResponse response*/)
-            throws Exception{
-        request.removeAttribute("numPagina");
+            throws Exception {
+        request.removeAttribute("numPaginaC");
         DAOVinilo vin = new DAOVinilo();
-        ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(0);
+        ArrayList<Vinilo> listaVinilos = vin.getListaVinilos(0);
         int numVinilos = vin.getNumeroVinilos();
         request.setAttribute("numVinilos", numVinilos);
         request.setAttribute("listaVinilos", listaVinilos);
-        request.setAttribute("numPagina", 1);
+        request.getSession().setAttribute("numPaginaC", "1");
         //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
         //  dispatcher.forward(request,response);
         Usuario user = (Usuario) request.getSession().getAttribute("user");
@@ -38,22 +39,32 @@ public class ControladorColeccion {
     }
 
 
-    @RequestMapping(value= "/coleccion2")
+    @RequestMapping(value = "/coleccion2")
     public String redireccionPerfil2(HttpServletRequest request/*, HttpServletResponse response*/)
-            throws Exception{
-        String sPagina = (String) request.getAttribute("numPagina");
-        int numPagina;
-        if ((sPagina==null)|| (sPagina.trim().equals(""))) {
-            numPagina = 0;
+            throws Exception {
+        String sPagina = (String) request.getSession().getAttribute("numPaginaC");
+
+        int numPaginaC = Integer.parseInt(sPagina);
+        System.out.println("numPaginaC= " + numPaginaC);
+
+        if ((sPagina == null) || (sPagina.trim().equals("")) || sPagina.trim().equals("0")) {
+            numPaginaC = 0;
+        } else {
+            numPaginaC++; // tiene que ser cuando haces el "Ver 25 más" que aumente el numPaginaC.
+            sPagina = Integer.toString(numPaginaC);
+            request.getSession().setAttribute("numPaginaC", sPagina);
         }
-        else{
-            numPagina = 1 + Integer.parseInt(sPagina); // tiene que ser cuando haces el "Ver 25 más" que aumente el
-            request.setAttribute("numPagina", numPagina);                                            // numPagina.
-        }
+
+
         DAOVinilo vin = new DAOVinilo();
         int numVinilos = vin.getNumeroVinilos();
         request.setAttribute("numVinilos", numVinilos);
-        ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(numPagina);
+        ArrayList<Vinilo> listaVinilos;
+        if (numPaginaC == 0) {
+            listaVinilos = vin.getListaVinilos(0);
+        } else {
+            listaVinilos = vin.getListaVinilos(numPaginaC - 1);
+        }
         request.setAttribute("listaVinilos", listaVinilos);
         //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
         //  dispatcher.forward(request,response);
@@ -61,12 +72,11 @@ public class ControladorColeccion {
         if (user == null) {
             return "redirect:/home";
         } else {
-            return "catalogo";
+            return "coleccion";
         }
 
+
     }
-
-
 }
 
 

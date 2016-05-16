@@ -14,10 +14,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 	<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 	<%@ page pageEncoding="UTF-8"%>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<!--[if lte IE 8]><script src="../resources/perfil/assets/js/ie/html5shiv.js"></script><![endif]-->
-	<link rel="stylesheet" href="../resources/perfil/assets/css/main.css" />
-	<!--[if lte IE 8]><link rel="stylesheet" href="../resources/perfil/assets/css/ie8.css" /><![endif]-->
-	<!--[if lte IE 9]><link rel="stylesheet" href="../resources/perfil/assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><script src="../resources/home/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="../resources/principal/assets/css/main.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="../resources/home/assets/css/ie8.css" /><![endif]-->
+	<!--[if lte IE 9]><link rel="stylesheet" href="../resources/home/assets/css/ie9.css" /><![endif]-->
 	<!-- Empieza script de prueba -->
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>

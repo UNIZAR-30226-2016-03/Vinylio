@@ -22,6 +22,8 @@ import java.util.ArrayList;
 @Controller
 public class ControladorCatalogo {
 
+
+
     // lo de value /catalogo que hace en verdad? Si cargo directamente la pagina catalogo.jsp cargaría este metodo?
     // Lo que creo casi seguro que hace es que si lo llamas con /catalogo o /catalogo2 va a hacerte una cosa de estas?
 
@@ -32,9 +34,9 @@ public class ControladorCatalogo {
         DAOVinilo vin = new DAOVinilo();
         ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(0);
         int numVinilos = vin.getNumeroVinilos();
-        request.setAttribute("numVinilos", numVinilos);
+        request.setAttribute ("numVinilos", numVinilos);
         request.setAttribute("listaVinilos", listaVinilos);
-        request.setAttribute("numPagina", 1);
+        request.getSession().setAttribute("numPagina","1");
         //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
         //  dispatcher.forward(request,response);
         Usuario user = (Usuario) request.getSession().getAttribute("user");
@@ -50,19 +52,31 @@ public class ControladorCatalogo {
     @RequestMapping(value= "/catalogo2")
     public String redireccionPerfil2(HttpServletRequest request/*, HttpServletResponse response*/)
             throws Exception{
-        String sPagina = (String) request.getAttribute("numPagina");
-        int numPagina;
-        if ((sPagina==null)|| (sPagina.trim().equals(""))) {
+        String sPagina = (String) request.getSession().getAttribute("numPagina");
+
+        int numPagina = Integer.parseInt(sPagina);
+        System.out.println("numPagina= "+ numPagina);
+
+        if ((sPagina==null)|| (sPagina.trim().equals("")) || sPagina.trim().equals("0")) {
             numPagina = 0;
         }
         else{
-            numPagina = 1 + Integer.parseInt(sPagina); // tiene que ser cuando haces el "Ver 25 más" que aumente el
-            request.setAttribute("numPagina", numPagina);                                            // numPagina.
+            numPagina++; // tiene que ser cuando haces el "Ver 25 más" que aumente el numPagina.
+            sPagina = Integer.toString(numPagina);
+            request.getSession().setAttribute("numPagina",sPagina);
         }
+
+
         DAOVinilo vin = new DAOVinilo();
         int numVinilos = vin.getNumeroVinilos();
         request.setAttribute("numVinilos", numVinilos);
-        ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(numPagina);
+        ArrayList <Vinilo> listaVinilos;
+        if (numPagina==0){
+            listaVinilos= vin.getListaVinilos(0);
+        }
+        else {
+            listaVinilos = vin.getListaVinilos(numPagina - 1);
+        }
         request.setAttribute("listaVinilos", listaVinilos);
         //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
         //  dispatcher.forward(request,response);
