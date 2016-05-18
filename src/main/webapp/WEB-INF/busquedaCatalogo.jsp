@@ -60,9 +60,18 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 		<!-- Logo -->
 		<div id="logo">
-			<span class="image avatar48"><img src="../resources/home/images/usuarioAlex.jpg" alt="" /></span>
-			<h1 id="title">Usuario Anónimo</h1>
-			<p>Coleccionista Iniciado</p>
+			<span class="image avatar48"><img src="<%= user.getUrlFoto() %>" alt="" /></span>
+			<h1 id="title"><%= user.getNombreApellidos() %></h1>
+			<ul class="icons">
+				<!-- Aqui hay botones fantasma a punta pala para alinear-->
+				<a href="#" id="config"  class="icon fa-gear" style="visibility: hidden;"></a>
+				<a href="#" id="config"  class="icon fa-gear" style="visibility: hidden;"></a>
+				<a href="#" id="config"  class="icon fa-gear" style="visibility: hidden;"></a>
+				<a href="/config" id="config"  class="icon fa-gear"></a>
+				<a href="/logout" id="logout" class="icon fa-sign-out" style="padding-left: 15px;"></a>
+			</ul>
+			<p><%= user.getlugar() %></p>
+			<p><%= user.getBiografia() %></p>
 		</div>
 
 		<!-- Nav -->

@@ -65,7 +65,15 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 		<div id="logo">
 			<span class="image avatar48"><img src="<%out.println(user.getUrlFoto());%>" alt="" /></span>
 			<h1 id="title"><%out.println(user.getNombreApellidos());%></h1>
-			<a href="/config" id="config"  class="icon fa-gear"></a><p><%out.println(user.getlugar());%></p>
+			<ul class="icons">
+				<!-- Aqui hay botones fantasma a punta pala para alinear-->
+				<a href="#" id="config"  class="icon fa-gear" style="visibility: hidden;"></a>
+				<a href="#" id="config"  class="icon fa-gear" style="visibility: hidden;"></a>
+				<a href="#" id="config"  class="icon fa-gear" style="visibility: hidden;"></a>
+				<a href="/config" id="config"  class="icon fa-gear"></a>
+				<a href="/logout" id="logout" class="icon fa-sign-out" style="padding-left: 15px;"></a>
+			</ul>
+			<p><%out.println(user.getlugar());%></p>
 			<p><%out.println(user.getBiografia());%></p>
 		</div>
 
@@ -89,7 +97,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 					<div class="input-group col-md-12">
 						<input type="text" class="  search-query form-control" placeholder="Search" />
                                 <span class="input-group-btn">
-                                    <button class="btn btn-danger" type="button">
+                                    <button class="icon fa-search" type="button">
                                         <span class=" glyphicon glyphicon-search"></span>
                                     </button>
                                 </span>
@@ -137,56 +145,36 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			</header>
 
 			<p>
-				Para ver la lista completa, haz click en <strong><a href="/catalogo">Ver más</a></strong>.</p>
+				Para ver la lista completa, haz click en <strong><a href="/coleccion">Ver más</a></strong>.</p>
 
 			<div class="row">
+				<%ArrayList<Vinilo> coleccionVinilos = (ArrayList<Vinilo>)request.getAttribute("coleccionVinilos");
+					request.removeAttribute("coleccionVinilos");
+					if(!coleccionVinilos.isEmpty()){
+						for (int i = 0; i < 6; i=i+2) {
+							Vinilo col = coleccionVinilos.get(i);
+							Vinilo col2 = coleccionVinilos.get(i+1);
+				%>
 				<div class="4u 12u$(mobile)">
 					<article class="item">
-						<a href="#" class="image fit"><img src="../resources/principal/images/gkot.jpg" alt="" /></a>
+						<a href="#" class="image fit"><img src="<%=col.getImagen()%>" alt="" /></a>
 						<header>
-							<h3>Tenderness</h3>
-							<h3>Gotta Keep On Trying</h3>
+							<h3><b><%=col.getAutor()%></b></h3>
+							<h3><%=col.getTitulo()%></h3>
 						</header>
 					</article>
 					<article class="item">
-						<a href="#" class="image fit"><img src="../resources/principal/images/vinilo_placeholder.png" alt="" /></a>
+						<a href="#" class="image fit"><img src="<%=col2.getImagen()%>" alt="" /></a>
 						<header>
-							<h3>The Yarbirds</h3>
-							<h3>For Your Love</h3>
+							<h3><%=col2.getAutor()%></h3>
+							<h3><%=col2.getTitulo()%></h3>
 						</header>
 					</article>
 				</div>
-				<div class="4u 12u$(mobile)">
-					<article class="item">
-						<a href="#" class="image fit"><img src="../resources/principal/images/pic04.jpg" alt="" /></a>
-						<header>
-							<h3>Magna Nullam</h3>
-						</header>
-					</article>
-					<article class="item">
-						<a href="#" class="image fit"><img src="../resources/principal/images/pic05.jpg" alt="" /></a>
-						<header>
-							<h3>Natoque Vitae</h3>
-						</header>
-					</article>
-				</div>
-				<div class="4u$ 12u$(mobile)">
-					<article class="item">
-						<a href="#" class="image fit"><img src="../resources/principal/images/pic06.jpg" alt="" /></a>
-						<header>
-							<h3>Dolor Penatibus</h3>
-						</header>
-					</article>
-					<article class="item">
-						<a href="#" class="image fit"><img src="../resources/principal/images/pic07.jpg" alt="" /></a>
-						<header>
-							<h3>Orci Convallis</h3>
-						</header>
-					</article>
-				</div>
+				<% }} %>
 			</div>
 			<footer>
-				<a href="/catalogo" class="button scrolly">Ver más.</a>
+				<a href="/coleccion" class="button scrolly">Ver más.</a>
 			</footer>
 
 		</div>
@@ -206,6 +194,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<div class="row">
 				<%ArrayList<Vinilo> listaVinilos = (ArrayList<Vinilo>)request.getAttribute("listaVinilos");
 					request.removeAttribute("listaVinilos");
+					if(!listaVinilos.isEmpty()){
 					for (int i = 0; i < 6; i=i+2) {
 						Vinilo vin = listaVinilos.get(i);
 						Vinilo vin2 = listaVinilos.get(i+1);
@@ -226,7 +215,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 						</header>
 					</article>
 				</div>
-				<% } %>
+				<% }} %>
 			</div>
 			<footer>
 				<a href="/catalogo" class="button scrolly">Ver más.</a>

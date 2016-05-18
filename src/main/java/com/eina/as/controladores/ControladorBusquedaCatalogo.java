@@ -1,6 +1,6 @@
 package com.eina.as.controladores;
 
-import com.eina.as.modelo.dataAccess.DAOBiblioteca;
+import com.eina.as.modelo.dataAccess.DAOColeccion;
 import com.eina.as.modelo.dataAccess.DAOUsuario;
 import com.eina.as.modelo.dataAccess.DAOVinilo;
 import com.eina.as.modelo.service.Usuario;
@@ -26,7 +26,7 @@ public class ControladorBusquedaCatalogo {
         DAOUsuario daoUsuario = new DAOUsuario();
         DAOVinilo daoVinilo = new DAOVinilo();
         Usuario usuario;
-        DAOBiblioteca biblioteca = new DAOBiblioteca();
+        DAOColeccion biblioteca = new DAOColeccion();
         Vinilo vinilo;
         usuario = daoUsuario.getUserEmail(user);
         // codigo de comportamiento si login o no login
@@ -60,6 +60,3 @@ public class ControladorBusquedaCatalogo {
         return "catalogo";
     }
 }
-
-
-// comprobando que me haga algo el puto push

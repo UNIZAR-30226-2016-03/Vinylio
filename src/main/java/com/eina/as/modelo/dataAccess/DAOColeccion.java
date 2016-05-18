@@ -125,7 +125,7 @@ public class DAOColeccion {
     public void delete(Usuario user, Vinilo vinilo) throws SQLException{
         connect();
         Statement stmt = connection.createStatement();
-        stmt.executeUpdate("DELETE FROM colecciona WHERE id_vinilo='" + vinilo.getTitulo() + "' AND id_usuario='" + user.getIdUsuario() +"'" );
+        stmt.executeUpdate("DELETE FROM colecciona WHERE id_vinilo='" + vinilo.getTitulo() + "' AND id_user='" + user.getIdUsuario() +"'" );
         stmt.close();
         disconnect();
     }
@@ -139,7 +139,7 @@ public class DAOColeccion {
     public ArrayList<Vinilo> getListaVinilos(Usuario user) throws SQLException{
         connect();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_usuario='" + user.getIdUsuario() +"'");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_user='" + user.getIdUsuario() +"'");
         ArrayList<Vinilo> historial = new ArrayList<Vinilo>();
         while(rs.next()){
             Vinilo aux = new Vinilo(0,"","","",0,"","",33,"");
@@ -170,7 +170,7 @@ public class DAOColeccion {
     public int getNumeroVinilos(Usuario user) throws SQLException {
         connect();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_usuario='" + user.getIdUsuario() + "'");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_user='" + user.getIdUsuario() + "'");
         int i = 0;
         while(rs.next()){
             i++;

@@ -65,7 +65,15 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 		<div id="logo">
 			<span class="image avatar48"><img src="<%out.println(user.getUrlFoto());%>" alt="" /></span>
 			<h1 id="title"><%out.println(user.getNombreApellidos());%></h1>
-			<a href="/config" id="config"  class="icon fa-gear"></a><p><%out.println(user.getlugar());%></p>
+			<ul class="icons">
+				<!-- Aqui hay botones fantasma a punta pala para alinear-->
+				<a href="#" id="config"  class="icon fa-gear" style="visibility: hidden;"></a>
+				<a href="#" id="config"  class="icon fa-gear" style="visibility: hidden;"></a>
+				<a href="#" id="config"  class="icon fa-gear" style="visibility: hidden;"></a>
+				<a href="/config" id="config"  class="icon fa-gear"></a>
+				<a href="/logout" id="logout" class="icon fa-sign-out" style="padding-left: 15px;"></a>
+			</ul>
+			<p><%out.println(user.getlugar());%></p>
 			<p><%out.println(user.getBiografia());%></p>
 		</div>
 

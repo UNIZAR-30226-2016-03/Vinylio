@@ -1,5 +1,6 @@
 package com.eina.as.controladores;
 
+import com.eina.as.modelo.dataAccess.DAOColeccion;
 import com.eina.as.modelo.dataAccess.DAOVinilo;
 import com.eina.as.modelo.service.Usuario;
 import com.eina.as.modelo.service.Vinilo;
@@ -15,15 +16,28 @@ public class ControladorPrincipal {
     @RequestMapping(value="/timeline")
     public String redireccionTimeline(HttpServletRequest request) throws Exception{
         System.out.println("Me ha llegado la peticion de obtener timeline");
-        DAOVinilo vin = new DAOVinilo();
-        ArrayList<Vinilo> listaVinilos= vin.getListaVinilos(0);
-        request.setAttribute("listaVinilos", listaVinilos);
         Usuario user = (Usuario) request.getSession().getAttribute("user");
-        System.out.println(user.getEmail());
+
+
+
         if(user == null) {
             return "redirect:/home";
         } else{
+            System.out.println(user.getEmail());
+            DAOVinilo vin = new DAOVinilo();
+            DAOColeccion coleccion = new DAOColeccion();
+            ArrayList<Vinilo> listaVinilos= vin.getListaVinilos(0);
+            ArrayList<Vinilo> coleccionVinilos= coleccion.getListaVinilos(user);
+            request.setAttribute("listaVinilos", listaVinilos);
+            request.setAttribute("coleccionVinilos",coleccionVinilos);
             return "principal";
         }
+    }
+
+    @RequestMapping(value="/logout")
+    public String logout(HttpServletRequest request){
+        System.out.println("Me ha llegado la peticion de logout");
+        request.getSession().invalidate();
+        return "redirect:/home";
     }
 }
