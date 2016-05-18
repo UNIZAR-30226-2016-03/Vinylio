@@ -191,4 +191,35 @@
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>busquedaColeccionServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:spring-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>busquedaColeccionServlet</servlet-name>
+        <url-pattern>/busquedaColeccion</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>busquedaColeccion2Servlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:spring-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>busquedaColeccion2Servlet</servlet-name>
+        <url-pattern>/busquedaColeccion2</url-pattern>
+    </servlet-mapping>
 </web-app>
