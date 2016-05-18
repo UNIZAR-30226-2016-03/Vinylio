@@ -1,5 +1,6 @@
 <%@ page import="com.eina.as.modelo.service.Vinilo" %>
 <%@page import="java.util.ArrayList" %>
+<%@ page import="com.eina.as.modelo.service.Usuario" %>
 <!DOCTYPE HTML>
 <!--
 Prologue by HTML5 UP
@@ -57,7 +58,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 <div id="header">
 
 	<div class="top">
+		<%
+			Usuario user = (Usuario) request.getSession().getAttribute("user");
+			ArrayList <Vinilo> listaVinilos = (ArrayList<Vinilo>)request.getAttribute("listaVinilos");
+			int numVinilos = (int) request.getAttribute("numVinilos");
+			request.removeAttribute("listaVinilos");
 
+		%>
 		<!-- Logo -->
 		<div id="logo">
 			<span class="image avatar48"><img src="<%= user.getUrlFoto() %>" alt="" /></span>
