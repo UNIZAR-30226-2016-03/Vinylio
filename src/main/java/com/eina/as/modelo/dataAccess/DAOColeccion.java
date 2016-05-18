@@ -98,6 +98,12 @@ public class DAOColeccion {
         }
     }
 
+    /**
+     *
+     * @param user
+     * @param vinilo
+     * @throws SQLException
+     */
     public void insert(Usuario user, Vinilo vinilo) throws SQLException{
         connect();
         Statement stmt = connection.createStatement();
@@ -110,65 +116,32 @@ public class DAOColeccion {
         disconnect();
     }
 
-    //TODO: a partir de aqui
+    /**
+     *
+     * @param user
+     * @param vinilo
+     * @throws SQLException
+     */
     public void delete(Usuario user, Vinilo vinilo) throws SQLException{
         connect();
         Statement stmt = connection.createStatement();
-        stmt.executeUpdate("DELETE FROM colecciona WHERE id_usuario='" + vinilo.getTitulo() + "'");
+        stmt.executeUpdate("DELETE FROM colecciona WHERE id_vinilo='" + vinilo.getTitulo() + "' AND id_usuario='" + user.getIdUsuario() +"'" );
         stmt.close();
         disconnect();
     }
 
-    public void updateVinilo(Vinilo vinilo, String campo, String valor) throws SQLException{
+    /**
+     *
+     * @param user
+     * @return ArrayList<Vinilo>
+     * @throws SQLException
+     */
+    public ArrayList<Vinilo> getListaVinilos(Usuario user) throws SQLException{
         connect();
         Statement stmt = connection.createStatement();
-        stmt.executeUpdate("UPDATE vinilo SET " + campo + " = '" +valor
-                + "' WHERE titulo = '" + vinilo.getTitulo() + "'");
-        stmt.close();
-        disconnect();
-    }
-
-    public Vinilo getViniloTitulo(String titulo) throws SQLException {
-        Vinilo vinilo = null;
-        connect();
-        Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo WHERE titulo REGEXP '[[:<:]]"+vinilo+"[[:>:]]'");
-        if(rs.next()){
-            int id_vinilo = rs.getInt("id_vinilo");
-            String autor = rs.getString("autor");
-            String genero = rs.getString("titulo");
-            int fecha = rs.getInt("fecha");
-            String discografica = rs.getString("discografica");
-            String imagen = rs.getString("imagen");
-            int RPM = rs.getInt("RPM");
-            String numLanzamiento = rs.getString("numLanzamiento");
-
-            vinilo = new Vinilo(id_vinilo,titulo,autor,genero,fecha,discografica,imagen, RPM, numLanzamiento);
-        }
-        stmt.close();
-        disconnect();
-
-        return vinilo;
-    }
-
-// me dará la lista de 25 vinilos que se encuentren en la pagina x, es decir si queremos los 25 primeros la pagina será
-    // la 0, si queremos que salgan los de la 3ra pagina entonces pondrémos un 2.
-    // Duda: No se si el primer elemento o el ultimo salen seguro. 0-24 o de 1-25?
-    // Duda: Al hacer rs.absolute(j) si no hay tantos elementos en la base de datos que pasa? Sería mejor directamente
-    //      coger en el select de la base de datos a partir del dato que me interesa en vez de cargarlos todos y luego
-    //      moverme con el absolute(j). Podría dar error tambien la consulta si me quiero mover a un numero de elemento
-    //      que no hay?
-    public ArrayList<Vinilo> getListaVinilos(int pagina) throws SQLException {
-
-        ArrayList<Vinilo> historial= new ArrayList<Vinilo>();
-        connect();
-        Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo ORDER BY titulo");
-        int j=pagina*25;
-        int i=0;
-        ArrayList <Vinilo> listaVinilos =  new ArrayList<Vinilo>();
-        rs.absolute(j); // desplaza j vinilos de rs
-        while(rs.next() && i<25){
+        ResultSet rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_usuario='" + user.getIdUsuario() +"'");
+        ArrayList<Vinilo> historial = new ArrayList<Vinilo>();
+        while(rs.next()){
             Vinilo aux = new Vinilo(0,"","","",0,"","",33,"");
             aux.setIdVinilo(rs.getInt("id_vinilo"));
             aux.setTitulo(rs.getString("titulo"));
@@ -181,7 +154,6 @@ public class DAOColeccion {
             aux.setNumLanzamiento(rs.getString("numLanzamiento"));
 
             historial.add(aux);
-            i++;
         }
         stmt.close();
         disconnect();
@@ -189,11 +161,16 @@ public class DAOColeccion {
         return historial;
     }
 
-
-    public int getNumeroVinilos() throws SQLException {
+    /**
+     *
+     * @param user
+     * @return int
+     * @throws SQLException
+     */
+    public int getNumeroVinilos(Usuario user) throws SQLException {
         connect();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_usuario='" + user.getIdUsuario() + "'");
         int i = 0;
         while(rs.next()){
             i++;
@@ -204,33 +181,4 @@ public class DAOColeccion {
         return i;
     }
 
-/*
-    public String obtenerAutor(String vinilo) throws SQLException{
-        String nombreAutor = "";
-        connect();
-        Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo WHERE titulo='" + vinilo + "'");
-        if(rs.next()){
-            nombreAutor = rs.getString("autor");
-        }
-        stmt.close();
-        disconnect();
-
-        return nombreAutor;
-    }
-
-    public String obtenerFoto(String vinilo) throws SQLException{
-        String URL_foto = "";
-        connect();
-        Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo WHERE titulo REGEXP '"+vinilo+"'");
-        if(rs.next()){
-            URL_foto = rs.getString("imagen");
-        }
-        stmt.close();
-        disconnect();
-
-        return URL_foto;
-    }
-   */
 }
