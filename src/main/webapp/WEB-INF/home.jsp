@@ -6,7 +6,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 -->
 <html>
 <head>
-    <title>Home</title>
+    <title>Home - Vinylio</title>
+    <link rel="shortcut icon" href="../resources/iconos/favicon.ico" />
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <%@ page pageEncoding="UTF-8"%>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -76,7 +77,41 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                     de mantener tu colección de Vinilos.</h2>
                 <p>Regístrate ahora y comienza a añadir vinilos	a tu colección personal.</p>
             </header>
+            <!-- Codigo para feedback fallos -->
+            <%
+                String fallo = (String) request.getSession().getAttribute("fallo");
+                if(fallo.equals("contrasenya")) {
+            %>
+            <div class="container" style="background: tomato;border-radius: 5px;">
+                <p class="alt">¡Oops! La contraseña introducida no es correcta.</p>
+            </div>
+            <%
+            }
+                else if(fallo.equals("email")){
+            %>
+            <div class="container" style="background: tomato;border-radius: 5px;">
+                <p class="alt">¡Vaya! El email introducido no está registrado.<br />Haz click en <strong>Registro</strong> justo debajo, ¡Es gratis!</p>
+            </div>
+            <%
+            }
+                else if(fallo.equals("repetido")){
+            %>
+            <div class="container" style="background: tomato;border-radius: 5px;">
+                <p class="alt">Hmm... Parece que el Email introducido ya está registrado.</p>
+            </div>
+            <%
+            }
+                else if(fallo.equals("registroOK")){
+            %>
+            <div class="container" style="background: mediumseagreen;border-radius: 5px;">
+                <p class="alt">¡Yay! Registro completado satisfactoriamente.<br />Haz click en <strong>Iniciar Sesion</strong> y empieza tu colección.</p>
+            </div>
+            <%
+                }
+                else{}
+            %>
 
+            <!-- Fin codigo feedback fallos -->
             <footer>
                 <hr class="prettyline">
                 <ul>
@@ -94,12 +129,12 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                             <h3>Iniciar Sesión</h3>
                             <form method="post" action="/login">
                                 <label for="username">
-                                    Nombre de Usuario:
+                                    Email:
                                     <input type="email" name="username" id="username" placeholder="Tu email" pattern="^[a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@][a-zA-Z0-9-_\.@]*$" required />
                                 </label>
                                 <label for="password">
                                     Contraseña:
-                                    <input type="password" name="password" id="password" placeholder="Debe contener al menos 6 caracteres" pattern="^[a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.]*$" required />
+                                    <input type="password" name="password" id="password" placeholder="Tu contraseña" pattern="^[a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.]*$" required />
                                 </label>
                                 <button type="submit">Entrar</button>
                             </form>
@@ -119,11 +154,11 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                                 </label>
                                 <label for="nombreApellidos">
                                     Nombre y Apellidos:
-                                    <input type="text" name="nombreApellidos" id="nombreApellidos" placeholder="No puede ser nulo, todo el mundo tiene un nombre ;)" pattern="^[a-zA-Z0-9-_\.' ']*$" required />
+                                    <input type="text" name="nombreApellidos" id="nombreApellidos" placeholder="No puede ser nulo, todo el mundo tiene un nombre ;)" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$" required />
                                 </label>
                                 <label for="password">
-                                    Contraseña:
-                                    <input type="password" name="password2" id="password2" placeholder="Debe contener al menos 6 caracteres" pattern="^[a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.][a-zA-Z0-9-_\.]*$" required />
+                                    Contraseña (6-20 caracteres):
+                                    <input type="password" name="password2" id="password2" placeholder="Al menos 1 mayuscula, 1 minuscula y 1 numero" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" minlength="6" maxlength="20" required />
                                 </label>
                                 <button type="submit">Registrarse</button>
                             </form>
@@ -145,10 +180,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <ul class="copyright">
         <ul class="icons">
             <li><a href="https://twitter.com/Vinylio_" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+            <li><a href="https://www.facebook.com/VinylioRaytech/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="https://github.com/UNIZAR-30226-2016-03/Vinylio" class="icon fa-github"><span class="label">Github</span></a></li>
             <!--<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>-->
-            <li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+            <li><a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=vinylio.raytech@gmail.com" class="icon fa-envelope"><span class="label">Email</span></a></li>
         </ul>
         <li>&copy; RayTech. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
     </ul>
@@ -156,13 +191,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 </div>
 
 <!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/jquery.scrollzer.min.js"></script>
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/util.js"></script>
-<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-<script src="assets/js/main.js"></script>
+<script src="../resources/home/assets/js/jquery.min.js"></script>
+<script src="../resources/home/assets/js/jquery.scrolly.min.js"></script>
+<script src="../resources/home/assets/js/jquery.scrollzer.min.js"></script>
+<script src="../resources/home/assets/js/skel.min.js"></script>
+<script src="../resources/home/assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="../resources/home/assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="../resources/home/assets/js/main.js"></script>
 
 </body>
 </html>

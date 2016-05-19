@@ -222,4 +222,20 @@
         <servlet-name>busquedaColeccion2Servlet</servlet-name>
         <url-pattern>/busquedaColeccion2</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>homerServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:spring-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>homerServlet</servlet-name>
+        <url-pattern>/homer</url-pattern>
+    </servlet-mapping>
+
 </web-app>

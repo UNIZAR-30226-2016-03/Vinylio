@@ -14,15 +14,25 @@ import javax.servlet.http.HttpServletRequest;
 public class ControladorHome {
 
     @RequestMapping(value="/home")
-    public String redireccionHome(){
+    public String redireccionHome(HttpServletRequest request){
         System.out.println("Me ha llegado la peticion de obtener home");
+        String fallo = "naa";
+        request.getSession().setAttribute("fallo", fallo);
+        return "home";
+    }
+
+    @RequestMapping(value="/homer")
+    public String redireccionHomer(){
+        System.out.println("Me ha llegado la peticion de obtener homer");
+
         return "home";
     }
 
     @RequestMapping(value="/register", method= RequestMethod.POST)
     public String registro(@RequestParam("email") String email,
                            @RequestParam("nombreApellidos") String nombreApellidos,
-                           @RequestParam("password2") String password) throws Exception{
+                           @RequestParam("password2") String password,
+                           HttpServletRequest request) throws Exception{
         System.out.println("Me ha llegado la peticion de registro");
         System.out.println("Email: " + email);
         System.out.println("NombreYApellidos: " + nombreApellidos);
@@ -31,10 +41,24 @@ public class ControladorHome {
         Password p = new Password();
         System.out.println("Longitud de la pass: " + p.getSaltedHash(password).length());
         Usuario user = new Usuario("",nombreApellidos,email,p.getSaltedHash(password),"http://s.mvsdn.com/img/users/avatar/4r/4rhnD0Y6K_big.jpg","","");
-
         DAOUsuario daoUsuario = new DAOUsuario();
-        daoUsuario.insert(user);
-        return "home";
+        String fallo;
+        //TODO: cuando el registro es incorrecto, funciona y muestra error, pero si es correcto peta porque no puede hacer getUser de un usuario que no existe
+        if(!daoUsuario.getUserEmail(user.getEmail()).equals(null)){
+            System.out.println("Error email repetido");
+            fallo = "repetido";
+            request.getSession().removeAttribute("fallo");
+            request.getSession().setAttribute("fallo",fallo);
+            return "redirect:/homer";
+        }
+        else {
+            System.out.println("Todo bien todo correcto");
+            fallo = "registroOK";
+            daoUsuario.insert(user);
+            request.getSession().removeAttribute("fallo");
+            request.getSession().setAttribute("fallo",fallo);
+            return "redirect:/homer";
+        }
     }
 
     @RequestMapping(value="/login", method=RequestMethod.POST)
@@ -45,16 +69,25 @@ public class ControladorHome {
         Password pw = new Password();
         Usuario usuario;
         usuario = daoUsuario.getUserEmail(user);
+        String fallo;
         // codigo de comportamiento si login o no login
         if(usuario != null){
             if(pw.check(password,usuario.getPassword())){
                 request.getSession().setAttribute("user",usuario);
                 return "redirect:/timeline";
             } else{
-                return "redirect:/home";
+                System.out.println("Error contraseña");
+                fallo = "contrasenya";
+                request.getSession().removeAttribute("fallo");
+                request.getSession().setAttribute("fallo",fallo);
+                return "redirect:/homer";
             }
         } else{
-            return "redirect:/home";
+            System.out.println("error email");
+            fallo ="email";
+            request.getSession().removeAttribute("fallo");
+            request.getSession().setAttribute("fallo",fallo);
+            return "redirect:/homer";
         }
     }
 

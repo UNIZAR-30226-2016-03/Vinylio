@@ -10,6 +10,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 <html>
 <head>
 	<title>Vinylio</title>
+	<link rel="shortcut icon" href="../resources/iconos/favicon.ico" />
 	<meta charset="utf-8" />
 	<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 	<%@ page pageEncoding="UTF-8"%>
@@ -65,11 +66,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 		<div id="logo">
 			<span class="image avatar48"><img src="<%out.println(user.getUrlFoto());%>" alt="" /></span>
 			<h1 id="title"><%out.println(user.getNombreApellidos());%></h1>
-			<ul class="icons">
-				<!-- Aqui hay botones fantasma a punta pala para alinear-->
-				<a href="#" id="config"  class="icon fa-gear" style="visibility: hidden;"></a>
-				<a href="#" id="config"  class="icon fa-gear" style="visibility: hidden;"></a>
-				<a href="#" id="config"  class="icon fa-gear" style="visibility: hidden;"></a>
+			<ul class="icons" style="text-align: right;">
 				<a href="/config" id="config"  class="icon fa-gear"></a>
 				<a href="/logout" id="logout" class="icon fa-sign-out" style="padding-left: 15px;"></a>
 			</ul>
@@ -118,7 +115,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 		<!-- Social Icons -->
 		<ul class="icons">
 			<li><a href="https://twitter.com/Vinylio_" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+			<li><a href="https://www.facebook.com/VinylioRaytech/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 			<li><a href="https://github.com/UNIZAR-30226-2016-03/Vinylio" class="icon fa-github"><span class="label">Github</span></a></li>
 			<!--<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>-->
 			<li><a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=vinylio.raytech@gmail.com" class="icon fa-envelope"><span class="label">Email</span></a></li>
