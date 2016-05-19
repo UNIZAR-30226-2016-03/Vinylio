@@ -43,8 +43,8 @@ public class ControladorHome {
         Usuario user = new Usuario("",nombreApellidos,email,p.getSaltedHash(password),"http://s.mvsdn.com/img/users/avatar/4r/4rhnD0Y6K_big.jpg","","");
         DAOUsuario daoUsuario = new DAOUsuario();
         String fallo;
-        //TODO: cuando el registro es incorrecto, funciona y muestra error, pero si es correcto peta porque no puede hacer getUser de un usuario que no existe
-        if(!daoUsuario.getUserEmail(user.getEmail()).equals(null)){
+
+        if(daoUsuario.existe(user)){
             System.out.println("Error email repetido");
             fallo = "repetido";
             request.getSession().removeAttribute("fallo");

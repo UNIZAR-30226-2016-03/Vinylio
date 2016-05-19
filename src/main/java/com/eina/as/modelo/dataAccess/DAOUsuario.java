@@ -134,6 +134,16 @@ public class DAOUsuario {
         disconnect();
     }
 
+    public boolean existe(Usuario user) throws SQLException {
+        connect();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE email = '" + user.getEmail() + "'");
+        boolean existe = rs.first();
+        stmt.close();
+        disconnect();
+        return existe;
+    }
+
 
     public Usuario getUserEmail(String email) throws SQLException {
         Usuario user = null;
