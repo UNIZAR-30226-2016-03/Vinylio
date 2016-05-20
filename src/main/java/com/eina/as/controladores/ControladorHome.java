@@ -23,6 +23,7 @@ public class ControladorHome {
 
     @RequestMapping(value="/homer")
     public String redireccionHomer(){
+
         System.out.println("Me ha llegado la peticion de obtener homer");
 
         return "home";
@@ -54,6 +55,7 @@ public class ControladorHome {
         else {
             System.out.println("Todo bien todo correcto");
             fallo = "registroOK";
+            request.getSession().setAttribute("user",user);
             daoUsuario.insert(user);
             request.getSession().removeAttribute("fallo");
             request.getSession().setAttribute("fallo",fallo);

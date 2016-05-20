@@ -238,4 +238,64 @@
         <url-pattern>/homer</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>anadirViniloServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:spring-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>anadirViniloServlet</servlet-name>
+        <url-pattern>/anadirVinilo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>catalogorServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:spring-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>catalogorServlet</servlet-name>
+        <url-pattern>/catalogor</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>coleccionrServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:spring-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>coleccionrServlet</servlet-name>
+        <url-pattern>/coleccionr</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>eliminarViniloServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:spring-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>eliminarViniloServlet</servlet-name>
+        <url-pattern>/eliminarVinilo</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -167,7 +167,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 						<textarea name="Text1" cols="5" rows="5" id="idBiografia" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$" placeholder="Biografía" maxlength="255" ><% out.println(user.getBiografia()); %></textarea>
 					</div>
 					<div class="6u12u">
-
+						<label for="idUrlPerfilWeb">URL Avatar (Recomendamos .jpg)</label>
 						<input type="url" name="urlPerfilWeb" id="idUrlPerfilWeb" value="<% out.println(user.getUrlFoto()); %>"/>
 					</div>
 					<div class="12u$">

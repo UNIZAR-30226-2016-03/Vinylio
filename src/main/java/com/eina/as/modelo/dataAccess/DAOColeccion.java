@@ -125,7 +125,7 @@ public class DAOColeccion {
     public void delete(Usuario user, Vinilo vinilo) throws SQLException{
         connect();
         Statement stmt = connection.createStatement();
-        stmt.executeUpdate("DELETE FROM colecciona WHERE id_vinilo='" + vinilo.getTitulo() + "' AND id_user='" + user.getIdUsuario() +"'" );
+        stmt.executeUpdate("DELETE FROM colecciona WHERE id_vinilo='" + vinilo.getIdVinilo() + "' AND id_user='" + user.getIdUsuario() +"'" );
         stmt.close();
         disconnect();
     }
@@ -136,13 +136,15 @@ public class DAOColeccion {
      * @return ArrayList<Vinilo>
      * @throws SQLException
      */
-    public ArrayList<Vinilo> getListaVinilos(Usuario user) throws SQLException{
+    public ArrayList<Vinilo> getListaVinilos(Usuario user) throws SQLException, IllegalAccessException, ClassNotFoundException, InstantiationException {
         connect();
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_user='" + user.getIdUsuario() +"'");
         ArrayList<Vinilo> historial = new ArrayList<Vinilo>();
+        DAOVinilo daoVinilo = new DAOVinilo();
         while(rs.next()){
-            Vinilo aux = new Vinilo(0,"","","",0,"","",33,"");
+            Vinilo aux = daoVinilo.getViniloByID(rs.getInt("id_vinilo"));
+            /*
             aux.setIdVinilo(rs.getInt("id_vinilo"));
             aux.setTitulo(rs.getString("titulo"));
             aux.setAutor(rs.getString("autor"));
@@ -152,7 +154,7 @@ public class DAOColeccion {
             aux.setImagen(rs.getString("imagen"));
             aux.setRPM(rs.getInt("RPM"));
             aux.setNumLanzamiento(rs.getString("numLanzamiento"));
-
+            */
             historial.add(aux);
         }
         stmt.close();
@@ -181,4 +183,13 @@ public class DAOColeccion {
         return i;
     }
 
+    public boolean existe(Vinilo vin) throws SQLException {
+        connect();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_vinilo='" + vin.getIdVinilo() + "'");
+        boolean existe = rs.first();
+        stmt.close();
+        disconnect();
+        return existe;
+    }
 }

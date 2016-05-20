@@ -2,9 +2,7 @@ package com.eina.as.modelo.dataAccess;
 
 import java.sql.SQLException;
 
-/**
- * Created by naxsel on 15/02/16.
- */
+
 //STEP 1. Import required packages
 import java.sql.*;
 import java.util.Locale;

@@ -147,10 +147,26 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<div class="row">
 				<%ArrayList<Vinilo> coleccionVinilos = (ArrayList<Vinilo>)request.getAttribute("coleccionVinilos");
 					request.removeAttribute("coleccionVinilos");
-					if(!coleccionVinilos.isEmpty()){
-						for (int i = 0; i < 6; i=i+2) {
-							Vinilo col = coleccionVinilos.get(i);
-							Vinilo col2 = coleccionVinilos.get(i+1);
+					if(coleccionVinilos.size()>=2){
+						int i=0;
+						while( i < 6 && coleccionVinilos.size() >= i) {
+							if(coleccionVinilos.size()==i){
+								Vinilo col = coleccionVinilos.get(i);
+				%>
+				<div class="4u 12u$(mobile)">
+					<article class="item">
+						<a href="#" class="image fit"><img src="<%=col.getImagen()%>" alt="" /></a>
+						<header>
+							<h3><b><%=col.getAutor()%></b></h3>
+							<h3><%=col.getTitulo()%></h3>
+						</header>
+					</article>
+				</div>
+				<%
+							}
+							else{
+								Vinilo col = coleccionVinilos.get(i);
+								Vinilo col2 = coleccionVinilos.get(i+1);
 				%>
 				<div class="4u 12u$(mobile)">
 					<article class="item">
@@ -168,7 +184,22 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 						</header>
 					</article>
 				</div>
-				<% }} %>
+				<%}i=i+2; }}
+				else{
+					Vinilo col = coleccionVinilos.get(0);
+					%>
+				<div class="4u 12u$(mobile)">
+					<article class="item">
+						<a href="#" class="image fit"><img src="<%=col.getImagen()%>" alt="" /></a>
+						<header>
+							<h3><b><%=col.getAutor()%></b></h3>
+							<h3><%=col.getTitulo()%></h3>
+						</header>
+					</article>
+				</div>
+				<%
+					}
+				%>
 			</div>
 			<footer>
 				<a href="/coleccion" class="button scrolly">Ver más.</a>
@@ -235,7 +266,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				En el formulario te especificaremos lo que tienes que enviarnos.
 				No te agobies, solo los datos con <strong>asterisco*</strong> son obligatorios, pero harás nuestro trabajo mas fácil cuantos más datos incluyas.</p>
 
-			<form method="post" subject="Añadir disco" action="MAILTO:vinylio.raytech@gmail.com">
+			<form method="get" enctype="text/plain" action="mailto:vinylio.raytech@gmail.com">
 				<div class="row">
 					<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="<%out.println(user.getNombreApellidos());%>" readonly="readonly" /></div>
 					<div class="6u$ 12u$(mobile)"><input type="email" name="email" value="<%out.println(user.getEmail());%>" readonly="readonly"/></div>

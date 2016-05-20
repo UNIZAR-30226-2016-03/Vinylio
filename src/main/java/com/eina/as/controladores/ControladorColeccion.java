@@ -6,8 +6,12 @@ import com.eina.as.modelo.service.Usuario;
 import com.eina.as.modelo.service.Vinilo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
@@ -19,7 +23,32 @@ public class ControladorColeccion {
     // Lo que creo casi seguro que hace es que si lo llamas con /catalogo o /catalogo2 va a hacerte una cosa de estas?
 
     @RequestMapping(value = "/coleccion")
-    public String redireccionPerfil(HttpServletRequest request/*, HttpServletResponse response*/)
+    public String redireccionColeccion(HttpServletRequest request/*, HttpServletResponse response*/)
+            throws Exception {
+        System.out.println("Me ha llegado la peticion de coleccion");
+        Usuario user = (Usuario) request.getSession().getAttribute("user");
+        String resultado = "naa";
+        request.getSession().setAttribute("resultadoEliminar",resultado);
+
+        if (user == null) {
+            return "redirect:/home";
+        } else {
+            request.removeAttribute("numPaginaC");
+            DAOColeccion coleccion = new DAOColeccion();
+            ArrayList<Vinilo> listaVinilos = coleccion.getListaVinilos(user);
+            int numVinilos = coleccion.getNumeroVinilos(user);
+            request.setAttribute("numVinilos", numVinilos);
+            request.setAttribute("listaVinilos", listaVinilos);
+            request.getSession().setAttribute("numPaginaC", "1");
+            //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
+            //  dispatcher.forward(request,response);
+            return "coleccion";
+        }
+
+    }
+
+    @RequestMapping(value = "/coleccionr")
+    public String redireccionColeccionr(HttpServletRequest request/*, HttpServletResponse response*/)
             throws Exception {
         Usuario user = (Usuario) request.getSession().getAttribute("user");
 
@@ -77,6 +106,39 @@ public class ControladorColeccion {
             //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
             //  dispatcher.forward(request,response);
             return "coleccion";
+        }
+
+
+    }
+
+    @RequestMapping(value="/eliminarVinilo", method= RequestMethod.POST)
+    public void anadirVinilo(@RequestParam("nombre") String id,
+                             HttpServletRequest request,
+                             HttpServletResponse response) throws Exception{
+        System.out.println("Me ha llegado la peticion de eliminar vinilo");
+        System.out.println("primer" + id);
+        Usuario user;
+        Vinilo vin;
+        DAOColeccion daoColeccion = new DAOColeccion();
+        PrintWriter out = response.getWriter();
+        ArrayList<Vinilo> listaVins = (ArrayList<Vinilo>) request.getSession().getAttribute("listaVinilos");
+        System.out.println("tamaño listavins "+ listaVins.size());
+        user = (Usuario) request.getSession().getAttribute("user");
+        int numVin = Integer.parseInt(id);
+        vin = listaVins.get(numVin-1);
+        System.out.println("titulitis " + vin.getTitulo());
+        if(daoColeccion.existe(vin)){
+            daoColeccion.delete(user,vin);
+            System.out.println("exitico");
+            String resultado = "exito";
+            request.getSession().setAttribute("resultadoEliminar", resultado);
+            out.println("exito");
+        }
+        else{
+            String resultado = "fracaso";
+            System.out.println("fracasico");
+            request.getSession().setAttribute("resultadoEliminar", resultado);
+            out.println("fracaso");
         }
 
 

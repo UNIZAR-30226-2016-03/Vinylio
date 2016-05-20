@@ -1,3 +1,4 @@
+<%@ page import="com.eina.as.modelo.service.Usuario" %>
 <!DOCTYPE HTML>
 <!--
 Prologue by HTML5 UP
@@ -102,9 +103,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <%
             }
                 else if(fallo.equals("registroOK")){
+                Usuario user = (Usuario) request.getSession().getAttribute("user");
             %>
             <div class="container" style="background: mediumseagreen;border-radius: 5px;">
-                <p class="alt">¡Yay! Registro completado satisfactoriamente.<br />Haz click en <strong>Iniciar Sesion</strong> y empieza tu colección.</p>
+                <p class="alt">¡Yay! Registro de <%=user.getEmail()%> completado satisfactoriamente.<br />Haz click en <strong>Iniciar Sesion</strong> y empieza tu colección.</p>
             </div>
             <%
                 }

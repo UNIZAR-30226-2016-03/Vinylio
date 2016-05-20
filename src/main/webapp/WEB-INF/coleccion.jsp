@@ -1,6 +1,7 @@
 <%@ page import="com.eina.as.modelo.service.Usuario" %>
 <%@ page import="com.eina.as.modelo.service.Vinilo" %>
 <%@page import="java.util.ArrayList" %>
+<%@ page import="com.eina.as.modelo.dataAccess.DAOColeccion" %>
 <!DOCTYPE HTML>
 <!--
 Prologue by HTML5 UP
@@ -67,6 +68,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			ArrayList <Vinilo> listaVinilos = (ArrayList<Vinilo>)request.getAttribute("listaVinilos");
 			int numVinilos = (int) request.getAttribute("numVinilos");
 			request.removeAttribute("listaVinilos");
+			request.getSession().setAttribute("listaVinilos",listaVinilos);
 
 		%>
 		<!-- Logo -->
@@ -149,6 +151,24 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<p>Tamaño actual de la colección: <%= numVinilos %></p>
 
 
+			<%
+				String resultado = (String) request.getSession().getAttribute("resultadoEliminar");
+				if(resultado.equals("exito")){
+			%>
+			<div class="container" style="background: mediumseagreen;border-radius: 5px;">
+				<p class="alt" style="color: white;">Vinilo eliminado correctamente.</p>
+			</div>
+			<%
+			}
+			else if(resultado.equals("fracaso")){
+			%>
+			<div class="container" style="background: tomato;border-radius: 5px;">
+				<p class="alt" style="color: white;">¡Error! Ya tienes ese vinilo.</p>
+			</div>
+			<%
+				}
+				else{}
+			%>
 			<div class="tablePropia">
 				<table >
 
@@ -162,9 +182,23 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 							Vinilo vin = listaVinilos.get(i);
 					%>
 					<tr>
-						<td><img src="<%=vin.getImagen()%>" alt="" height="100" width="100"/></td><td><%=vin.getTitulo()%></td><td><%=vin.getAutor()%></td>
+
+						<td><img src="<%=vin.getImagen()%>" alt="" height="100" width="100"/></td><td id="idTitulo<%=i%>"><%=vin.getTitulo()%></td><td id="idAutor<%=i%>"><%=vin.getAutor()%></td>
 						<td><%=vin.getDiscografica()%></td><td><%=vin.getGenero()%></td><td><%=vin.getFecha()%></td>
 						<td><%=vin.getRPM()%></td><td><%=vin.getNumLanzamiento()%></td>
+							<%
+							DAOColeccion daoColeccion = new DAOColeccion();
+							if(daoColeccion.existe(vin)){
+						%>
+						<td><a id="<%=i+1%>" class="icon fa-minus-circle" onclick="eliminarVinilo(this)"></a></td>
+							<%
+								}
+								else{
+						%>
+						<td><a id="<%=i+1%>" class="icon fa-check-circle" onclick="" style="color:limegreen;"></a></td>
+							<%
+								}
+						%>
 					<tr/>
 					<%
 						}
@@ -246,6 +280,21 @@ Nº de lanzamiento:</textarea>
 
 </div>
 
+
+<script>
+	function eliminarVinilo(element){
+		var clase = element.id;
+		$.post("/eliminarVinilo", {nombre:clase}, function(result){
+			result = result.trim();
+			if(result == 'exito'){
+				window.location.replace("/coleccionr");
+			} else{
+				window.location.replace("/coleccionr");
+			}
+		});
+
+	}
+</script>
 <!-- Scripts -->
 <script src="../resources/home/assets/js/jquery.min.js"></script>
 <script src="../resources/home/assets/js/jquery.scrolly.min.js"></script>

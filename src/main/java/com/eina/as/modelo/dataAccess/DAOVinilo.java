@@ -206,6 +206,30 @@ public class DAOVinilo {
         return i;
     }
 
+    public Vinilo getViniloByID(int idVinilo) throws SQLException{
+        Vinilo vinilo = null;
+        connect();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo WHERE id_vinilo='"+idVinilo+"'");
+        if(rs.next()){
+            int id_vinilo = idVinilo;
+            String titulo = rs.getString("titulo");
+            String autor = rs.getString("autor");
+            String genero = rs.getString("genero");
+            int fecha = rs.getInt("fecha");
+            String discografica = rs.getString("discografica");
+            String imagen = rs.getString("imagen");
+            int RPM = rs.getInt("RPM");
+            String numLanzamiento = rs.getString("numLanzamiento");
+
+            vinilo = new Vinilo(id_vinilo,titulo,autor,genero,fecha,discografica,imagen, RPM, numLanzamiento);
+        }
+        stmt.close();
+        disconnect();
+
+        return vinilo;
+    }
+
 
 
 /*
