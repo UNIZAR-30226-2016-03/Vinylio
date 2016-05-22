@@ -127,7 +127,7 @@ public class ControladorColeccion {
         int numVin = Integer.parseInt(id);
         vin = listaVins.get(numVin-1);
         System.out.println("titulitis " + vin.getTitulo());
-        if(daoColeccion.existe(vin)){
+        if(daoColeccion.existe(vin,user)){
             daoColeccion.delete(user,vin);
             System.out.println("exitico");
             String resultado = "exito";

@@ -127,8 +127,8 @@ public class ControladorCatalogo {
 
     @RequestMapping(value="/anadirVinilo", method= RequestMethod.POST)
     public void anadirVinilo(@RequestParam("nombre") String id,
-                                  HttpServletRequest request,
-                                  HttpServletResponse response) throws Exception{
+                             HttpServletRequest request,
+                             HttpServletResponse response) throws Exception{
         System.out.println("Me ha llegado la peticion de anadir vinilo");
         System.out.println("primer" + id);
         Usuario user;
@@ -141,20 +141,20 @@ public class ControladorCatalogo {
         //String numPagina = (String) request.getSession().getAttribute("numPagina");
         //int numPag = Integer.parseInt(numPagina);
         int numVin = Integer.parseInt(id);
-       //System.out.println("numpag:"+ numPag);
+        //System.out.println("numpag:"+ numPag);
         //int idVinilo = (numPag-1)*25 + numVin;
         //System.out.println("suma" +idVinilo);
         vin = listaVins.get(numVin-1);
         //DAOVinilo daoVinilo = new DAOVinilo();
         //vin = daoVinilo.getViniloByID(idVinilo);
         System.out.println("titulitis " + vin.getTitulo());
-        if(!daoColeccion.existe(vin)){
+        if(!daoColeccion.existe(vin,user)){
             daoColeccion.insert(user,vin);
             System.out.println("exitico");
             String resultado = "exito";
             request.getSession().setAttribute("resultado", resultado);
             out.println("exito");
-            }
+        }
         else{
             String resultado = "fracaso";
             System.out.println("fracasico");

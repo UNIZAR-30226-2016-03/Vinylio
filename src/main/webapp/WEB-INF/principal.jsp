@@ -149,7 +149,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 					request.removeAttribute("coleccionVinilos");
 					if(coleccionVinilos.size()>=2){
 						int i=0;
-						while( i < 6 && coleccionVinilos.size() >= i) {
+						while( i < 6 && coleccionVinilos.size() > i) {
 							if(coleccionVinilos.size()==i){
 								Vinilo col = coleccionVinilos.get(i);
 				%>
@@ -163,10 +163,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 					</article>
 				</div>
 				<%
-							}
-							else{
-								Vinilo col = coleccionVinilos.get(i);
-								Vinilo col2 = coleccionVinilos.get(i+1);
+				}
+				else{
+					Vinilo col = coleccionVinilos.get(i);
+					Vinilo col2 = coleccionVinilos.get(i+1);
 				%>
 				<div class="4u 12u$(mobile)">
 					<article class="item">
@@ -185,9 +185,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 					</article>
 				</div>
 				<%}i=i+2; }}
-				else{
+				else if (coleccionVinilos.size()==1){
 					Vinilo col = coleccionVinilos.get(0);
-					%>
+				%>
 				<div class="4u 12u$(mobile)">
 					<article class="item">
 						<a href="#" class="image fit"><img src="<%=col.getImagen()%>" alt="" /></a>
@@ -199,6 +199,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				</div>
 				<%
 					}
+					else{}
 				%>
 			</div>
 			<footer>
@@ -223,9 +224,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				<%ArrayList<Vinilo> listaVinilos = (ArrayList<Vinilo>)request.getAttribute("listaVinilos");
 					request.removeAttribute("listaVinilos");
 					if(!listaVinilos.isEmpty()){
-					for (int i = 0; i < 6; i=i+2) {
-						Vinilo vin = listaVinilos.get(i);
-						Vinilo vin2 = listaVinilos.get(i+1);
+						for (int i = 0; i < 6; i=i+2) {
+							Vinilo vin = listaVinilos.get(i);
+							Vinilo vin2 = listaVinilos.get(i+1);
 				%>
 				<div class="4u 12u$(mobile)">
 					<article class="item">

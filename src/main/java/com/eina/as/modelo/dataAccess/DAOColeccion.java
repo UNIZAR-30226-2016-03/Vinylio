@@ -183,10 +183,10 @@ public class DAOColeccion {
         return i;
     }
 
-    public boolean existe(Vinilo vin) throws SQLException {
+    public boolean existe(Vinilo vin, Usuario user) throws SQLException {
         connect();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_vinilo='" + vin.getIdVinilo() + "'");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_vinilo='" + vin.getIdVinilo() + "' AND id_user='"+user.getIdUsuario()+"'");
         boolean existe = rs.first();
         stmt.close();
         disconnect();

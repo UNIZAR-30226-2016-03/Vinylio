@@ -189,7 +189,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 						<td><%=vin.getRPM()%></td><td><%=vin.getNumLanzamiento()%></td>
 						<%
 							DAOColeccion daoColeccion = new DAOColeccion();
-							if(!daoColeccion.existe(vin)){
+							if(!daoColeccion.existe(vin,user)){
 						%>
 						<td><a id="<%=i+1%>" class="icon fa-plus-circle" onclick="anadirVinilo(this)"></a></td>
 						<%

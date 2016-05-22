@@ -188,7 +188,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 						<td><%=vin.getRPM()%></td><td><%=vin.getNumLanzamiento()%></td>
 							<%
 							DAOColeccion daoColeccion = new DAOColeccion();
-							if(daoColeccion.existe(vin)){
+							if(daoColeccion.existe(vin,user)){
 						%>
 						<td><a id="<%=i+1%>" class="icon fa-minus-circle" onclick="eliminarVinilo(this)"></a></td>
 							<%
@@ -204,34 +204,34 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 						}
 					%>
 					</tr>
-						<!--Por si tengo que recuperar esto
-                        <tr>
-                            <td><img src="images/vinilo_placeholder.png" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-                            <td>genero</td><td>fecha</td><td>discografica</td>
-                            <td>rpm</td>
-                        </tr>
-                         -->
+					<!--Por si tengo que recuperar esto
+                    <tr>
+                        <td><img src="images/vinilo_placeholder.png" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
+                        <td>genero</td><td>fecha</td><td>discografica</td>
+                        <td>rpm</td>
+                    </tr>
+                     -->
 
 				</table>
 			</div>
 			<%
 				if (listaVinilos.size()>=25) {
 			%>
-					<footer>
-					<a href="/coleccion2" class="button scrolly">Ver más.</a>
-					</footer>
+			<footer>
+				<a href="/coleccion2" class="button scrolly">Ver más.</a>
+			</footer>
 			<% } else{ %>
-					<footer>
-						<p>Fin del catálogo.</p>
-						<a href="#contact" class="button scrolly">¿Falta tu vinilo? Contáctanos.</a>
-					</footer>
+			<footer>
+				<p>Fin del catálogo.</p>
+				<a href="#contact" class="button scrolly">¿Falta tu vinilo? Contáctanos.</a>
+			</footer>
 
 			<% } %>
 
-            </div>
-        </section>
+		</div>
+	</section>
 
-        <!-- Contact -->
+	<!-- Contact -->
 	<section id="contact" class="four">
 		<div class="container">
 
