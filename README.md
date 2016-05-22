@@ -1,11 +1,10 @@
 # WebRedSocial
 
 ## Tecnologia SCRUM
-* [Trello] (https://trello.com/b/WyAGMviN/trabajo-web)
+* [Trello] (https://trello.com/b/aI13Oyn6/proyecto-software)
 
 ## Plantillas
-* [Read Only] (http://html5up.net/read-only)
-* [Strata] (http://html5up.net/strata)
+
 
 ## Configuracion para lanzar el proyecto (IMPORTANTE!!!!!)
 * [Descarga Tomcat] (http://ftp.cixug.es/apache/tomcat/tomcat-8/v8.0.30/bin/apache-tomcat-8.0.30.zip)
