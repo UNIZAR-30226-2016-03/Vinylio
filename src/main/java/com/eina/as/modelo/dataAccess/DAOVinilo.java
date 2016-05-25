@@ -135,7 +135,7 @@ public class DAOVinilo {
         Vinilo vinilo = null;
         connect();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo WHERE titulo REGEXP '[[:<:]]"+vinilo+"[[:>:]]'");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo WHERE titulo = '"+titulo+"';");
         if(rs.next()){
             int id_vinilo = rs.getInt("id_vinilo");
             String autor = rs.getString("autor");
@@ -201,11 +201,16 @@ public class DAOVinilo {
     public int getNumeroVinilos() throws SQLException {
         connect();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo");
-        int i = 0;
-        while(rs.next()){
-            i++;
+        ResultSet rs = stmt.executeQuery("SELECT count(id_vinilo) jose FROM Vinilo");
+        int i =0;
+        if(rs.next()) {
+            String ayy = rs.getString("jose");
+            i = Integer.parseInt(ayy);
         }
+        else i=0;
+        /*while(rs.next()){
+            i++;
+        }*/
         stmt.close();
         disconnect();
 

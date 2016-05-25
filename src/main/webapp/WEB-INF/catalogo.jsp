@@ -64,11 +64,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			Usuario user = (Usuario) request.getSession().getAttribute("user");
 			ArrayList <Vinilo> listaVinilos = (ArrayList<Vinilo>)request.getAttribute("listaVinilos");
 			int numVinilos = (int) request.getAttribute("numVinilos");
+			int numVinilosUser = (int) request.getAttribute("numVinilosUser");
 			request.removeAttribute("listaVinilos");
 			request.getSession().setAttribute("listaVinilos",listaVinilos);
 			String numPagina = (String) request.getSession().getAttribute("numPagina");
 			int numPag = Integer.parseInt(numPagina);
 			String resultado = (String) request.getSession().getAttribute("resultado");
+			//TODO: NUMERO DE VINILOS DEL USUARIO!!!!!!!
 			String ordenacion = (String) request.getSession().getAttribute("tipoOrdenacion");
 			Boolean ordenacionTitulo = true;
 			if(ordenacion.equalsIgnoreCase("fecha")){
@@ -177,6 +179,14 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 
 			<%
+				if(numVinilosUser>=1499){
+			%>
+			<div class="container" style="background: tomato;border-radius: 5px;">
+				<p class="alt" style="color: white;">¡Cuidado! Tu colección ha llegado al límite de 1500 vinilos. <br />
+				Para seguir coleccionando borra alguno de los vinilos que ya no tengas.</p>
+			</div>
+			<%
+				}
 			if(resultado.equals("exito")){
 			%>
 			<div class="container" style="background: mediumseagreen;border-radius: 5px;">
@@ -215,16 +225,17 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 						<td><%=vin.getRPM()%></td><td><%=vin.getNumLanzamiento()%></td>
 						<%
 							DAOColeccion daoColeccion = new DAOColeccion();
-							if(!daoColeccion.existe(vin,user)){
+							if(!daoColeccion.existe(vin,user)  && !(numVinilosUser >=1500)){
 						%>
 						<td><a id="<%=i+1%>" class="icon fa-plus-circle" onclick="anadirVinilo(this)"></a></td>
 						<%
 								}
-								else{
+								else if(daoColeccion.existe(vin,user) && !(numVinilosUser >=1500)){
 						%>
 						<td><a id="<%=i+1%>" class="icon fa-check-circle" onclick="" style="color:limegreen;"></a></td>
 						<%
 								}
+								else {}
 						%>
 					<tr/>
 					<%

@@ -24,6 +24,24 @@ public class Vinilo {
         this.numLanzamiento = numLanzamiento;
     }
 
+    public Vinilo(String titulo, String autor, String genero, int fecha, String discografica, String imagen,
+                  int RPM, String numLanzamiento) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.genero = genero;
+        this.fecha = fecha;
+        this.discografica = discografica;
+        this.imagen = imagen;
+        this.RPM = RPM;
+        this.numLanzamiento = numLanzamiento;
+    }
+
+    public Vinilo(String titulo, String autor, String imagen){
+        this.titulo = titulo;
+        this.autor = autor;
+        this.imagen = imagen;
+    }
+
     public int getIdVinilo() {
         return idVinilo;
     }

@@ -152,8 +152,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 						<label for="idLocalizacion">Ubicacion</label>
 						<input type="text" name="localizacion" id="idLocalizacion" maxlength="32" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$" placeholder="Localizacion" value="<% out.println(user.getlugar()); %>"/>
 					</br>
-						<label for="email">Correo</label>
-						<input type="email" name="email" id="email" maxlength="64" placeholder="Email" value="<% out.println(user.getEmail()); %>"/>
+						<label for="idemail">Correo</label>
+						<input type="email" name="email" id="idemail" maxlength="64" placeholder="Email" value="<% out.println(user.getEmail()); %>"/>
 					</div>
 					<div class="6u 12u(xsmall)">
 						<label for="idpassword">Contraseña (6-20 caracteres)</label>

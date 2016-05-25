@@ -182,11 +182,13 @@ public class DAOColeccion {
     public int getNumeroVinilos(Usuario user) throws SQLException {
         connect();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_user='" + user.getIdUsuario() + "'");
-        int i = 0;
-        while(rs.next()){
-            i++;
+        ResultSet rs = stmt.executeQuery("SELECT count(id_vinilo) jose FROM colecciona WHERE id_user='" + user.getIdUsuario() + "'");
+        int i =0;
+        if(rs.next()) {
+            String ayy = rs.getString("jose");
+            i = Integer.parseInt(ayy);
         }
+        else i=0;
         stmt.close();
         disconnect();
 

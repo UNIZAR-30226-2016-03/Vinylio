@@ -149,9 +149,16 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<p>Aquí podrás encontrar 25 vinilos.<br>
 				Para ver los siguientes 25 vinilos haz click en <strong>Ver más</strong>.</p>
 			<p>Tamaño actual de la colección: <%= numVinilos %></p>
-
-
 			<%
+				if(numVinilos>=1499){
+			%>
+			<div class="container" style="background: tomato;border-radius: 5px;">
+				<p class="alt" style="color: white;">¡Cuidado! Tu colección ha llegado al límite de 1500 vinilos. <br />
+					Para seguir coleccionando borra alguno de los vinilos que ya no tengas.</p>
+			</div>
+			<%
+				}
+
 				String resultado = (String) request.getSession().getAttribute("resultadoEliminar");
 				if(resultado.equals("exito")){
 			%>
