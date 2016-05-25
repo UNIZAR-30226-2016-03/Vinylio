@@ -33,10 +33,11 @@ public class ControladorCatalogo {
     public String redireccionCatalogo(HttpServletRequest request/*, HttpServletResponse response*/)
             throws Exception{
         String resultado = "naa";
+        request.getSession().setAttribute("tipoOrdenacion", "titulo");
         request.getSession().setAttribute("resultado", resultado);
         request.removeAttribute("numPagina");
         DAOVinilo vin = new DAOVinilo();
-        ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(0);
+        ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(0,"titulo");
         int numVinilos = vin.getNumeroVinilos();
         request.setAttribute ("numVinilos", numVinilos);
         request.setAttribute("listaVinilos", listaVinilos);
@@ -49,7 +50,31 @@ public class ControladorCatalogo {
         } else {
             return "catalogo";
         }
+    }
 
+// metodo que va a cambiar el ordenar de valor y te redirecciona a la primera pantalla con los vinilos ordenados
+    // segun le hayas dicho.
+    @RequestMapping(value= "/catalogoOtroOrden")
+    public String redireccionCatalogoOtroOrden(HttpServletRequest request/*, HttpServletResponse response*/)
+            throws Exception{
+        String resultado = "naa";
+        request.getSession().setAttribute("tipoOrdenacion", "fecha");
+        request.getSession().setAttribute("resultado", resultado);
+        request.removeAttribute("numPagina");
+        DAOVinilo vin = new DAOVinilo();
+        ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(0,"fecha");
+        int numVinilos = vin.getNumeroVinilos();
+        request.setAttribute ("numVinilos", numVinilos);
+        request.setAttribute("listaVinilos", listaVinilos);
+        request.getSession().setAttribute("numPagina","1");
+        //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
+        //  dispatcher.forward(request,response);
+        Usuario user = (Usuario) request.getSession().getAttribute("user");
+        if (user == null) {
+            return "redirect:/home";
+        } else {
+            return "catalogo";
+        }
     }
 
 
@@ -58,7 +83,9 @@ public class ControladorCatalogo {
             throws Exception{
         request.removeAttribute("numPagina");
         DAOVinilo vin = new DAOVinilo();
-        ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(0);
+        String orden = (String) request.getSession().getAttribute("tipoOrdenacion");
+
+        ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(0, orden);
         int numVinilos = vin.getNumeroVinilos();
         request.setAttribute ("numVinilos", numVinilos);
         request.setAttribute("listaVinilos", listaVinilos);
@@ -110,11 +137,12 @@ public class ControladorCatalogo {
             int numVinilos = vin.getNumeroVinilos();
             request.setAttribute("numVinilos", numVinilos);
             ArrayList <Vinilo> listaVinilos;
+            String orden = (String) request.getSession().getAttribute("tipoOrdenacion");
             if (numPagina==0){
-                listaVinilos= vin.getListaVinilos(0);
+                listaVinilos= vin.getListaVinilos(0, orden);
             }
             else {
-                listaVinilos = vin.getListaVinilos(numPagina - 1);
+                listaVinilos = vin.getListaVinilos(numPagina-1, orden);
             }
             request.setAttribute("listaVinilos", listaVinilos);
             //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");

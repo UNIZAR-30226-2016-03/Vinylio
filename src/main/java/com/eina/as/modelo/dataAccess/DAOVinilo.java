@@ -161,12 +161,18 @@ public class DAOVinilo {
     //      coger en el select de la base de datos a partir del dato que me interesa en vez de cargarlos todos y luego
     //      moverme con el absolute(j). Podría dar error tambien la consulta si me quiero mover a un numero de elemento
     //      que no hay?
-    public ArrayList<Vinilo> getListaVinilos(int pagina) throws SQLException {
+    public ArrayList<Vinilo> getListaVinilos(int pagina, String tipoOrdenacion) throws SQLException {
 
         ArrayList<Vinilo> historial= new ArrayList<Vinilo>();
         connect();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Vinilo ORDER BY titulo");
+        ResultSet rs;
+        if(tipoOrdenacion.equalsIgnoreCase("fecha")){
+            rs = stmt.executeQuery("SELECT * FROM Vinilo ORDER BY fecha");
+        }
+        else{
+            rs = stmt.executeQuery("SELECT * FROM Vinilo ORDER BY titulo");
+        }
         int j=pagina*25;
         int i=0;
         ArrayList <Vinilo> listaVinilos =  new ArrayList<Vinilo>();

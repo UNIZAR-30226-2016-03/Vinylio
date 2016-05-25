@@ -26,8 +26,8 @@ public class ControladorPrincipal {
             System.out.println(user.getEmail());
             DAOVinilo vin = new DAOVinilo();
             DAOColeccion coleccion = new DAOColeccion();
-            ArrayList<Vinilo> listaVinilos= vin.getListaVinilos(0);
-            ArrayList<Vinilo> coleccionVinilos= coleccion.getListaVinilos(user);
+            ArrayList<Vinilo> listaVinilos= vin.getListaVinilos(0, "titulo");
+            ArrayList<Vinilo> coleccionVinilos= coleccion.getListaVinilos(user,0, "titulo");
             request.setAttribute("listaVinilos", listaVinilos);
             request.setAttribute("coleccionVinilos",coleccionVinilos);
             return "principal";

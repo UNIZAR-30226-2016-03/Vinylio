@@ -27,6 +27,7 @@ public class ControladorColeccion {
             throws Exception {
         System.out.println("Me ha llegado la peticion de coleccion");
         Usuario user = (Usuario) request.getSession().getAttribute("user");
+        request.getSession().setAttribute("tipoOrdenacion", "titulo");
         String resultado = "naa";
         request.getSession().setAttribute("resultadoEliminar",resultado);
 
@@ -35,7 +36,7 @@ public class ControladorColeccion {
         } else {
             request.removeAttribute("numPaginaC");
             DAOColeccion coleccion = new DAOColeccion();
-            ArrayList<Vinilo> listaVinilos = coleccion.getListaVinilos(user);
+            ArrayList<Vinilo> listaVinilos = coleccion.getListaVinilos(user,0, "titulo");
             int numVinilos = coleccion.getNumeroVinilos(user);
             request.setAttribute("numVinilos", numVinilos);
             request.setAttribute("listaVinilos", listaVinilos);
@@ -47,17 +48,52 @@ public class ControladorColeccion {
 
     }
 
-    @RequestMapping(value = "/coleccionr")
-    public String redireccionColeccionr(HttpServletRequest request/*, HttpServletResponse response*/)
+
+
+
+    // metodo que va a cambiar el ordenar de valor y te redirecciona a la primera pantalla con los vinilos ordenados
+    // segun le hayas dicho.
+    @RequestMapping(value = "/coleccionOtroOrden")
+    public String redireccionColeccionOtroOrden(HttpServletRequest request/*, HttpServletResponse response*/)
             throws Exception {
+        System.out.println("Me ha llegado la peticion de coleccion");
         Usuario user = (Usuario) request.getSession().getAttribute("user");
+        request.getSession().setAttribute("tipoOrdenacion", "fecha");
+        String resultado = "naa";
+        request.getSession().setAttribute("resultadoEliminar",resultado);
 
         if (user == null) {
             return "redirect:/home";
         } else {
             request.removeAttribute("numPaginaC");
             DAOColeccion coleccion = new DAOColeccion();
-            ArrayList<Vinilo> listaVinilos = coleccion.getListaVinilos(user);
+            ArrayList<Vinilo> listaVinilos = coleccion.getListaVinilos(user,0, "fecha");
+            int numVinilos = coleccion.getNumeroVinilos(user);
+            request.setAttribute("numVinilos", numVinilos);
+            request.setAttribute("listaVinilos", listaVinilos);
+            request.getSession().setAttribute("numPaginaC", "1");
+            //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
+            //  dispatcher.forward(request,response);
+            return "coleccion";
+        }
+
+    }
+
+
+
+
+    @RequestMapping(value = "/coleccionr")
+    public String redireccionColeccionr(HttpServletRequest request/*, HttpServletResponse response*/)
+            throws Exception {
+        Usuario user = (Usuario) request.getSession().getAttribute("user");
+        String orden = (String) request.getSession().getAttribute("tipoOrdenacion");
+
+        if (user == null) {
+            return "redirect:/home";
+        } else {
+            request.removeAttribute("numPaginaC");
+            DAOColeccion coleccion = new DAOColeccion();
+            ArrayList<Vinilo> listaVinilos = coleccion.getListaVinilos(user,0, orden);
             int numVinilos = coleccion.getNumeroVinilos(user);
             request.setAttribute("numVinilos", numVinilos);
             request.setAttribute("listaVinilos", listaVinilos);
@@ -74,16 +110,12 @@ public class ControladorColeccion {
     public String redireccionPerfil2(HttpServletRequest request/*, HttpServletResponse response*/)
             throws Exception {
         Usuario user = (Usuario) request.getSession().getAttribute("user");
-
-
         if (user == null) {
             return "redirect:/home";
         } else {
             String sPagina = (String) request.getSession().getAttribute("numPaginaC");
-
             int numPaginaC = Integer.parseInt(sPagina);
             System.out.println("numPaginaC= " + numPaginaC);
-
             if ((sPagina == null) || (sPagina.trim().equals("")) || sPagina.trim().equals("0")) {
                 numPaginaC = 0;
             } else {
@@ -91,24 +123,22 @@ public class ControladorColeccion {
                 sPagina = Integer.toString(numPaginaC);
                 request.getSession().setAttribute("numPaginaC", sPagina);
             }
-
-
-            DAOVinilo vin = new DAOVinilo();
-            int numVinilos = vin.getNumeroVinilos();
+            DAOColeccion vin = new DAOColeccion();
+            int numVinilos = vin.getNumeroVinilos(user);
             request.setAttribute("numVinilos", numVinilos);
             ArrayList<Vinilo> listaVinilos;
+            String orden = (String) request.getSession().getAttribute("tipoOrdenacion");
             if (numPaginaC == 0) {
-                listaVinilos = vin.getListaVinilos(0);
+                listaVinilos = vin.getListaVinilos(user, 0, orden);
             } else {
-                listaVinilos = vin.getListaVinilos(numPaginaC - 1);
+                listaVinilos = vin.getListaVinilos(user, numPaginaC-1, orden);
             }
             request.setAttribute("listaVinilos", listaVinilos);
             //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
             //  dispatcher.forward(request,response);
             return "coleccion";
+
         }
-
-
     }
 
     @RequestMapping(value="/eliminarVinilo", method= RequestMethod.POST)
@@ -121,6 +151,7 @@ public class ControladorColeccion {
         Vinilo vin;
         DAOColeccion daoColeccion = new DAOColeccion();
         PrintWriter out = response.getWriter();
+        String orden = (String) request.getSession().getAttribute("tipoOrdenacion");
         ArrayList<Vinilo> listaVins = (ArrayList<Vinilo>) request.getSession().getAttribute("listaVinilos");
         System.out.println("tamaño listavins "+ listaVins.size());
         user = (Usuario) request.getSession().getAttribute("user");

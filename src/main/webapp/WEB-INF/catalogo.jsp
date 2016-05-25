@@ -69,6 +69,11 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			String numPagina = (String) request.getSession().getAttribute("numPagina");
 			int numPag = Integer.parseInt(numPagina);
 			String resultado = (String) request.getSession().getAttribute("resultado");
+			String ordenacion = (String) request.getSession().getAttribute("tipoOrdenacion");
+			Boolean ordenacionTitulo = true;
+			if(ordenacion.equalsIgnoreCase("fecha")){
+				ordenacionTitulo = false;
+			}
 			%>
 		<!-- Logo -->
 		<div id="logo">
@@ -149,6 +154,27 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				Para ver los siguientes 25 vinilos haz click en <strong>Ver más</strong>.</p>
 			<p>Tamaño actual del catálogo: <%= numVinilos %> Vinilos.
 			</p>
+
+			<p> Clic para ordenar por
+
+				<%
+					if(ordenacionTitulo==true){
+				%> <footer>
+					<a href="/catalogoOtroOrden" class="button scrolly"> FECHA. </a>
+				</footer>
+				<%  }
+				else{
+				%> <footer>
+					<a href="/catalogo" class="button scrolly"> TITULO. </a>
+				</footer>
+				<%
+					}
+				%>
+			</p>
+
+
+
+
 
 			<%
 			if(resultado.equals("exito")){

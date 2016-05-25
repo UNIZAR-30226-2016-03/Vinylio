@@ -136,13 +136,23 @@ public class DAOColeccion {
      * @return ArrayList<Vinilo>
      * @throws SQLException
      */
-    public ArrayList<Vinilo> getListaVinilos(Usuario user) throws SQLException, IllegalAccessException, ClassNotFoundException, InstantiationException {
+    public ArrayList<Vinilo> getListaVinilos(Usuario user,int numPagina, String ordenacion) throws SQLException, IllegalAccessException, ClassNotFoundException, InstantiationException {
         connect();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_user='" + user.getIdUsuario() +"'");
+        ResultSet rs;
+        if(ordenacion.equalsIgnoreCase("fecha")){
+            rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_user='" + user.getIdUsuario() +"'");
+        }
+        else {
+            rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_user='" + user.getIdUsuario() +"'");
+        }
         ArrayList<Vinilo> historial = new ArrayList<Vinilo>();
         DAOVinilo daoVinilo = new DAOVinilo();
-        while(rs.next()){
+        int j=numPagina*25;
+        int i=0;
+        rs.absolute(j); // desplaza j vinilos de rs
+
+        while(rs.next() && i<25){
             Vinilo aux = daoVinilo.getViniloByID(rs.getInt("id_vinilo"));
             /*
             aux.setIdVinilo(rs.getInt("id_vinilo"));
