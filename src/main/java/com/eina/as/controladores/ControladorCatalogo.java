@@ -1,9 +1,7 @@
 package com.eina.as.controladores;
 
 import com.eina.as.modelo.dataAccess.DAOColeccion;
-import com.eina.as.modelo.dataAccess.DAOUsuario;
 import com.eina.as.modelo.dataAccess.DAOVinilo;
-import com.eina.as.modelo.service.Password;
 import com.eina.as.modelo.service.Usuario;
 import com.eina.as.modelo.service.Vinilo;
 import org.springframework.stereotype.Controller;
@@ -11,12 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -120,7 +114,6 @@ public class ControladorCatalogo {
 
             return "catalogo";
         }
-
     }
 
     @RequestMapping(value= "/catalogo2")
@@ -159,13 +152,13 @@ public class ControladorCatalogo {
             else {
                 listaVinilos = vin.getListaVinilos(numPagina-1, orden);
             }
+            System.out.println(listaVinilos.get(1).getTitulo());
             request.setAttribute("listaVinilos", listaVinilos);
             //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
             //  dispatcher.forward(request,response);
 
             return "catalogo";
         }
-
     }
 
     @RequestMapping(value="/anadirVinilo", method= RequestMethod.POST)
@@ -211,8 +204,6 @@ public class ControladorCatalogo {
             request.getSession().setAttribute("resultado",resultado);
             out.println("exito");
         }
-
-
     }
 
 }

@@ -48,6 +48,20 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				}
 			});
 		});
+
+        function buscar(){
+            var elemento = document.getElementById("navBusqueda").value;
+            $.post("/buscar", {usernameB:elemento}, function(result){
+				result = result.trim();
+				if(result == 'exito'){
+					window.location.replace("/busquedaColeccion");
+				} else{
+					alert("El usuario "+elemento+" no existe.");
+					window.location.replace("/timeline");
+				}
+			});
+        }
+
 	</script>
 
 	<!-- Acaba script de prueba empieza style deprueba-->
@@ -92,15 +106,18 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<ul>
 				<li><div id="custom-search-input">
 					<div class="input-group col-md-12">
-						<input type="text" class="  search-query form-control" placeholder="Search" />
-                                <span class="input-group-btn">
-                                    <button class="icon fa-search" type="button">
+                    <input type="text" placeholder="Buscar" id="navBusqueda" maxlength="64" name="navBusqueda">
+                        <!--<span class="input-group-btn">
+
+                                    <!--<button onclick="buscar()" class="icon fa-search" type="button">
                                         <span class=" glyphicon glyphicon-search"></span>
-                                    </button>
-                                </span>
+                                    </button>-->
+
+                    <!--</span>-->
 					</div>
 				</div>
 				</li>
+                <li><a href="#" input type="button" onclick="buscar()">Buscar</a></li>
 				<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Inicio</span></a></li>
 				<li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Mi Colección</span></a></li>
 				<li><a href="#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Catálogo</span></a></li>

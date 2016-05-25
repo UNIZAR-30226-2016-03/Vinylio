@@ -1,6 +1,7 @@
+<%@ page import="com.eina.as.modelo.service.Usuario" %>
 <%@ page import="com.eina.as.modelo.service.Vinilo" %>
 <%@page import="java.util.ArrayList" %>
-<%@ page import="com.eina.as.modelo.service.Usuario" %>
+<%@ page import="com.eina.as.modelo.dataAccess.DAOColeccion" %>
 <!DOCTYPE HTML>
 <!--
 Prologue by HTML5 UP
@@ -10,7 +11,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 <html>
 <head>
 	<%
-		Usuario user2 = (Usuario) request.getSession().getAttribute("user");
+		Usuario user2 = (Usuario) request.getSession().getAttribute("userB");
 	%>
 	<title>Coleccion de <%=user2.getNombreApellidos()%> - Vinylio</title>
 	<link rel="shortcut icon" href="../resources/iconos/favicon.ico" />
@@ -18,8 +19,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 	<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 	<%@ page pageEncoding="UTF-8"%>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<!--[if lte IE 8]><script src="../resources/perfil/assets/js/ie/html5shiv.js"></script><![endif]-->
-	<link rel="stylesheet" href="../resources/perfil/assets/css/main.css" />
+	<!--[if lte IE 8]><script src="../resources/home/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="../resources/principal/assets/css/main.css" />
 	<!--[if lte IE 8]><link rel="stylesheet" href="../resources/perfil/assets/css/ie8.css" /><![endif]-->
 	<!--[if lte IE 9]><link rel="stylesheet" href="../resources/perfil/assets/css/ie9.css" /><![endif]-->
 	<!-- Empieza script de prueba -->
@@ -63,22 +64,22 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 	<div class="top">
 		<%
-			Usuario user = (Usuario) request.getSession().getAttribute("user");
-			ArrayList <Vinilo> listaVinilos = (ArrayList<Vinilo>)request.getAttribute("listaVinilos");
-			int numVinilos = (int) request.getAttribute("numVinilos");
-			request.removeAttribute("listaVinilos");
+			Usuario user = (Usuario) request.getSession().getAttribute("userB");
+			Usuario userNormal = (Usuario) request.getSession().getAttribute("user");
+			ArrayList <Vinilo> listaVinilos = (ArrayList<Vinilo>)request.getSession().getAttribute("listaVinilosB");
+			int numVinilos = (int) request.getSession().getAttribute("numVinilosB");
 
 		%>
 		<!-- Logo -->
 		<div id="logo">
-			<span class="image avatar48"><img src="<%= user.getUrlFoto() %>" alt="" /></span>
-			<h1 id="title"><%= user.getNombreApellidos() %></h1>
+			<span class="image avatar48"><img src="<%= userNormal.getUrlFoto() %>" alt="" /></span>
+			<h1 id="title"><%= userNormal.getNombreApellidos() %></h1>
 			<ul class="icons" style="text-align: right;">
 				<a href="/config" id="config"  class="icon fa-gear"></a>
 				<a href="/logout" id="logout" class="icon fa-sign-out" style="padding-left: 15px;"></a>
 			</ul>
-			<p><%= user.getlugar() %></p>
-			<p><%= user.getBiografia() %></p>
+			<p><%= userNormal.getlugar() %></p>
+			<p><%= userNormal.getBiografia() %></p>
 		</div>
 
 		<!-- Nav -->
@@ -109,8 +110,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				</div>
 				</li>
 				<li><a href="/timeline" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Inicio</span></a></li>
-				<li><a href="/coleccion" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Mi Colección</span></a></li>
-				<li><a href="/catalogo" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Catálogo</span></a></li>
+				<li><a href="#top-link" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Mi Colección</span></a></li>
+				<li><a href="/catalogo" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Catálogo</span></a></li>
 				<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contáctanos</span></a></li>
 			</ul>
 		</nav>
@@ -141,61 +142,64 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 		<div class="container">
 
 			<header>
-				<h2>Catálogo</h2>
+				<h2>Colección de <%= user.getNombreApellidos()%></h2>
 			</header>
 
 			<p>Aquí podrás encontrar 25 vinilos.<br>
 				Para ver los siguientes 25 vinilos haz click en <strong>Ver más</strong>.</p>
-
+			<p>Tamaño actual de la colección: <%= numVinilos %></p>
 
 			<div class="tablePropia">
 				<table >
 
 					<tr>
 						<td>Portada</td><td>Título</td><td>Autor</td><td>Discográfica</td><td>Género</td><td>Año</td>
+						<td>Rpm</td><td>Nº Lanzamiento</td>
 					</tr>
-					<%ArrayList <Vinilo> listaVinilos = (ArrayList<Vinilo>)request.getAttribute("listaVinilos");
-						request.removeAttribute("listaVinilos");
+
+					<%
 						for (int i = 0; i < listaVinilos.size(); i++) {
 							Vinilo vin = listaVinilos.get(i);
 					%>
-
 					<tr>
-						<td><img src="<%=vin.getImagen()%>" alt="" height="100" width="100"/></td><td><%=vin.getTitulo()%></td><td><%=vin.getAutor()%></td>
+
+						<td><img src="<%=vin.getImagen()%>" alt="" height="100" width="100"/></td><td id="idTitulo<%=i%>"><%=vin.getTitulo()%></td><td id="idAutor<%=i%>"><%=vin.getAutor()%></td>
 						<td><%=vin.getDiscografica()%></td><td><%=vin.getGenero()%></td><td><%=vin.getFecha()%></td>
+						<td><%=vin.getRPM()%></td><td><%=vin.getNumLanzamiento()%></td>
+
 					<tr/>
 					<%
 						}
 					%>
 					</tr>
-						<!--Por si tengo que recuperar esto
-                        <tr>
-                            <td><img src="images/vinilo_placeholder.png" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
-                            <td>genero</td><td>fecha</td><td>discografica</td>
-                            <td>rpm</td>
-                        </tr>
-                         -->
+					<!--Por si tengo que recuperar esto
+                    <tr>
+                        <td><img src="images/vinilo_placeholder.png" alt="" height="100" width="100"/></td><td>titulo</td><td>autor</td>
+                        <td>genero</td><td>fecha</td><td>discografica</td>
+                        <td>rpm</td>
+                    </tr>
+                     -->
 
 				</table>
 			</div>
 			<%
 				if (listaVinilos.size()>=25) {
 			%>
-					<footer>
-					<a href="/catalogo2" class="button scrolly">Ver más.</a>
-					</footer>
+			<footer>
+				<a href="/busquedaColeccion2" class="button scrolly">Ver más.</a>
+			</footer>
 			<% } else{ %>
-					<footer>
-						<p>Fin del catálogo.</p>
-						<a href="#contact" class="button scrolly">¿Falta tu vinilo? Contáctanos.</a>
-					</footer>
+			<footer>
+				<p>Fin del catálogo.</p>
+				<a href="#contact" class="button scrolly">¿Falta tu vinilo? Contáctanos.</a>
+			</footer>
 
 			<% } %>
 
-            </div>
-        </section>
+		</div>
+	</section>
 
-        <!-- Contact -->
+	<!-- Contact -->
 	<section id="contact" class="four">
 		<div class="container">
 
@@ -239,19 +243,34 @@ Nº de lanzamiento:</textarea>
 
 	<!-- Copyright -->
 	<ul class="copyright">
-		<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+		<li>&copy; Raytech. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 	</ul>
 
 </div>
 
+
+<script>
+	function eliminarVinilo(element){
+		var clase = element.id;
+		$.post("/eliminarVinilo", {nombre:clase}, function(result){
+			result = result.trim();
+			if(result == 'exito'){
+				window.location.replace("/coleccionr");
+			} else{
+				window.location.replace("/coleccionr");
+			}
+		});
+
+	}
+</script>
 <!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/jquery.scrollzer.min.js"></script>
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/util.js"></script>
-<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-<script src="assets/js/main.js"></script>
+<script src="../resources/home/assets/js/jquery.min.js"></script>
+<script src="../resources/home/assets/js/jquery.scrolly.min.js"></script>
+<script src="../resources/home/assets/js/jquery.scrollzer.min.js"></script>
+<script src="../resources/home/assets/js/skel.min.js"></script>
+<script src="../resources/home/assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="../resources/home/assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="../resources/home/assets/js/main.js"></script>
 
 </body>
 </html>

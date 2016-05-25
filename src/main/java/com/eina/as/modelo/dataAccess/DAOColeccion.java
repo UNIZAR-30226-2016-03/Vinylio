@@ -140,6 +140,7 @@ public class DAOColeccion {
         connect();
         Statement stmt = connection.createStatement();
         ResultSet rs;
+        System.out.println(user.getIdUsuario());
         if(ordenacion.equalsIgnoreCase("fecha")){
             rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_user='" + user.getIdUsuario() +"'");
         }
@@ -154,6 +155,7 @@ public class DAOColeccion {
 
         while(rs.next() && i<25){
             Vinilo aux = daoVinilo.getViniloByID(rs.getInt("id_vinilo"));
+            System.out.println(""+aux.getTitulo());
             /*
             aux.setIdVinilo(rs.getInt("id_vinilo"));
             aux.setTitulo(rs.getString("titulo"));
