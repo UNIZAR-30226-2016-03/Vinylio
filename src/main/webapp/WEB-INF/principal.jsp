@@ -106,7 +106,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<ul>
 				<li><div id="custom-search-input">
 					<div class="input-group col-md-12">
-                    <input type="text" placeholder="Buscar" id="navBusqueda" maxlength="64" name="navBusqueda">
+                    <input type="text" placeholder="Buscar" id="navBusqueda" maxlength="64" name="navBusqueda" style="padding-right: 3px;
+   																													 	border-radius: 3px;
+    																													margin-right: 10px;">
                         <!--<span class="input-group-btn">
 
                                     <!--<button onclick="buscar()" class="icon fa-search" type="button">
@@ -117,7 +119,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 					</div>
 				</div>
 				</li>
-                <li><a href="#" input type="button" onclick="buscar()">Buscar</a></li>
+                <!--<li><a href="#" input type="button" onclick="buscar()">Buscar</a></li>-->
+				<li><a href="#" if="buscar" class="skel-layers-ignoreHref" onclick="buscar()"><span class="icon fa-search">Buscar</span></a></li>
 				<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Inicio</span></a></li>
 				<li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Mi Colección</span></a></li>
 				<li><a href="#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Catálogo</span></a></li>
@@ -158,7 +161,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				<h2>Mi Colección</h2>
 			</header>
 
-			<p>
+			<p>Aquí podrás ver y eliminar vinilos de tu colección. <br />
 				Para ver la lista completa, haz click en <strong><a href="/coleccion">Ver más</a></strong>.</p>
 
 			<div class="row">
@@ -167,7 +170,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 					if(coleccionVinilos.size()>=2){
 						int i=0;
 						while( i < 6 && coleccionVinilos.size() > i) {
-							if(coleccionVinilos.size()==i){
+							if(i < coleccionVinilos.size() && coleccionVinilos.size() < (i+2)){
 								Vinilo col = coleccionVinilos.get(i);
 				%>
 				<div class="4u 12u$(mobile)">
@@ -181,9 +184,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				</div>
 				<%
 				}
-				else{
-					Vinilo col = coleccionVinilos.get(i);
-					Vinilo col2 = coleccionVinilos.get(i+1);
+							else{
+								Vinilo col = coleccionVinilos.get(i);
+								Vinilo col2 = coleccionVinilos.get(i+1);
 				%>
 				<div class="4u 12u$(mobile)">
 					<article class="item">
@@ -201,7 +204,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 						</header>
 					</article>
 				</div>
-				<%}i=i+2; }}
+				<%			}i=i+2; }
+					}
 				else if (coleccionVinilos.size()==1){
 					Vinilo col = coleccionVinilos.get(0);
 				%>
@@ -234,7 +238,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				<h2>Catálogo</h2>
 			</header>
 
-			<p>Aquí podrás encontrar las últimas novedades.
+			<p>Aquí podrás encontrar las últimas novedades y añadirlas a tu colección.
 				Para ver la lista completa haz click en <strong><a href="/catalogo">Ver más</a></strong>.</p>
 
 			<div class="row">

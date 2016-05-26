@@ -49,6 +49,20 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				}
 			});
 		});
+
+
+		function buscar(){
+			var elemento = document.getElementById("navBusqueda").value;
+			$.post("/buscar", {usernameB:elemento}, function(result){
+				result = result.trim();
+				if(result == 'exito'){
+					window.location.replace("/busquedaColeccion");
+				} else{
+					alert("El usuario "+elemento+" no existe.");
+					window.location.replace("/timeline");
+				}
+			});
+		}
 	</script>
 
 	<!-- Acaba script de prueba empieza style deprueba-->
@@ -70,7 +84,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			String numPagina = (String) request.getSession().getAttribute("numPagina");
 			int numPag = Integer.parseInt(numPagina);
 			String resultado = (String) request.getSession().getAttribute("resultado");
-			//TODO: NUMERO DE VINILOS DEL USUARIO!!!!!!!
 			String ordenacion = (String) request.getSession().getAttribute("tipoOrdenacion");
 			Boolean ordenacionTitulo = true;
 			if(ordenacion.equalsIgnoreCase("fecha")){
@@ -107,15 +120,21 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<ul>
 				<li><div id="custom-search-input">
 					<div class="input-group col-md-12">
-						<input type="text" class="  search-query form-control" placeholder="Search" />
-                                <span class="input-group-btn">
-                                    <button class="icon fa-search" type="button">
+						<input type="text" placeholder="Buscar" id="navBusqueda" maxlength="64" name="navBusqueda" style="padding-right: 3px;
+   																													 	border-radius: 3px;
+    																													margin-right: 10px;">
+						<!--<span class="input-group-btn">
+
+                                    <!--<button onclick="buscar()" class="icon fa-search" type="button">
                                         <span class=" glyphicon glyphicon-search"></span>
-                                    </button>
-                                </span>
+                                    </button>-->
+
+						<!--</span>-->
 					</div>
 				</div>
 				</li>
+				<!--<li><a href="#" input type="button" onclick="buscar()">Buscar</a></li>-->
+				<li><a href="#" if="buscar" class="skel-layers-ignoreHref" onclick="buscar()"><span class="icon fa-search">Buscar</span></a></li>
 				<li><a href="/timeline" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Inicio</span></a></li>
 				<li><a href="/coleccion" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Mi Colección</span></a></li>
 				<li><a href="#top-link" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Catálogo</span></a></li>
@@ -283,22 +302,22 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				En el formulario te especificaremos lo que tienes que enviarnos.
 				No te agobies, solo los datos con <strong>asterisco*</strong> son obligatorios, pero harás nuestro trabajo mas fácil cuantos más datos incluyas.</p>
 
-			<form method="post" action="#">
+			<form method="get" enctype="text/plain" action="mailto:vinylio.raytech@gmail.com">
 				<div class="row">
-					<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="Tu Nombre" /></div>
-					<div class="6u$ 12u$(mobile)"><input type="text" name="email" value="vinylio.raytech@gmail.com"/></div>
+					<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="<%out.println(user.getNombreApellidos());%>" readonly="readonly" /></div>
+					<div class="6u$ 12u$(mobile)"><input type="text" name="email" value="<%out.println(user.getEmail());%>" readonly="readonly"/></div>
+					<div class="6u 12u$(mobile)"><input type="text" name="titulo" placeholder="Titulo*" required minlength="1" maxlength="64" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
+					<div class="6u$ 12u$(mobile)"><input type="text" name="artista" placeholder="Artista*" required minlength="1" maxlength="64" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
+					<div class="6u 12u$(mobile)"><input type="text" name="genero" placeholder="Genero" maxlength="32" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
+					<div class="6u$ 12u$(mobile)"><input type="text" name="lanzamiento" placeholder="Fecha de Lanzamiento (dd/mm/aa)" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d"/></div>
+					<div class="6u 12u$(mobile)"><input type="text" name="discografica" placeholder="Discográfica" maxlength="32" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
+					<div class="6u$ 12u$(mobile)"><input type="text" name="imagen" placeholder="Imagen (URL)*" required minlength="1" pattern=".{1,127}"/></div>
+					<div class="6u 12u$(mobile)"><input type="text" name="rpm" placeholder="RPM (33,45)"  maxlength="3" pattern="[0-9]"/></div>
+					<div class="6u$ 12u$(mobile)"><input type="text" name="numlanzamiento"  placeholder="Numero de Lanzamiento" pattern=".{1,12}"/></div>
+
 					<div class="12u$">
-										<textarea name="message"> Título*:
-Artista*:
-Género:
-Fecha de lanzamiento:
-Discográfica:
-Imagen (URL):
-RPM:
-Nº de lanzamiento:</textarea>
-					</div>
-					<div class="12u$">
-						<input type="submit" value="Send Message" />
+						<input type="submit" value="Enviar" />
+						<input type="reset" value="Reset"/>
 					</div>
 				</div>
 			</form>

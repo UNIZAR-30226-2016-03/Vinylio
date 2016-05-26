@@ -48,6 +48,20 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				}
 			});
 		});
+
+
+		function buscar(){
+			var elemento = document.getElementById("navBusqueda").value;
+			$.post("/buscar", {usernameB:elemento}, function(result){
+				result = result.trim();
+				if(result == 'exito'){
+					window.location.replace("/busquedaColeccion");
+				} else{
+					alert("El usuario "+elemento+" no existe.");
+					window.location.replace("/timeline");
+				}
+			});
+		}
 	</script>
 
 	<!-- Acaba script de prueba empieza style deprueba-->
@@ -92,15 +106,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<ul>
 				<li><div id="custom-search-input">
 					<div class="input-group col-md-12">
-						<input type="text" class="  search-query form-control" placeholder="Search" />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-danger" type="button">
-                                        <span class=" glyphicon glyphicon-search"></span>
-                                    </button>
-                                </span>
+						<input type="text" placeholder="Buscar" id="navBusqueda" maxlength="64" name="navBusqueda" style="padding-right: 3px;
+   																													 	border-radius: 3px;
+    																													margin-right: 10px;">
 					</div>
 				</div>
 				</li>
+				<li><a href="#" if="buscar" class="skel-layers-ignoreHref" onclick="buscar()"><span class="icon fa-search">Buscar</span></a></li>
 				<li><a href="/timeline" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Inicio</span></a></li>
 				<li><a href="/coleccion" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Mi Colección</span></a></li>
 				<li><a href="/catalogo" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Catálogo</span></a></li>
@@ -143,7 +155,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<p>Aquí puedes cambiar tus datos. <br />
 				Tranquilo, de momento no hemos recibido ninguna orden del FBI.</p>
 
-			<form method="post" action="/guardarCambios"">
+			<form method="post" action="/guardarCambios">
 				<div class="row">
 					<div class="6u 12u(xsmall)">
 						<label for="idnombreApellidos">Nombre y Apellidos</label>

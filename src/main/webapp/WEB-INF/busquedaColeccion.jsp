@@ -52,6 +52,20 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				}
 			});
 		});
+
+
+		function buscar(){
+			var elemento = document.getElementById("navBusqueda").value;
+			$.post("/buscar", {usernameB:elemento}, function(result){
+				result = result.trim();
+				if(result == 'exito'){
+					window.location.replace("/busquedaColeccion");
+				} else{
+					alert("El usuario "+elemento+" no existe.");
+					window.location.replace("/timeline");
+				}
+			});
+		}
 	</script>
 
 	<!-- Acaba script de prueba empieza style deprueba-->
@@ -100,19 +114,18 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<ul>
 				<li><div id="custom-search-input">
 					<div class="input-group col-md-12">
-						<input type="text" class="  search-query form-control" placeholder="Search" />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-danger" type="button">
-                                        <span class=" glyphicon glyphicon-search"></span>
-                                    </button>
-                                </span>
+						<input type="text" placeholder="Buscar" id="navBusqueda" maxlength="64" name="navBusqueda" style="padding-right: 3px;
+   																													 	border-radius: 3px;
+    																													margin-right: 10px;">
 					</div>
 				</div>
 				</li>
+				<!--<li><a href="#" input type="button" onclick="buscar()">Buscar</a></li>-->
+				<li><a href="#" if="buscar" class="skel-layers-ignoreHref" onclick="buscar()"><span class="icon fa-search">Buscar</span></a></li>
 				<li><a href="/timeline" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Inicio</span></a></li>
 				<li><a href="#top-link" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Mi Colección</span></a></li>
 				<li><a href="/catalogo" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Catálogo</span></a></li>
-				<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contáctanos</span></a></li>
+				<li><a href="/principalContacto" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contáctanos</span></a></li>
 			</ul>
 		</nav>
 
@@ -207,28 +220,36 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				<h2>Contacto</h2>
 			</header>
 
-			<p>¿Alguno de tus vinilos no aparece en el catálogo? :( <br />
-				No pasa nada, puedes contactar con un administrador y él
-				se encargará de añadirlo.<br />
-				En el formulario te especificaremos lo que tienes que enviarnos.
-				No te agobies, solo los datos con <strong>asterisco*</strong> son obligatorios, pero harás nuestro trabajo mas fácil cuantos más datos incluyas.</p>
+			<p>¿Quieres contactar con el dueño de esta colección? <br />
+				Rellena el siguiente formulario y dale a <strong>Enviar</strong>.</p>
 
-			<form method="post" action="#">
+			<form method="get" enctype="text/plain" action="mailto:<%=user.getEmail()%>">
 				<div class="row">
-					<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="Tu Nombre" /></div>
-					<div class="6u$ 12u$(mobile)"><input type="text" name="email" value="vinylio.raytech@gmail.com"/></div>
-					<div class="12u$">
-										<textarea name="message"> Título*:
-Artista*:
-Género:
-Fecha de lanzamiento:
-Discográfica:
-Imagen (URL):
-RPM:
-Nº de lanzamiento:</textarea>
+
+					<div class="6u 12u(xsmall)">
+						<label for="name">Nombre y Apellidos</label>
+						<input type="text" id="name" name="name" placeholder="<%out.println(userNormal.getNombreApellidos());%>" readonly="readonly" />
+					</br>
+						<label for="destino">Destinatario</label>
+						<input type="text" id="destino" name="to" value="<%out.println(user.getEmail());%>" readonly="readonly"/>
 					</div>
+					<div class="6u 12u(xsmall)">
+						<label for="emailUser">Email</label>
+						<input type="text" id="emailUser" name="from" value="<%out.println(userNormal.getEmail());%>" readonly="readonly"/>
+					</br>
+						<label for="asunto">Asunto</label>
+						<input type="text" id="asunto" name="subject" placeholder="Asunto"/>
+					</div>
+					</br>
+
 					<div class="12u$">
-						<input type="submit" value="Send Message" />
+						<label for="mensaje">Mensaje</label>
+										<textarea name="message" id="mensaje" placeholder="Escribe aquí tu mensaje."></textarea>
+					</div>
+
+					<div class="12u$">
+						<input type="submit" value="Enviar" />
+						<input type="reset" value="Reset"/>
 					</div>
 				</div>
 			</form>
