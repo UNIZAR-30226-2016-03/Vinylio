@@ -171,19 +171,24 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				Para ver los siguientes 25 vinilos haz click en <strong>Ver más</strong>.</p>
 			<p>Tamaño actual del catálogo: <%= numVinilos %> Vinilos.
 			</p>
-			<p> Clic para ordenar por </p>
 				<form action="/catalogoOtroOrden" method="post">
-
-					<select name="ordenacionDesplegable">
-						<option value="titulo" <% if(ordenacion.equalsIgnoreCase("titulo")){ %> selected="selected" <% } %>">Titulo</option>
-						<option value="autor" <% if(ordenacion.equalsIgnoreCase("autor")){ %> selected="selected" <% } %>">Autor</option>
-						<option value="discografica" <% if(ordenacion.equalsIgnoreCase("discografica")){ %> selected="selected"<% } %>">Discográfica</option>
-						<option value="fecha" <% if(ordenacion.equalsIgnoreCase("fecha")){ %> selected="selected"<% } %>">Fecha</option>
-						<option value="genero" <% if(ordenacion.equalsIgnoreCase("genero")){ %> selected="selected"<% } %>">Género</option>
-						<option value="RPM" <% if(ordenacion.equalsIgnoreCase("RPM")){ %> selected="selected"<% } %>">RPM</option>
-						<option value="numLanzamiento" <% if(ordenacion.equalsIgnoreCase("numLanzamiento")){ %> selected="selected"<% } %>">Nº Lanzamiento</option>
-					</select>
-					<input type="submit" value="Ordenar"/>
+					<div class="row">
+						<div class="12u$">
+							<label for="selectOrden">Ordenar por:</label>
+							<select id="selectOrden" name="ordenacionDesplegable">
+								<option value="titulo" <% if(ordenacion.equalsIgnoreCase("titulo")){ %> selected="selected" <% } %>">Titulo</option>
+								<option value="autor" <% if(ordenacion.equalsIgnoreCase("autor")){ %> selected="selected" <% } %>">Autor</option>
+								<option value="discografica" <% if(ordenacion.equalsIgnoreCase("discografica")){ %> selected="selected"<% } %>">Discográfica</option>
+								<option value="fecha" <% if(ordenacion.equalsIgnoreCase("fecha")){ %> selected="selected"<% } %>">Fecha</option>
+								<option value="genero" <% if(ordenacion.equalsIgnoreCase("genero")){ %> selected="selected"<% } %>">Género</option>
+								<option value="RPM" <% if(ordenacion.equalsIgnoreCase("RPM")){ %> selected="selected"<% } %>">RPM</option>
+								<option value="numLanzamiento" <% if(ordenacion.equalsIgnoreCase("numLanzamiento")){ %> selected="selected"<% } %>">Nº Lanzamiento</option>
+							</select>
+						</div>
+						<div class="12u$">
+							<input type="submit" value="Ordenar"/>
+						</div>
+					</div>
 				</form>
 
 			<%
@@ -211,6 +216,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				}
 				else{}
 			%>
+			<hr class="prettyline">
 			<div class="tablePropia">
 				<table>
 

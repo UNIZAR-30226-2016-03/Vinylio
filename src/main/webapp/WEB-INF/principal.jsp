@@ -238,7 +238,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				<h2>Catálogo</h2>
 			</header>
 
-			<p>Aquí podrás encontrar las últimas novedades y añadirlas a tu colección.
+			<p>Aquí podrás encontrar las últimas novedades y añadirlas a tu colección.<br/>
 				Para ver la lista completa haz click en <strong><a href="/catalogo">Ver más</a></strong>.</p>
 
 			<div class="row">
