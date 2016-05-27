@@ -16,18 +16,18 @@ public class DAOColeccion {
     /**
      * Conexion a una BD MYSQL
      */
-    private static final String DB_URL = "jdbc:mysql://vinylio.csvlc89bx3ln.eu-central-1.rds.amazonaws.com:3306";
+    private static final String DB_URL = "jdbc:mysql://localhost";
 
     /**
      * CaDena de caracteres con el nombre de usuario, o login, a emplear para
      * conectarse a la BD
      */
-    private static final String USER = "user";
+    private static final String USER = "root";
     /**
      * Cadena de caracteres con el password, o contraseña, a emplear para
      * conectarse a la BD
      */
-    private static final String PASS = "cristiandimision";
+    private static final String PASS = "root";
     /**
      * Conexion con la BD
      */
@@ -141,12 +141,8 @@ public class DAOColeccion {
         Statement stmt = connection.createStatement();
         ResultSet rs;
         System.out.println(user.getIdUsuario());
-        if(ordenacion.equalsIgnoreCase("fecha")){
-            rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_user='" + user.getIdUsuario() +"'");
-        }
-        else {
-            rs = stmt.executeQuery("SELECT * FROM colecciona WHERE id_user='" + user.getIdUsuario() +"'");
-        }
+        rs = stmt.executeQuery("SELECT * FROM vinilo WHERE id_vinilo IN (select id_vinilo FROM colecciona WHERE id_user='" + user.getIdUsuario() +"') ORDER BY "+ordenacion);
+
         ArrayList<Vinilo> historial = new ArrayList<Vinilo>();
         DAOVinilo daoVinilo = new DAOVinilo();
         int j=numPagina*25;

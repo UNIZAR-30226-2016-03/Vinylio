@@ -222,10 +222,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 					}
 					else{}
 				%>
-			</div>
-			<footer>
-				<a href="/coleccion" class="button scrolly">Ver más.</a>
-			</footer>
+			</div
+				<footer>
+					<a href="/coleccion" class="button scrolly">Ver más.</a>
+				</footer>
 
 		</div>
 	</section>
@@ -267,11 +267,11 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				</div>
 				<% }} %>
 			</div>
-			<footer>
-				<a href="/catalogo" class="button scrolly">Ver más.</a>
-			</footer>
+				<footer>
+					<a href="/catalogo" class="button scrolly">Ver más.</a>
+				</footer>
 
-		</div>
+			</div>
 	</section>
 
 	<!-- Contact -->

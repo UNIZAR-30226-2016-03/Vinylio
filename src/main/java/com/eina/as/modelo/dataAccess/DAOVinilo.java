@@ -17,18 +17,18 @@ public class DAOVinilo {
     /**
      * Conexion a una BD MYSQL
      */
-    private static final String DB_URL = "jdbc:mysql://vinylio.csvlc89bx3ln.eu-central-1.rds.amazonaws.com:3306";
+    private static final String DB_URL = "jdbc:mysql://localhost";
 
     /**
      * CaDena de caracteres con el nombre de usuario, o login, a emplear para
      * conectarse a la BD
      */
-    private static final String USER = "user";
+    private static final String USER = "root";
     /**
      * Cadena de caracteres con el password, o contraseña, a emplear para
      * conectarse a la BD
      */
-    private static final String PASS = "cristiandimision";
+    private static final String PASS = "root";
     /**
      * Conexion con la BD
      */
@@ -164,15 +164,11 @@ public class DAOVinilo {
     public ArrayList<Vinilo> getListaVinilos(int pagina, String tipoOrdenacion) throws SQLException {
 
         ArrayList<Vinilo> historial= new ArrayList<Vinilo>();
+        System.out.println("tipoOrdenacion = " + tipoOrdenacion);
         connect();
         Statement stmt = connection.createStatement();
         ResultSet rs;
-        if(tipoOrdenacion.equalsIgnoreCase("fecha")){
-            rs = stmt.executeQuery("SELECT * FROM Vinilo ORDER BY fecha");
-        }
-        else{
-            rs = stmt.executeQuery("SELECT * FROM Vinilo ORDER BY titulo");
-        }
+        rs = stmt.executeQuery("SELECT * FROM Vinilo ORDER BY "+tipoOrdenacion);
         int j=pagina*25;
         int i=0;
         ArrayList <Vinilo> listaVinilos =  new ArrayList<Vinilo>();

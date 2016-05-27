@@ -83,6 +83,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			int numVinilos = (int) request.getAttribute("numVinilos");
 			request.removeAttribute("listaVinilos");
 			request.getSession().setAttribute("listaVinilos",listaVinilos);
+			String ordenacion = (String) request.getSession().getAttribute("tipoOrdenacion");
 
 		%>
 		<!-- Logo -->
@@ -161,6 +162,23 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<p>Aquí podrás encontrar 25 vinilos.<br>
 				Para ver los siguientes 25 vinilos haz click en <strong>Ver más</strong>.</p>
 			<p>Tamaño actual de la colección: <%= numVinilos %></p>
+
+			<p> Clic para ordenar por </p>
+			<form action="/coleccionOtroOrden" method="post">
+
+				<select name="ordenacionDesplegable">
+					<option value="titulo" <% if(ordenacion.equalsIgnoreCase("titulo")){ %> selected="selected" <% } %>">Titulo</option>
+					<option value="autor" <% if(ordenacion.equalsIgnoreCase("autor")){ %> selected="selected" <% } %>">Autor</option>
+					<option value="discografica" <% if(ordenacion.equalsIgnoreCase("discografica")){ %> selected="selected"<% } %>">Discográfica</option>
+					<option value="fecha" <% if(ordenacion.equalsIgnoreCase("fecha")){ %> selected="selected"<% } %>">Fecha</option>
+					<option value="genero" <% if(ordenacion.equalsIgnoreCase("genero")){ %> selected="selected"<% } %>">Género</option>
+					<option value="RPM" <% if(ordenacion.equalsIgnoreCase("RPM")){ %> selected="selected"<% } %>">RPM</option>
+					<option value="numLanzamiento" <% if(ordenacion.equalsIgnoreCase("numLanzamiento")){ %> selected="selected"<% } %>">Nº Lanzamiento</option>
+				</select>
+				<input type="submit" value="Ordenar"/>
+			</form>
+
+
 			<%
 				if(numVinilos>=1499){
 			%>
@@ -189,13 +207,12 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				else{}
 			%>
 			<div class="tablePropia">
-				<table >
+				<table>
 
 					<tr>
 						<td>Portada</td><td>Título</td><td>Autor</td><td>Discográfica</td><td>Género</td><td>Año</td>
 						<td>Rpm</td><td>Nº Lanzamiento</td>
 					</tr>
-
 					<%
 						for (int i = 0; i < listaVinilos.size(); i++) {
 							Vinilo vin = listaVinilos.get(i);
@@ -266,8 +283,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 			<form method="get" enctype="text/plain" action="mailto:vinylio.raytech@gmail.com">
 				<div class="row">
-					<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="<%out.println(user.getNombreApellidos());%>" readonly="readonly" /></div>
-					<div class="6u$ 12u$(mobile)"><input type="email" name="email" value="<%out.println(user.getEmail());%>" readonly="readonly"/></div>
+					<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="<% user.getNombreApellidos(); %>" readonly="readonly" /></div>
+					<div class="6u$ 12u$(mobile)"><input type="email" name="email" value="<% user.getEmail(); %>" readonly="readonly"/></div>
 					<div class="6u 12u$(mobile)"><input type="text" name="titulo" placeholder="Titulo*" required minlength="1" maxlength="64" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
 					<div class="6u$ 12u$(mobile)"><input type="text" name="artista" placeholder="Artista*" required minlength="1" maxlength="64" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
 					<div class="6u 12u$(mobile)"><input type="text" name="genero" placeholder="Genero" maxlength="32" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>

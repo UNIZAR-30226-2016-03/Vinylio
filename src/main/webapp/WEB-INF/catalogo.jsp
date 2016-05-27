@@ -85,10 +85,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			int numPag = Integer.parseInt(numPagina);
 			String resultado = (String) request.getSession().getAttribute("resultado");
 			String ordenacion = (String) request.getSession().getAttribute("tipoOrdenacion");
-			Boolean ordenacionTitulo = true;
-			if(ordenacion.equalsIgnoreCase("fecha")){
-				ordenacionTitulo = false;
-			}
 			%>
 		<!-- Logo -->
 		<div id="logo">
@@ -175,27 +171,20 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				Para ver los siguientes 25 vinilos haz click en <strong>Ver más</strong>.</p>
 			<p>Tamaño actual del catálogo: <%= numVinilos %> Vinilos.
 			</p>
+			<p> Clic para ordenar por </p>
+				<form action="/catalogoOtroOrden" method="post">
 
-			<p> Clic para ordenar por
-
-				<%
-					if(ordenacionTitulo==true){
-				%> <footer>
-					<a href="/catalogoOtroOrden" class="button scrolly"> FECHA. </a>
-				</footer>
-				<%  }
-				else{
-				%> <footer>
-					<a href="/catalogo" class="button scrolly"> TITULO. </a>
-				</footer>
-				<%
-					}
-				%>
-			</p>
-
-
-
-
+					<select name="ordenacionDesplegable">
+						<option value="titulo" <% if(ordenacion.equalsIgnoreCase("titulo")){ %> selected="selected" <% } %>">Titulo</option>
+						<option value="autor" <% if(ordenacion.equalsIgnoreCase("autor")){ %> selected="selected" <% } %>">Autor</option>
+						<option value="discografica" <% if(ordenacion.equalsIgnoreCase("discografica")){ %> selected="selected"<% } %>">Discográfica</option>
+						<option value="fecha" <% if(ordenacion.equalsIgnoreCase("fecha")){ %> selected="selected"<% } %>">Fecha</option>
+						<option value="genero" <% if(ordenacion.equalsIgnoreCase("genero")){ %> selected="selected"<% } %>">Género</option>
+						<option value="RPM" <% if(ordenacion.equalsIgnoreCase("RPM")){ %> selected="selected"<% } %>">RPM</option>
+						<option value="numLanzamiento" <% if(ordenacion.equalsIgnoreCase("numLanzamiento")){ %> selected="selected"<% } %>">Nº Lanzamiento</option>
+					</select>
+					<input type="submit" value="Ordenar"/>
+				</form>
 
 			<%
 				if(numVinilosUser>=1499){
@@ -223,16 +212,12 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				else{}
 			%>
 			<div class="tablePropia">
-				<table style="margin-bottom: 0px;">
+				<table>
 
 					<tr>
 						<td>Portada</td><td>Título</td><td>Autor</td><td>Discográfica</td><td>Género</td><td>Año</td>
 						<td>Rpm</td><td>Nº Lanzamiento</td>
 					</tr>
-					<hr class="prettyline">
-					</table>
-				<hr class="prettyline">
-				<table>
 					<%
 						for (int i = 0; i < listaVinilos.size(); i++) {
 							Vinilo vin = listaVinilos.get(i);
@@ -304,8 +289,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 			<form method="get" enctype="text/plain" action="mailto:vinylio.raytech@gmail.com">
 				<div class="row">
-					<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="<%out.println(user.getNombreApellidos());%>" readonly="readonly" /></div>
-					<div class="6u$ 12u$(mobile)"><input type="text" name="email" value="<%out.println(user.getEmail());%>" readonly="readonly"/></div>
+					<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="<% user.getNombreApellidos(); %>" readonly="readonly" /></div>
+					<div class="6u$ 12u$(mobile)"><input type="text" name="email" value="<% user.getEmail();%>" readonly="readonly"/></div>
 					<div class="6u 12u$(mobile)"><input type="text" name="titulo" placeholder="Titulo*" required minlength="1" maxlength="64" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
 					<div class="6u$ 12u$(mobile)"><input type="text" name="artista" placeholder="Artista*" required minlength="1" maxlength="64" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
 					<div class="6u 12u$(mobile)"><input type="text" name="genero" placeholder="Genero" maxlength="32" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
@@ -348,7 +333,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				window.location.replace("/catalogor");
 			}
 		});
-
 	}
 </script>
 

@@ -1,5 +1,6 @@
 package com.eina.as.controladores;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.eina.as.modelo.dataAccess.DAOColeccion;
 import com.eina.as.modelo.dataAccess.DAOVinilo;
 import com.eina.as.modelo.service.Usuario;
@@ -24,15 +25,14 @@ public class ControladorCatalogo {
     // Lo que creo casi seguro que hace es que si lo llamas con /catalogo o /catalogo2 va a hacerte una cosa de estas?
 
     @RequestMapping(value= "/catalogo")
-    public String redireccionCatalogo(HttpServletRequest request/*, HttpServletResponse response*/)
-            throws Exception{
+    public String redireccionCatalogo(HttpServletRequest request) throws Exception{
 
         Usuario user = (Usuario) request.getSession().getAttribute("user");
         if (user == null) {
             return "redirect:/home";
         } else {
             String resultado = "naa";
-            request.getSession().setAttribute("tipoOrdenacion", "titulo");
+            request.getSession().setAttribute("tipoOrdenacion", "titulo" );
             request.getSession().setAttribute("resultado", resultado);
             request.removeAttribute("numPagina");
             DAOVinilo vin = new DAOVinilo();
@@ -49,36 +49,6 @@ public class ControladorCatalogo {
             return "catalogo";
         }
     }
-
-// metodo que va a cambiar el ordenar de valor y te redirecciona a la primera pantalla con los vinilos ordenados
-    // segun le hayas dicho.
-    @RequestMapping(value= "/catalogoOtroOrden")
-    public String redireccionCatalogoOtroOrden(HttpServletRequest request/*, HttpServletResponse response*/)
-            throws Exception{
-
-        Usuario user = (Usuario) request.getSession().getAttribute("user");
-        if (user == null) {
-            return "redirect:/home";
-        } else {
-            String resultado = "naa";
-            request.getSession().setAttribute("tipoOrdenacion", "fecha");
-            request.getSession().setAttribute("resultado", resultado);
-            request.removeAttribute("numPagina");
-            DAOVinilo vin = new DAOVinilo();
-            ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(0,"fecha");
-            int numVinilos = vin.getNumeroVinilos();
-            request.setAttribute ("numVinilos", numVinilos);
-            DAOColeccion daoColeccion = new DAOColeccion();
-            int numVinilosUser = daoColeccion.getNumeroVinilos(user);
-            request.setAttribute("numVinilosUser", numVinilosUser);
-            request.setAttribute("listaVinilos", listaVinilos);
-            request.getSession().setAttribute("numPagina","1");
-            //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
-            //  dispatcher.forward(request,response);
-            return "catalogo";
-        }
-    }
-
 
     @RequestMapping(value= "/catalogor")
     public String redireccionCatalogor(HttpServletRequest request/*, HttpServletResponse response*/)
@@ -112,6 +82,37 @@ public class ControladorCatalogo {
                 return "redirect:/catalogo2";
             }
 
+            return "catalogo";
+        }
+    }
+
+    // lo de value /catalogo que hace en verdad? Si cargo directamente la pagina catalogo.jsp cargaría este metodo?
+    // Lo que creo casi seguro que hace es que si lo llamas con /catalogo o /catalogo2 va a hacerte una cosa de estas?
+
+    @RequestMapping(value= "/catalogoOtroOrden", method=RequestMethod.POST)
+    public String redireccionCatalogo(@RequestParam("ordenacionDesplegable") String orden,
+                                      HttpServletRequest request) throws Exception{
+        System.out.println("El orden elegido es: " + orden );
+
+        Usuario user = (Usuario) request.getSession().getAttribute("user");
+        if (user == null) {
+            return "redirect:/home";
+        } else {
+            String resultado = "naa";
+            request.getSession().setAttribute("tipoOrdenacion", orden );
+            request.getSession().setAttribute("resultado", resultado);
+            request.removeAttribute("numPagina");
+            DAOVinilo vin = new DAOVinilo();
+            ArrayList <Vinilo> listaVinilos= vin.getListaVinilos(0,orden);
+            int numVinilos = vin.getNumeroVinilos();
+            request.setAttribute ("numVinilos", numVinilos);
+            DAOColeccion daoColeccion = new DAOColeccion();
+            int numVinilosUser = daoColeccion.getNumeroVinilos(user);
+            request.setAttribute("numVinilosUser", numVinilosUser);
+            request.setAttribute("listaVinilos", listaVinilos);
+            request.getSession().setAttribute("numPagina","1");
+            //  RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
+            //  dispatcher.forward(request,response);
             return "catalogo";
         }
     }

@@ -49,25 +49,23 @@ public class ControladorColeccion {
     }
 
 
-
-
     // metodo que va a cambiar el ordenar de valor y te redirecciona a la primera pantalla con los vinilos ordenados
     // segun le hayas dicho.
-    @RequestMapping(value = "/coleccionOtroOrden")
-    public String redireccionColeccionOtroOrden(HttpServletRequest request/*, HttpServletResponse response*/)
-            throws Exception {
+    @RequestMapping(value= "/coleccionOtroOrden", method=RequestMethod.POST)
+    public String redireccionCatalogo(@RequestParam("ordenacionDesplegable") String orden,
+                                      HttpServletRequest request) throws Exception{
+        System.out.println("El orden elegido es: " + orden );
         System.out.println("Me ha llegado la peticion de coleccion");
         Usuario user = (Usuario) request.getSession().getAttribute("user");
-        request.getSession().setAttribute("tipoOrdenacion", "fecha");
         String resultado = "naa";
         request.getSession().setAttribute("resultadoEliminar",resultado);
-
         if (user == null) {
             return "redirect:/home";
         } else {
+            request.getSession().setAttribute("tipoOrdenacion", "fecha");
             request.removeAttribute("numPaginaC");
             DAOColeccion coleccion = new DAOColeccion();
-            ArrayList<Vinilo> listaVinilos = coleccion.getListaVinilos(user,0, "fecha");
+            ArrayList<Vinilo> listaVinilos = coleccion.getListaVinilos(user,0, orden);
             int numVinilos = coleccion.getNumeroVinilos(user);
             request.setAttribute("numVinilos", numVinilos);
             request.setAttribute("listaVinilos", listaVinilos);
@@ -78,9 +76,6 @@ public class ControladorColeccion {
         }
 
     }
-
-
-
 
     @RequestMapping(value = "/coleccionr")
     public String redireccionColeccionr(HttpServletRequest request/*, HttpServletResponse response*/)
