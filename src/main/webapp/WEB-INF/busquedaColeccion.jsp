@@ -223,7 +223,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<p>¿Quieres contactar con el dueño de esta colección? <br />
 				Rellena el siguiente formulario y dale a <strong>Enviar</strong>.</p>
 
-			<form method="get" enctype="text/plain" action="mailto:<%=user.getEmail()%>">
+			<form method="post" enctype="text/plain" action="mailto:<%=user.getEmail()%>">
 				<div class="row">
 
 					<div class="6u 12u(xsmall)">

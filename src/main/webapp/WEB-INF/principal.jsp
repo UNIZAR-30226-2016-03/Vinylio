@@ -288,10 +288,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				En el formulario te especificaremos lo que tienes que enviarnos.
 				No te agobies, solo los datos con <strong>asterisco*</strong> son obligatorios, pero harás nuestro trabajo mas fácil cuantos más datos incluyas.</p>
 
-			<form method="get" enctype="text/plain" action="mailto:vinylio.raytech@gmail.com">
+			<form method="post" enctype="text/plain" action="mailto:vinylio.raytech@gmail.com">
 				<div class="row">
-					<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="<%out.println(user.getNombreApellidos());%>" readonly="readonly" /></div>
-					<div class="6u$ 12u$(mobile)"><input type="email" name="email" value="<%out.println(user.getEmail());%>" readonly="readonly"/></div>
+					<div class="6u 12u$(mobile)"><input type="text" name="name" value="<%= user.getNombreApellidos() %>" readonly="readonly"/></div>
+					<div class="6u$ 12u$(mobile)"><input type="email" name="email" value="<%= user.getEmail() %>" readonly="readonly"/></div>
 					<div class="6u 12u$(mobile)"><input type="text" name="titulo" placeholder="Titulo*" required minlength="1" maxlength="64" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
 					<div class="6u$ 12u$(mobile)"><input type="text" name="artista" placeholder="Artista*" required minlength="1" maxlength="64" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
 					<div class="6u 12u$(mobile)"><input type="text" name="genero" placeholder="Genero" maxlength="32" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"/></div>
